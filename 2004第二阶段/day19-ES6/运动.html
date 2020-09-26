@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../utils.js"></script>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var oBox = document.querySelector('#box')
+        // function move (ele,attr,end,duration,fn) {
+        //     // 获取目标当前属性值
+        //     var start = parseInt(oBox.style.left)
+        //     // 计算总长度
+        //     var distance = end - start
+        //     // 计算总步数
+        //     var steps = Math.floor(distance / 30)
+        //     // 计算步速
+        //     var speed = distance / steps
+
+        //     // 计算当前的步数
+        //     var n = 0
+        //     clearInterval(ele.timer)
+        //     ele.timer = setInterval(function () {
+        //         n++
+        //         ele.style[attr] = start + n * speed + 'px'
+        //         if (n === steps) {
+        //             clearInterval(ele.timer)
+        //             ele.style[attr] = end + 'px'
+        //         }
+
+        //         // 判断是否输入fn
+        //         fn && fn()
+        //     },30)
+        // }
+        oBox.onclick = function () {
+            utils.move1(oBox,'left',500,1000)   
+        }
+    </script>
+</body>
+</html>

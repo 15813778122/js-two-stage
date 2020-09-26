@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 在封装一个函数的同时立马调用
+        // 函数只会在一开始的时候被调用一次
+        (function () {
+            // num是局部变量，节约内存空间
+            var num = 123
+            console.log(num)
+        })()
+
+        // 写IIFE的时候如果前面的代码没有分号，那么需要在IIFE前面加上一个分号
+        ;(function (n) {
+            console.log(n)
+        })(3)
+    </script>
+</body>
+</html>

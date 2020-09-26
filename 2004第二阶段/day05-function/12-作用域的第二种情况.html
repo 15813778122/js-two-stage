@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var num = 30
+        function test () {
+            // 如果局部变量和全局变量重名，优先使用局部变量
+            // var num = 40
+            // 如果局部没有这个变量，就去使用全局的
+            console.log(num)
+        }
+        test()
+    </script>
+</body>
+</html>

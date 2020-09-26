@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、let没有变量提升
+        // console.log(a)
+        // let a = 10
+        // var a = 10
+
+        // 2、暂时性死区
+
+        let a = 10
+        if (true) {
+            // 在预编译的时候发现局部有一个a，所以并不会去找全局
+            // 但是执行的时候一看，局部的a的声明的在后面，而且let又不会提升，那就会报错
+            console.log(a)
+            let a = 20
+        }
+    </script>
+</body>
+</html>

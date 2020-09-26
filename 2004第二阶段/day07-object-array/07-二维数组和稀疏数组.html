@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 二维数组
+        var arr = [
+            [1,2,3],
+            [4,5,6],
+            [7,8,9,41,86,97,86]
+        ]
+        console.log(arr.length) // 3
+
+        console.log(arr[0]) // [1,2,3]
+
+        console.log(arr[0][0])
+
+        console.log(arr[1][2]) // 6
+
+        console.log(arr[2][5])
+        
+        console.log(arr[2].length)
+
+        // 稀疏数组:数组中的某些元素是没有值的，作为概念认识一下就行
+        var arr = new Array(5)
+        arr[0] = 'Tom'
+        arr[3] = 'Tony'
+        console.log(arr)
+    </script>
+</body>
+</html>

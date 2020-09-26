@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        h4 {
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+    <div id="box2">
+        <h4>title</h4>
+    </div>
+    <script>
+        class Zoom {
+            constructor (selector,title) {
+                this.box = document.querySelector(selector)
+                this.title = title ? document.querySelector(title) : this.box
+                this.bindEvents()
+            }
+            bindEvents () {
+                this.title.onmousedown = e => {
+                    e = e || window.event
+                    var disX = e.offsetX
+                    var disY = e.offsetY
+                    document.onmousemove = e => {
+                        e = e || window.event
+                        var left = e.clientX - disX
+                        var top = e.clientY - disY
+                        this.move(left,top)
+                    }
+                    document.onmouseup = function () {
+                        document.onmousemove = null
+                    }
+                    if (e.preventDefault) {
+                        e.preventDefault()
+                    } else {
+                        return false
+                    }
+                }
+            }
+            move (left,top) {
+                if (left < 0) left = 0
+                if (top < 0) top = 0
+                if (left > window.innerWidth - this.box.offsetWidth) left = window.innerWidth - this.box.offsetWidth
+                if (top > window.innerHeight - this.box.offsetHeight) top = window.innerHeight - this.box.offsetHeight
+                this.box.style.left = left + 'px'
+                this.box.style.top = top + 'px'
+            }
+        }
+        new Zoom('#box1')
+        new Zoom('#box2','h4')
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Cfb {
+            constructor (n) {
+                this.n = n
+                this.str = ''
+                this.init()
+                this.print()
+            }
+            init () {
+                for (var i = 1; i <= this.n; i++) {
+                    for (var j = 1; j <= i; j++) {
+                        this.str += `${j} x ${i} = ${j*i}&nbsp;`
+                    }
+                    this.str += '<br>'
+                }
+            }
+            print () {
+                document.write(this.str)
+            }
+        }
+        new Cfb(9)
+    </script>
+</body>
+</html>

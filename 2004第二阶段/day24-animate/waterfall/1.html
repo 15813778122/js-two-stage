@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin:0;padding:0;list-style-type:none;}
+        a,img{border:0;}
+        #box{margin: 0 auto;position: relative;}
+        .item {box-shadow: 2px 2px 2px #999;position: absolute;}
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="item"><img src="images/01.jpg"></div>
+        <div class="item"><img src="images/02.jpg"></div>
+        <div class="item"><img src="images/03.jpg"></div>
+        <div class="item"><img src="images/04.jpg"></div>
+        <div class="item"><img src="images/05.jpg"></div>
+        <div class="item"><img src="images/06.jpg"></div>
+        <div class="item"><img src="images/07.jpg"></div>
+        <div class="item"><img src="images/08.jpg"></div>
+        <div class="item"><img src="images/09.jpg"></div>
+        <div class="item"><img src="images/10.jpg"></div>
+        <div class="item"><img src="images/11.jpg"></div>
+        <div class="item"><img src="images/12.jpg"></div>
+        <div class="item"><img src="images/13.jpg"></div>
+        <div class="item"><img src="images/14.jpg"></div>
+        <div class="item"><img src="images/15.jpg"></div>
+        <div class="item"><img src="images/16.jpg"></div>
+        <div class="item"><img src="images/17.jpg"></div>
+    </div>
+    <script>
+       window.onload = function () {
+            var box = document.querySelector('#box')
+                items = Array.from(box.children)
+            var len = 0
+
+            var winWidth = window.innerWidth
+            var width = items[0].offsetWidth
+            var gap = 10
+            var cols = Math.floor((winWidth + gap) / (width + gap))
+            box.style.width = cols * width + (cols - 1) * gap + 'px'
+
+            var arr = new Array(cols)
+            change()
+            function change () {
+                for (var i = len; i < items.length; i++) {
+                    if (i < cols) {
+                        // 第一行
+                        items[i].style.left = (width + gap) * i + 'px'
+                        arr[i] = items[i].offsetHeight + gap
+                    } else {
+                        var minHeight = Math.min(...arr)
+                        var minIndex = arr.indexOf(minHeight)
+                        items[i].style.top = minHeight + 'px'
+                        items[i].style.left = (width + gap) * minIndex + 'px'
+                        arr[minIndex] += items[i].offsetHeight + gap
+                    }
+                }
+            }
+
+            var timer = null
+            window.onscroll = function () {
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+                var maxHeight = Math.max(...arr)
+                if (scrollTop >= maxHeight - gap - window.innerHeight - 10) {
+                    len = items.length
+                    clearInterval(timer)
+                    timer = setTimeout(() => {
+                        setTimeout(() => {
+                            var json = [
+                                "images/01.jpg",
+                                "images/02.jpg",
+                                "images/03.jpg",
+                                "images/04.jpg",
+                                "images/05.jpg",
+                                "images/06.jpg",
+                                "images/07.jpg",
+                                "images/08.jpg",
+                                "images/09.jpg",
+                                "images/10.jpg",
+                                "images/11.jpg",
+                                "images/12.jpg",
+                                "images/13.jpg",
+                                "images/14.jpg",
+                                "images/15.jpg",
+                                "images/16.jpg",
+                                "images/17.jpg"
+                            ]
+                            json.forEach((url) => {
+                                var div = document.createElement('div')
+                                div.className = 'item'
+                                div.innerHTML = `<img src="${url}">`
+                                box.appendChild(div)
+                                items.push(div)
+                            })
+                            change()
+                        }, 1000)
+                    }, 100)
+                     
+                }
+            }
+       }
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 如果一个函数没有写return关键字，同样的会有默认返回值undefined
+        function test (a,b) {
+            if (typeof a != 'number' || typeof b != 'number') {
+                // 只要a或者b其中一个不是数字类型，那么我们就不计算
+                // 可以直接写return，用来结束函数，也就以为着后面计算a和b的代码不会再执行了
+                return
+            }
+            var res = a + b
+            return res
+        }
+        var num = test (2,4)
+        console.log(num)
+
+        var num1 = test('2','dadafada')
+        // undefined 如果一个函数没有返回值，那么返回值默认为undefined
+        console.log(num1)
+    </script>
+</body>
+</html>

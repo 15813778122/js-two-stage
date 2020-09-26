@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function tes1 (a,b) {
+            console.log(a,b)
+        }
+        test1(3,7)
+        // 3，7是按顺序传递给了形参a，b，但是后面这个10没有形参来接收，所以直接被舍弃
+        // 如果实参个数阿玉形参个数，多余的实参被舍弃
+        test1(3,7,10)
+
+        // 只传递了第一个实参3，没有第二个实参，所以形参b没有值，undefined
+        // 如果实参的个数小于形参的个数，那么多余的形参就是undefined
+        test1(3)// 3 + undefined    NaN
+    </script>
+</body>
+</html>

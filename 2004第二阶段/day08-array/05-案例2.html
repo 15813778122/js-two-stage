@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 有一个数组，先从小到大排好序，再输入一个数， 要求按规律将它插入数组中
+        var arr = [4,38,6,76,41,3,5]
+        arr.sort(function (a,b) {
+            return a - b
+        })
+
+        console.log(arr)
+
+        var num = Number(prompt())
+
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] >= num) {
+                // num放在i这个位置
+                arr.splice(i,0,num)
+                // 只需要插入一次数据，循环就可以结束了
+                break
+            }
+        }
+        // 如果num比数组中所有的数都大，还得再判断一次
+        // 判断num是否比arr的最后一个数大
+        if (num > arr[arr.length-1]) {
+            arr.push(num)
+        }
+    </script>
+</body>
+</html>

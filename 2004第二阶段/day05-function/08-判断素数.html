@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 素数也叫质数：只能被1和自己整除
+
+        // 核心思想：循环去验证能否整除，如果可以整除，那么就把flag改为false
+        // 循环完成以后去验证flag的状态来判定是不是质数
+
+        function zhishu (n) {
+            var flag = true // 声明一个标志位，默认值为true，默认假设是质数
+            // 判断n是否是质数
+            // 从 2 ~ n-1 来循环，找出这当中有没有哪个数可以整除
+            // 1、只要存在一个能整除，那么它就不是质数
+            // 2、2 ~ n-1之间没有一个数可以整除就是质数
+            for (var i = 2; i < n; i++) {
+                if (n % i === 0) {
+                    // 只要由任意一个被整除，说明默认值是错的，我们就把flag改为false
+                    flag = false
+                    // 说明i能被n整除
+                    // 说明我们找到了一个数除了1和本身以外的数能整除
+                    // 当代码执行到这里的时候，我们已经得到答案了，没必要继续循环了
+                    break
+                }
+                // 这里不能直接写else
+                // else {
+                //     // 这并不能说明它是质数
+                // }
+            }
+            // 在整个循环之后去判断flag是否为true
+            // 如果flag仍然为true，说明在循环过程当中一次if都没有成立，也就意味着一个能整除的都没有，那就是质数了
+            if (flag) {
+                console.log(n + '是质数')
+            } else {
+                console.log(n + '不是质数')
+            }
+        }
+
+        zhishu(9)
+        zhishu(77)
+    </script>
+</body>
+</html>

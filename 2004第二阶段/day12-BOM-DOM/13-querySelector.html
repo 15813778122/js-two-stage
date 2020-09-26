@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="title"><title></title></h1>
+    <p class="pra">文字</p>
+    <p class="pra">文字</p>
+    <p class="pra">文字</p>
+    <p class="pra">文字</p>
+    <div>box</div>
+    <div>
+        <p>innerP</p>
+    </div>
+    <script>
+        var title = document.querySelector('#title')
+        // querySelector只能取到第0个满足选择器的元素
+        var pra = document.querySelector('.pra')
+        var div = document.querySelector('div')
+        console.log(title)
+        console.log(pra)
+        console.log(div)
+
+        // 把所有满足选择器的元素全部取到
+        var pras = document.querySelectorAll('.pra')
+        console.log(pras)
+
+        // 后代、子代选择器都可以在这里直接写
+        var innerP = document.querySelectorAll('div p')
+        console.log(innerP)
+    </script>
+</body>
+</html>

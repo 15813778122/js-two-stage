@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="http://www.baidu.com" id="form">
+        <input type="checkbox">
+        <select name="" id="city">
+            <option value="1">北京</option>
+            <option value="2">武汉</option>
+            <option value="3">深圳</option>
+            <option value="4">成都</option>
+        </select>
+        <input type="text" id="text">
+        <button>提交</button>
+    </form>
+    <script>
+        // 在单选，多选，下拉菜单给这些元素绑事件一般用change
+        var oCity = document.querySelector('#city')
+        oCity.onchange = function () {
+            // 获取选中的值的时候并不需要获取option
+            // 直接获取当前select的value属性即可
+            // 当option没有value属性的时候获取的就是innerHTML
+            // 当option里面有value属性的时候获取到的就是选中option的value值
+            console.log(this.value)
+        }
+
+        var oText = document.querySelector('#text')
+        // focus 聚焦 获取焦点事件
+        oText.onfocus = function () {
+            console.log('获取焦点了')
+        }
+        // 失去焦点
+        oText.onblue = function () {
+            console.log('失去焦点了')
+            // 获取文本框的内容使用value属性
+            console.log(this.value)
+        }
+
+        // 表单提交事件
+        var oForm = document.querySelector('#form')
+        oForm.onsubmit = function () {
+            // 在表单提交之前做一些处理
+            // 比如文本框没有内容就不提交
+           if (oText.value === '') {
+               // 不允许表单提交
+               // return false可以阻止表单提交
+               return false
+           }
+            
+            console.log('提交')
+        }
+
+
+
+    </script>
+</body>
+</html>

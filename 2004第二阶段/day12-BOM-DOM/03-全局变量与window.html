@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = 20
+        console.log(a)
+        // 全局变量默认属于window对象
+        console.log(window.a)
+
+        function test () {
+            b = 10 // 在函数里声明变量如果不写var，那么这个变量就会默认属于window，因此他是全局变量
+            // 和window.b = 10一样
+        }
+        // 全局函数默认也是属于window的
+        window.test()
+        console.log(b)
+        console.log(window.b)
+
+    </script>
+</body>
+</html>

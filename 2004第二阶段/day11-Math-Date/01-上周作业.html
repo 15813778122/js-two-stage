@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border: 1px solid #333;
+            border-collapse: collapse;
+            margin: 50px auto;
+        }
+        th,td{
+            border: 1px solid #333;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+   
+    <script>
+        // sale 属性的意思是是否上架，已上架就是true，未上架就是false
+        // 表格里有一列的内容根据sale字段来显示"已上架"或者"未上架"
+        // 每一件商品的小计也在这一行的最后一列显示出来
+        // 表格打印完成以后在后面显示已上架的总价和所有商品的总价
+        var list = [
+            {
+                id : 1,
+                title : '纸',
+                price : 5,
+                num : 1,
+                sale : true
+            },
+            {
+                id : 2,
+                title : '笔',
+                price : 2,
+                num : 3,
+                sale : false
+            },
+            {
+                id : 3,
+                title : '墨水',
+                price : 8,
+                num : 3,
+                sale : true
+            }
+        ]
+
+        var str = ' <table>'+
+        '<thead>'+
+            '<tr> '+
+            '<th>编号</th>'+
+            '<th>名称</th>'+
+            '<th>价格</th>'+
+            '<th>数量</th>'+
+            '<th>状态</th>'+
+            '<th>小计</th>'+
+            '</tr>'+
+        '</thead> '+
+        '<tbody> '
+        list.forEach(function (shop) {
+            str += '<tr>'
+            for(var key in shop) {
+                if (key === 'sale') {
+                    // 使用三目运算符替换，这里有优先级问题，三目加上括号
+                    str += '<td>' + (shop[key] ? '已上架' : '未上架') + '</td>'
+                } else {
+                    str += '<td>' + shop[key] + '</td>'
+                }
+            }
+            // 小计是对象属性以外的一个td，所以在循环完了单独拼接一个
+            str += '<td>' + shop.price * shop.num + '</td>'
+            str += '</tr>'
+        })
+        str += '</tbody></table>'
+
+        document.write(str)
+
+        var allMoney = list.reduce(function (money,shop) {
+            return money + shop.price * shop.num
+        },0) 
+
+        var saleMoney = list.reduce(function (money,shop) {
+            if (shop.sale) {
+                return money + shop.price * shop.num
+            } 
+            // 未上架
+            return money
+        },0)
+
+        document.write('<p>已上架商品总价: ￥' + saleMoney + '</p>')
+        document.write('<p>所有商品总价: ￥' + allMoney + '</p>')
+        // 计算已上架的总价的第二种方法可以先过滤，把已上架的留下然后直接计算
+
+        // var saleMoney = list.reduce(function (money,shop) {
+        //     // 这里的shop.sale布尔值会隐式转换成0或者1，完全正确的运算，但是不推荐，因为不方便阅读
+        //     return money + shop.price * shop.num * shop.sale
+        // },0)
+    </script>
+</body>
+</html>

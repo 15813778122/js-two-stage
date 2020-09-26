@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>首页</li>
+        <li>列表</li>
+        <li id="about">关于</li>
+    </ul>
+    <script>
+        var ul = document.querySelector('ul')
+        var about = document.querySelector('#about')
+        var li = document.createElement('li')
+        li.innerHTML = '联系我们'
+
+        // 在ul里面把about替换成li(节点替换)
+        ul.replaceChild(li,about)
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = new Object()
+        // obj.name = '张三'
+        
+        obj.defineProperty(obj,'name',{
+            value:'张三',
+            // 可写：false代表不可写，不能被修改，默认为false
+            writable:false,
+            // 是否可以通过delete删除，默认为false
+            configurable:false,
+            // 是否可枚举，是否可以通过for in遍历到，默认为false
+            enumerable:false
+        })
+
+        obj.name = '李四'
+
+        console.log(obj)
+        
+        delete obj.name
+
+        console.log(obj)
+
+        for (var key in obj) {
+            console.log(key,obj[key])
+        }
+    </script>
+</body>
+</html>

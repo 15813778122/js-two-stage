@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function test1 (x) {
+            return x + 4
+        }
+        var test2 = function (x) {
+            return x + 4
+        }
+
+        // ES6里可以用箭头来定义函数
+
+        const test3 = (x) => {
+            return x + 4
+        }
+        // 如果箭头函数只有一个参数，那么小括号可以不写，多个参数就必须写小括号
+        const test4 = x => {
+            return x + 4
+        }
+
+        // 如果函数里只有一句话，而且这句话就是return，这个时候大括号以及return都可以省略
+        const test5 = x => x + 4
+
+        // 如果返回值是一个对象，那么要加一堆小括号避免歧义
+        const test6 = num => ({
+            price: num
+        })
+        
+
+        console.log(test1(4))
+        console.log(test2(4))
+        console.log(test3(4))
+        console.log(test4(4))
+        console.log(test5(4))
+        console.log(test6(4))
+
+
+    </script>
+</body>
+</html>

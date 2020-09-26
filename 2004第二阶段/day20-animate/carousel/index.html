@@ -1,0 +1,112 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+* {margin:0; padding:0;}
+li{list-style:none; }
+
+#div1 {width:850px; height:500px; margin:50px auto; overflow:hidden; position:relative;}
+#div1 ul li{height:500px;opacity: 0;position: absolute;left: 0;top: 0;z-index: 0;transition: opacity 1.5s;}
+#div1 ul li.ac{z-index: 5;opacity: 1;}
+#div1 ol {position:absolute;right: 10%;bottom: 10px;z-index:6}
+#div1 ol li{width: 20px;height: 20px;background: #fff;margin-left: 5px;float: left;line-height: 20px;text-align: center;cursor: pointer;}
+#div1 ol li.ac{background: red;color: #fff;}
+#div1>a{text-decoration: none;position: absolute;top: 50%;margin-top: -10px;height: 40px;line-height: 32px;text-align: center;width: 40px;font-size: 40px;vertical-align: middle;color: #fff;background: rgba(0,0,0,0.5);z-index:6;}
+#goPrev{left: 0;}
+#goNext{right: 0;}
+img{width:850px; height:500px;}
+</style>
+</head>
+
+<body>
+<div id="div1">
+	<ul>
+    	<li class="ac"><a href="javascript:alert(0);"><img src="1.jpg" /></a></li>
+    	<li><a href="javascript:alert(1);"><img src="2.jpg" /></a></li>
+    	<li><a href="javascript:alert(2);"><img src="3.jpg" /></a></li>
+    	<li><a href="javascript:alert(3);"><img src="4.jpg" /></a></li>
+    	<li><a href="javascript:alert(4);"><img src="5.jpg" /></a></li>
+    </ul>
+    <ol>
+    	<li class="ac">1</li>
+    	<li>2</li>
+    	<li>3</li>
+    	<li>4</li>
+    	<li>5</li>
+    </ol>
+    <a href="javascript:;" id="goPrev">&laquo;</a>
+    <a href="javascript:;" id="goNext">&raquo;</a>
+</div>
+<script>
+  var div = document.querySelector('#div1'),
+      imgs = div.querySelectorAll('ul li'),
+      btns = div.querySelectorAll('ol li'),
+      goPrev = document.querySelector('#goPrev'),
+      goNext = document.querySelector('#goNext')
+
+  var index = 0 // 当前图片的下标，默认为0
+  var lastIndex = 0 // 上一张图片的下标，默认为0
+  var timer = null
+
+  // 按钮切换
+  Array.from(btns).forEach((btn, i) => {
+    btn.onclick = function () {
+      // 要让上一张图片去掉ac，再给当前图片加上ac
+      // index的值应该更新成当前点击的下标
+
+      // 把index先变成lastIndex，然后再把index赋值为当前的i
+      lastIndex = index
+      index = i
+      change()
+    }
+  })
+
+  // 向后切换
+  goNext.onclick = function () {
+    lastIndex = index
+    index++
+    // index的范围只能是0~length-1 所以一旦等于length代表超出了，那就回到0
+    if (index === imgs.length) index = 0
+    change()
+  }
+
+  // 向前切换
+  goPrev.onclick = function () {
+    lastIndex = index
+    index--
+    if (index < 0) index = imgs.length - 1
+    change()
+  }
+
+  // 自动切换
+  autoPlay() // 默认先自动播放起来
+  function autoPlay () {
+    timer = setInterval(() => {
+      // 每阁3s触发一次向后按钮的点击事件
+      // 给对象绑事件，可以直接作为函数来调用
+      goNext.onclick()
+    }, 3000)
+  }
+  
+  div.onmouseenter = function () {
+    clearInterval(timer)
+  }
+  div.onmouseleave = function () {
+    autoPlay()
+  }
+
+  // 通过index和lastIndex来切换图片和按钮
+  function change () {
+    // 上一张图片和上一个按钮去掉ac再给当前图片和当前按钮加上ac
+    imgs[lastIndex].classList.remove('ac')
+    imgs[index].classList.add('ac')
+    btns[lastIndex].classList.remove('ac')
+    btns[index].classList.add('ac')
+  }
+  
+</script>
+</body>
+</html>

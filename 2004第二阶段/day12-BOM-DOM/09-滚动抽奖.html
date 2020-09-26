@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>谁最帅</h1>
+    <button onclick="start()">开始</button>
+    <button onclick="end()">结束</button>
+    <h2 id="title"></h2>
+    <script>
+        var arr = ['毛毛','本伟','熊大','葫芦娃','坤坤','壁君']
+        var title = document.getElementById('title')
+        var timer = null // null 是变量有值，只不过值为空  underfined压根就没有值
+
+        function start() {
+            var timer = setInterval(function () {
+            var index = Math.floor(Math.random() * arr.length)
+            title.innerHTML = arr[index]
+        },100)
+        }
+        
+        function end () {
+            clearInterval(timer)
+        }
+    </script>
+</body>
+</html>

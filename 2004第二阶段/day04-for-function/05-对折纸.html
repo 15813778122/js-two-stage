@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 一张纸的厚度是0.0001米， 将纸对折，对折多少次厚度超过珠峰高度8848米( 27次)
+        var houdu = 0.0001
+        // 我们需要一个计数器来记录循环的次数
+        var i = 0
+        while (houdu <= 8848) {
+            houdu *= 2
+            i++
+        }
+        console.log(i,houdu)
+    </script>
+</body>
+</html>

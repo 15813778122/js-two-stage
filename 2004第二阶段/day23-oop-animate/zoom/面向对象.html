@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #zoom {
+            position: relative;
+        }
+        .box {
+            position: relative;
+            width: 500px;
+            height: 700px;
+        }
+        .bigBox {
+            display: none;
+            position: absolute;
+            width: 500px;
+            height: 700px;
+            top: 0;
+            left: 510px;
+            overflow: hidden;
+        }
+        .box img {
+            width: 500px;
+            height: 700px;
+        }
+        .box span {
+            display: none;
+            position: absolute;
+            width: 250px;
+            height: 350px;
+            top: 0;
+            left: 0;
+            background-color: rgba(255,255,2,.3);
+        }
+        .bigBox img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1000px;
+            height: 1400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="zoom">
+        <div class="box">
+            <img src="1.jpg" alt="">
+            <span></span>
+        </div>
+        <div class="bigBox">
+            <img src="1.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        class Fun {
+            constructor (select) {
+                this.box = document.querySelector(`${select} .box`)
+                this.span = document.querySelector(`${select} .box span`)
+                this.bigBox = document.querySelector(`${select} .bigBox`)
+                this.img = document.querySelector(`${select} .bigBox img`)
+                this.left = null
+                this.top = null
+                this.bind()
+                
+            }
+            bind () {
+                this.box.onmouseenter = () => {
+                    this.span.style.display = 'block'
+                    this.bigBox.style.display = 'block'
+                }
+                this.box.onmouseleave = () => {
+                    this.span.style.display = 'none'
+                    this.bigBox.style.display = 'none'
+                }
+                this.box.onmousemove = (e) => {
+                    this.move(e)
+                }
+            }
+            move (e) {
+                e = e || window.event
+                this.left = e.pageX - this.span.offsetWidth / 2
+                this.top = e.pageY - this.span.offsetHeight / 2
+                if (this.left < 0) this.left = 0
+                if (this.top < 0) this.top = 0
+                if (this.left >= this.box.clientWidth - this.span.offsetWidth) this.left = this.box.clientWidth - this.span.offsetWidth
+                if (this.top >= this.box.clientHeight - this.span.offsetHeight) this.top = this.box.clientHeight - this.span.offsetHeight
+                this.span.style.left = this.left + 'px'
+                this.span.style.top = this.top + 'px'
+
+                this.img.style.left = -2 * this.left + 'px'
+                this.img.style.top = -2 * this.top + 'px'
+            }
+        }
+
+        new Fun('#zoom')
+    </script>
+</body>
+</html>

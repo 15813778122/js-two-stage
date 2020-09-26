@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        // 距离5月1号00: 00: 00 还有多少天多少小时多少分多少秒
+        // 把日历写明白
+
+        setInterval(function () {
+            // 先获取现在的时间和时间戳
+            var date = new Date()
+            var nowTime = date.getTime()
+
+            // 再获取五一的时间和时间戳
+            date.setMonth(4,1)
+            date.setHours(0,0,0)
+            var endTime = date.getTime()
+            // 得到五一到现在的秒数
+            var time = parseInt((endTime - nowTime) / 1000)
+            
+            // 得到秒数
+            var secounds = time % 60
+            // 得到分钟数
+            var minutes = (time - secounds) / 60 % 60
+            // 得到小时数
+            var hours = (time -secounds - minutes * 60) / 3600 % 24
+            // 得到天数
+            var days = parseInt((endTime - nowTime) / 1000 / 60 / 60 / 24)
+            
+            var box = document.getElementById('box')
+            box.innerHTML = '距离5月1号 00:00:00  还有' + days + '天' + hours + '小时' + minutes + '分' + secounds + '秒'
+        },1000)
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、某个公司采用公用电话传递数据，数据是四位的整数，在传递过程中是加密的
+        // 加密规则如下:每位数字都加上5,然后用除以10的余数代替该数字
+        // 再将第- -位 和第四位交换，第二位和第三位交换
+        // 请编写一个函数，传入原文，输出密文
+
+        // 步骤拆分
+        // 1、取出四位数字
+        // 2、每个数字加5
+        // 3、对10求余
+        // 4、交换
+        // 5、return
+
+        function jiami (num) {
+            var gw = (num % 10 + 5) % 10
+            var sw = (parseInt(num / 10) % 10 + 5) % 10
+            var bw = (parseInt(num / 100) % 10 + 5) % 10
+            var qw = (parseInt(num / 1000) + 5) % 10
+
+            // 这种方式思路没问题，但是又bug，当原文个位为5的时候
+            // gw * 1000 + sw * 100 + bw * 10 + qw
+
+            // 在最前面加一个空字符串，后面的加号都会隐式转换，最终就是拼接完整的四位数字的字符串
+            return '' + gw + sw + bw + qw
+        }
+    </script>
+</body>
+</html>

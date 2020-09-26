@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        var box = document.querySelector('.box')
+
+        // box.style 这种方式只能获取或者设置行内样式
+        console.log(box.style.width)
+
+        // 获取内部或者外部的样式(false不获取伪类)
+        // 非IE浏览器的写法
+        var width = getComputedStyle(box,false).width
+        console.log(width)
+
+        // 根据兼容性封装一个获取的是最终生效的样式，无论是行内还是外部或者外部
+        // 根据兼容性封装一个获取外部样式的方法
+        // obj:要获取样式的对象
+        // attr:属性名
+        function getStyle (obj,attr) {
+            if (obj.currentStyle) {
+                // 判断obj有currentStyle这个属性，说明使用的是IE浏览器
+                return obj.currentStyle[attr]
+            } else {
+                // obj没有currentStyle这个属性，说明用的不是IE
+                return getComputedStyle(obj,false)[attr]
+            }
+        }
+
+        var height = getStyle(box,'height')
+        console.log(height)
+    </script>
+</body>
+</html>

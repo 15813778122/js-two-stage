@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>淘宝选女友</title>
+<style>
+* { margin:0; padding:0}
+ul,ol { list-style:none}
+h3 { height:40px }
+button:disabled { cursor: not-allowed; }
+.shopping { width:570px; margin:100px auto; padding:20px; border:1px solid #ccc; position:relative; overflow: hidden; }
+.shopping .left { float: left; }
+.shopping .right { float: right; }
+.shopping .girlImg { position: relative; width:200px; height: 200px;cursor: move}
+.shopping .girlImg img { width:100%; height: 100%}
+.shopping .girlImg span { display: none; width: 100px; height: 100px; position: absolute; background: rgba(255, 255, 0, 0.3);left: 0;top: 0;}
+.imgList { width:220px; margin-top: 20px; }
+.imgList li { float:left; margin-right:8px; border:2px solid transparent}
+.imgList .ac { border:2px solid red}
+.imgList li img{ width:40px; display:block}
+.price { height:50px; font-size:30px; color:red; font-weight:bold}
+.priceList { overflow:hidden; margin:20px 0}
+.priceList li { float:left; height:30px; line-height:30px; padding:0 10px; border:2px solid #999; margin-right:10px; cursor:pointer}
+.priceList .ac { border:2px solid red}
+.changeNum { position:relative; margin:20px 0}
+.changeNum input { width:40px; height:41px; text-align:center; line-height:40px;border:1px solid #ccc;}
+.changeNum button {height:22px; width:20px; background:none; border:1px solid #ccc; position:absolute;}
+.changeNum .addBtn { left:41px; top:0px;}
+.changeNum .subBtn { left:41px; top:21px;}
+.okBtn { height:30px; width:100px}
+.bigBox { position: absolute; width: 200px; height: 200px; left: 230px; display: none; overflow: hidden; }
+.bigBox img { position: absolute;}
+
+.shopCart { position: fixed;right: 0;top: 200px;color: red;}  
+.shopNum { width: 60px; height: 25px; background: deeppink; color:black; text-align: center; line-height: 25px;}
+.active { width: 25px; height: 25px; background: skyblue; position: absolute;}
+</style>
+</head>
+
+<body>
+<div class="shopping" id="shopping">
+  <div class="left">
+    <div class="girlImg" id="box">
+      <img id="girl" src="4.jpeg">
+      <span></span>
+    </div>
+    <ol id="imgList" class="imgList">
+      <li><img src="0.jpg"></li>
+      <li><img src="1.jpg"></li>
+      <li><img src="2.jpg"></li>
+      <li><img src="3.jpg"></li>
+    </ol>
+  </div>
+  <div class="right">
+    <h3>淘宝选女友---不要998,女友带回家!!</h3>
+    <div id="price" class="price"><em>480-99988</em> 元</div>
+    <ul id="priceList" class="priceList">
+      <li>标准版</li>
+      <li>升级版</li>
+      <li>豪华版</li>
+      <li>定制版</li>
+    </ul>
+    <div id="changeNum" class="changeNum">
+        <input type="text" value="1">
+        <button class="addBtn" type="button">+</button>
+        <button class="subBtn" type="button" disabled>-</button>
+    </div>
+    <button id="okBtn" class="okBtn" type="button" disabled>加入购物车</button>
+  </div>
+  <div id="bigBox" class="bigBox"><img src="4.jpeg" alt=""></div>
+</div>
+<div id="shopCart" class="shopCart">  
+    购物车  
+  <p id="shopNum" class="shopNum">0</p>
+</div>
+<script>
+  class shop {
+    constructor () {
+      this.container = document.querySelector('#shopping')
+      this.box = document.querySelector('#box')
+      this.girl = document.querySelector('#girl')
+      this.span = this.box.querySelector('span')
+      this.imgList = document.querySelector('#imgList').children
+      this.priceWrap = document.querySelector('#price').querySelector('em')
+      this.priceList = document.querySelector('#priceList').children
+      this.numWrap = document.querySelector('#changeNum input')
+      this.addBtn = document.querySelector('.addBtn')
+      this.subBtn = document.querySelector('.subBtn')
+      this.okBtn = document.querySelector('#okBtn')
+      this.bigBox = document.querySelector('#bigBox')
+      this.bigImg = this.bigBox.querySelector('img')
+      this.shopCart = document.querySelector('#shopCart')
+      this.shopNum = document.querySelector('#shopNum')
+      this.num = Number(this.numWrap.value)
+      this.price = ['488','998','1688','99988']
+      this.bindEvents()
+      this.toggled()
+      this.change()
+      this.addToCart()
+    }
+    bindEvents () {
+        this.box.onmouseenter = () => {
+          this.toggle('block')
+        }
+        this.box.onmouseleave = () => {
+          this.toggle('none')
+        }
+        // 这里函数里并没有操作box，希望this仍然指向外层，所以用箭头函数
+        this.box.onmousemove = e => {
+          e = e || window.event
+          this.move(e)
+        }
+      }
+      toggle (display) {
+        // toggle 切换的意思
+        this.span.style.display = display
+        this.bigBox.style.display = display
+      }
+      move (e) {
+        // 鼠标距离浏览器边缘距离减去盒子到边缘的距离得到鼠标到盒子边缘的坐标
+        var left = e.pageX - this.box.offsetLeft - this.container.offsetLeft - this.span.offsetWidth / 2
+        var top = e.pageY - this.box.offsetTop - this.container.offsetTop - this.span.offsetHeight / 2
+        // 限定范围
+        if (left < 0) left = 0
+        if (top < 0) top = 0
+        if (left > this.box.clientWidth - this.span.offsetWidth) left = this.box.clientWidth - this.span.offsetWidth
+        if (top > this.box.clientHeight - this.span.offsetHeight) top = this.box.clientHeight - this.span.offsetHeight
+        this.span.style.left = left + 'px'
+        this.span.style.top = top + 'px'
+        // 大图片的坐标是span坐标的-2倍
+        this.bigImg.style.left = -(this.bigImg.offsetWidth / this.girl.offsetWidth) * left + 'px'
+        this.bigImg.style.top = -(this.bigImg.offsetHeight / this.girl.offsetHeight) * top + 'px'
+      }
+    toggled () {
+      Array.from(this.priceList).forEach((price,index) => {
+        price.onclick = () => {
+          this.add(index)
+        }
+      })
+      Array.from(this.imgList).forEach((img,index) => {
+        img.onmouseenter = () => {
+          this.add(index)
+        }
+      })
+    }
+    add (n) {
+      this.okBtn.disabled = false
+      for (var i = 0; i < this.priceList.length; i++) {
+        this.priceList[i].classList.remove('ac')
+        this.imgList[i].classList.remove('ac')
+      }
+      this.priceList[n].classList.add('ac')
+      this.imgList[n].classList.add('ac')
+      this.priceWrap.value = this.price[n]
+      this.bigImg.src = `${n}.jpg`
+      this.girl.src = `${n}.jpg`
+    }
+    change () {
+      this.addBtn.onclick = () => {
+        this.num++
+        this.subBtn.disabled = false
+        if (this.num >= 4) {
+          alert('stop')
+          this.num = 4
+          this.addBtn.disabled = true
+        }
+        this.numWrap.value = this.num
+      }
+      this.subBtn.onclick = () => {
+        this.num--
+        this.addBtn.disabled = false
+        if (this.num < 1) {
+          this.num = 1
+          this.subBtn.disabled = true
+        }
+        this.numWrap.value = this.num
+      }
+    }
+    addToCart () {
+      this.okBtn.onclick = e => {
+        // 计算抛物线上的三个坐标
+        // 1、鼠标坐标；2、购物车终点坐标；3、最高点坐标（自己定）
+        e = e || window.event
+        var x1 = e.clientX,
+            y1 = e.clientY,
+            x2 = this.shopCart.offsetLeft,
+            y2 = this.shopCart.offsetTop,
+            x3 = x2 - 200,
+            y3 = y2 - 100
+
+        // 根据数学公式计算抛物线三个系数（这里不用管，拿来用就行）
+        var a = -((y2 - y3) * x1 - (x2 - x3) * y1 + x2 * y3 - x3 * y2) / ((x2 - x3) * (x1 - x2) * (x1 - x3));
+        var b = ((y2 - y3) * x1 * x1 + x2 * x2 * y3 - x3 * x3 * y2 - (x2 * x2 - x3 * x3) * y1) / ((x2 - x3) * (x1 - x2) * (x1 - x3));
+        var c = ((x2 * y3 - x3 * y2) * x1 * x1 - (x2 * x2 * y3 - x3 * x3 * y2) * x1 + (x2 * x2 * x3 - x2 * x3 * x3) * y1) / ((x2 - x3) * (x1 - x2) * (x1 - x3));
+
+        // 创建一个div，添加到页面上
+        var div = document.createElement('div')
+        div.className = 'active'
+        document.body.appendChild(div)
+        // 让div沿着抛物线运动
+        // 先给div一个初始坐标
+        div.style.left = x1 + 'px'
+        div.style.top = y1 + 'px'
+        var timer = setInterval(() => {
+            // 横坐标匀速运动
+            x1 += 10
+            // 纵坐标按照抛物线公式代入x1计算就行
+            y1 = a * x1 * x1 + b * x1 + c
+            div.style.left = x1 + 'px'
+            div.style.top = y1 + 'px'
+            if (x1 >= x2) {
+                // 清除定时器
+                clearInterval(timer)
+                // div移除
+                div.remove()
+                // 购物车数量++
+                this.shopNum.innerHTML = Number(this.shopNum.innerHTML) + this.num
+            }
+        }, 30)
+    }
+    }
+  }
+  new shop()
+</script>
+</body>
+</html>

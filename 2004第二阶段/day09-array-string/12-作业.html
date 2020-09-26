@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <tbody ></tbody>
+    <script>
+        // 将下面这一个list渲染成表格
+        // 加分项:在表格的下面显示总价
+        // 加分项:总价可以使用reduce计算
+        var list = [
+            {
+                'title' : '笔',
+                'price' : 2,
+                "num"   : 2
+            },
+            {
+                'title' : '本',
+                'price' : 1,
+                "num"   : 3
+            },
+            {
+                'title' : '尺子',
+                'price' : 3,
+                "num"   : 1
+            }
+        ]
+
+        var str = '<table><tr><th>文具工具</th><th>价格</th><th>数量</th><th>总数</th></tr>'
+        list.map(function (item,index) {
+            str += '<tr>'
+            for (var key in item) {
+                str += '<td>' + item[key] + '</td>'
+            }
+            str += '<td>' + item.price * item.num + '</td>'
+            str += '</tr>'
+            str += '<tr>'
+        })
+        str += '</tr>'
+        
+        
+        var arr = []
+        // for (var i = 0; i < list.length; i++) {
+        //     var arr1 = list[i]
+        //     arr[i] = arr1.price * arr1.num
+        // }
+        list.map(function (item) {
+            arr += item.price * item.num
+        })
+        arr = Array.from(arr)
+        console.log(arr)
+        
+        var sum = arr.reduce(function (res,curr,index) {
+            res = Number(res)
+            curr = Number(curr)
+            return res + curr
+        })
+        console.log(sum)
+        str += '<tr><td colspan="3">总数</td><td>' + sum + '</td></tr>'
+        str += '</table>'
+        
+        
+        document.write(str)
+        //document.write(sum)
+    </script>
+</body>
+</html>

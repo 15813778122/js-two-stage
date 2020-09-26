@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 集中写的方法
+        // function fn(x,y) {
+        //     var x1 = x*x
+        //     var y1 = y*y
+        //     var n = 1
+        //     for (var i = 1; i <= x1; i++) {
+        //         n *= i
+        //     }
+        //     var m = 1
+        //     for (var j = 1; j <= y1; j++) {
+        //         m *= j
+        //     }
+        //     var num = n + m
+        //     return num
+        // }
+        
+        // var num1 = fn(1,2)
+        // console.log(num1)
+        
+        // 分开写的方式
+        // 先算一个数的平分和阶乘
+        function fn1 (x,y) {
+            var x1 = x*x
+            var num1 = 1
+            for (var i = 1; i <= x1; i++) {
+                num1 *= i
+            }
+            return num1
+        }
+        var one = fn1(1,2)
+        // 再算一个数的平分和阶乘
+        function fn2 (x,y) {
+            var y1 = y*y
+            var num2 = 1
+            for (var j = 1; j <= y1; j++) {
+                num2 *= j
+            }
+            return num2
+        }
+        var two = fn2(1,2)
+        // 再算求和
+        function fn3 (x,y) {
+            var num3 = x + y
+            return num3
+        }
+        var three = fn3(one,two)
+        console.log(three)
+        
+        // 第三种方法
+        // 第一个函数求平方
+        // function fn1 (x,y) {
+        //     var x1 = x*x
+        //     var y1 = y*y
+        //     return x1*y1
+        // }
+        // var num1 = fn1(1,2)
+        // console.log(num1)
+        // // 先求一个数的阶乘
+        // function fn2 (x,y) {
+        //     var x1 = num1 / x*x
+        //     var n = 1
+        //     for (var i = 1; i <= x1; i++) {
+        //         n *= i
+        //     }
+        //     return n
+        // }
+        // var num2 = fn2(1,2)
+        // console.log(num2)
+        // // 再求另一个数的阶乘，把上一个数的阶乘和这个数的阶乘相加
+        // function fn3 (x,y) {
+        //     var y1 = num1 / y*y
+        //     var m = 1
+        //     for (var j = 1; j <= y1; j++) {
+        //         m *= j
+        //     }
+        //     console.log(y*y)
+        //    // return m + num2
+        // }
+        // fn3(1,2)
+        //var num3 = fn3(1,2)
+        //console.log(num3)
+       
+
+    </script>
+</body>
+</html>

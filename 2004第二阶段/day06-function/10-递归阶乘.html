@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // n的阶乘等于n-1的阶乘来乘以n
+        function jc (n) {
+            if (n === 1) return 1
+            return jc(n-1) * n
+
+            // 三元运算符
+            // return n === 1 ? 1 : jc(n-1) * n
+        }
+        console.log(jc(20))
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {margin:0; padding:0; list-style:none;}
+         
+        #div1 {width:850px; height:500px; margin:50px auto; overflow:hidden; position:relative;}
+        #div1 ul {position:absolute;left: 0;top: 0;}
+        #div1 ul li{height:500px;float: left;}
+        #div1 ol {position:absolute;right: 10%;bottom: 10px;z-index:6}
+        #div1 ol li{width: 20px;height: 20px;background: #fff;margin-left: 5px;float: left;line-height: 20px;text-align: center;cursor: pointer;}
+        #div1 ol li.ac{background: red;color: #fff;}
+        #div1>a{text-decoration: none;position: absolute;top: 50%;margin-top: -10px;height: 40px;line-height: 32px;text-align: center;width: 40px;font-size: 40px;vertical-align: middle;color: #fff;background: rgba(0,0,0,0.5);z-index:6;}
+        #goPrev{left: 0;}
+        #goNext{right: 0;}
+        img{width:850px; height:500px;}
+    </style>
+<script src="../../utils.js"></script>
+</head>
+<body>
+    <div id="div1">
+        <ul>
+        <li><img src="images/1.jpg" /></li>
+        <li><img src="images/2.jpg" /></li>
+        <li><img src="images/3.jpg" /></li>
+        <li><img src="images/4.jpg" /></li>
+        <li><img src="images/5.jpg" /></li>
+        </ul>
+        <ol></ol>
+        <a href="javascript:;" id="goPrev">«</a>
+        <a href="javascript:;" id="goNext">»</a>
+    </div>
+    <script>
+        const div1 = document.querySelector('#div1'),
+              ul = div1.querySelector('ul'),
+              imgs = div1.querySelectorAll('li'),
+              ol = div1.querySelector('ol'),
+              goPrev = document.querySelector('#goPrev'),
+              goNext = document.querySelector('#goNext'),
+              btns = [],
+              len = imgs.length,
+              width = imgs[0].offsetWidth
+
+        var lastIndex = 0, index = 0
+        
+        var flag = false
+
+        // 创建按钮
+        for (var i = 0; i < len; i++) {
+            var li = document.createElement('li')
+            if (i === 0) li.classList.add('ac')
+            li.innerHTML = i + 1
+            ol.appendChild(li)
+            // 因为这里创建的li无法获取，所以需要放在数组里
+            btns.push(li)
+        }
+
+        // 在最后添加图片
+        ul.appendChild(imgs[0].cloneNode(true))
+
+        // 计算ul的长度
+        ul.style.width = (len + 1) * width + 'px'
+
+        // 给按钮绑事件
+        btns.forEach((btn,i) => {
+            btn.onclick = () => {
+                if (!flag) {
+                    flag = true
+                    lastIndex = index
+                    index = i
+                    btns[lastIndex].classList.remove('ac')
+                    btns[index].classList.add('ac')
+                    utils.move1(ul,'left',-index * width,() => {
+                        flag = false
+                    })
+                }
+            }
+        })
+
+        // 给向后的按钮绑事件
+        goNext.onclick = () => {
+            if (!flag) {
+                flag = true
+                lastIndex = index
+                index++
+                if (index === len) {
+                    index = 0
+                    utils.move1(ul,'left',-len * width,() => {
+                        ul.style.left = 0
+                        flag = false
+                    })
+                } else {
+                    utils.move1(ul,'left',-index * width,() => {
+                        flag = false
+                    })
+                }
+                btns[lastIndex].classList.remove('ac')
+                btns[index].classList.add('ac')
+            }
+        }
+        
+        // 给向前的按钮绑事件
+        goPrev.onclick = function () {
+            if (!flag) {
+                flag = true
+                lastIndex = index
+                index--
+                if (index < 0) {
+                    index = len - 1
+                    ul.style.left = -len  * width + 'px'
+                }
+                utils.move1(ul,'left',-index * width,() => {
+                    flag = false
+                })
+                btns[lastIndex].classList.remove('ac')
+                btns[index].classList.add('ac')
+            }
+        }
+
+        // 自动轮播
+        var timer = null
+        // timer = setInterval(goNext.onclick,3000)
+
+        // div1.onmouseenter = function () {
+        //     clearInterval(timer)
+        // }
+
+        // div1.onmouseleave = function () {
+        //     timer = setInterval(goNext.onclick,3000)
+        // }
+
+        // 另一种写法
+        div1.onmouseenter = function () {
+            clearInterval(timer)
+        }
+
+        div1.onmouseleave = (function autoPlay () {
+            timer = setInterval(goNext.onclick,3000)
+            return autoPlay
+        })()
+    </script>
+</body>
+</html>

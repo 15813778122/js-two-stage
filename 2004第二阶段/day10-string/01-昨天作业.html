@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 将下面这一个list渲染成表格
+        // 加分项:在表格的下面显示总价
+        // 加分项:总价可以使用reduce计算
+        var list = [
+            {
+                'title' : '笔',
+                'price' : 2,
+                "num"   : 2
+            },
+            {
+                'title' : '本',
+                'price' : 1,
+                "num"   : 3
+            },
+            {
+                'title' : '尺子',
+                'price' : 3,
+                "num"   : 1
+            }
+        ]
+
+        var str = '<table>' +
+            '<thead>'  +
+                '<tr>' +
+                    '<th>编号</th>' +
+                    '<th>名称</th>' +
+                    '<th>价格</th>' +
+                    '<th>数量</th>' +
+                '</tr>' +
+            '</thead>' +
+        '<tbody>'
+            
+    list.forEach(function (item,index) {
+        str += '<tr>' +
+            '<td>' + (index + 1) + '</td>' 
+            for (var key in item) {
+                str += '<td>' + item[key] + '</td>'
+            }
+        str += '</tr>'
+    })
+    str += '</tbody></table>'
+    document.write(str)
+
+    // res是用来计算总价的，所以他应该是一个数字
+    // 因此如果reduce不给默认值res第一次就是list[0]不是数字
+    // 给一个默认值为0，res第一次的值就为0，就可以直接计算了
+    var money = list.reduce(function (res,curr) {
+        return res + curr.price*curr.num
+    },0)
+
+    document.write('<h2>' + money + '</h2>')
+    </script>
+</body>
+</html>

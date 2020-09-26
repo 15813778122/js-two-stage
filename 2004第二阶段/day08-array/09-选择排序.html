@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [4,2,6,7,5,4,3,1]
+        console.log(arr)
+        // 每一趟循环能确定当前的最小值，总的循环趟数arr.length-1
+        for (var i = 0; i < arr.length - 1; i++) {
+            // 先假设当前最小值的索引为i
+            var min = i
+            // 用假设的最小值跟后面的值一一比较
+            // 如果遇到后面的值比假设的最小值还要小，说明假设错误
+            // 最小值的索引应该重新赋值为后面小值得索引
+            // 一趟结束以后就可以得到最小索引，这个时候再交换
+
+            // 内层循环从i+1开始，每一趟都要比较到最后一个，所以到arr.length-1结束
+            for (var j = i + 1; j < arr.length; j++) {
+                // 判断arr[min]是否大于arr[j]，如果大于了，说明arr[j]才是最小值
+                // min就应该重新赋值为j
+                if (arr[min] > arr[j]) {
+                    min = j
+                }
+            }
+            // 内层循环结束以后，当前这一趟的最小值就被找到了
+            // 让arr[i]和arr[min]交换
+            // 如果i和min相等，那么就没有交换的必要了
+            if (i != min) {
+                var temp = arr[i]
+                arr[i] = arr[min]
+                arr[min] = temp
+            }
+        }
+        console.log(arr)
+    </script>
+</body>
+</html>

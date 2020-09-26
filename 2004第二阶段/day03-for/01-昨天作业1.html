@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById('box')
+        // 1代表默认red
+        // 2代表green
+        // 3代表blue
+        var flag = 1
+        box.onclick = function () {
+            if (flag === 1) {
+                box.style.background = 'green'
+                flag = 2
+            } else if (flag === 2) {
+                box.style.background = 'blue'
+                flag = 3
+            } else if (flag === 3) {
+                box.style.background = 'red'
+                flag = 1
+            }
+        }
+
+    </script>
+</body>
+</html>

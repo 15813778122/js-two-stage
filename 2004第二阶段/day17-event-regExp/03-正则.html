@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //  regExp
+        var str = prompt()
+
+        // var reg = new RegExp('a')
+        // 字面量创建正则：字面量定义正则的话两条斜线之间的任意字符都是含有含义的，都会纳入到正则的判断里
+        // var reg = /a/
+
+        // var reg = /[abc]/ // abc三个字母任意出现一个就行
+        // var reg = /[abc]1/ // 匹配 a1 b1 c1
+        // var reg = /[0-9]/ // 数字
+        // var reg = /[a-z]/ // 小写字母
+        // var reg = /[A-Z]/ // 大写字母
+        // var reg = /(ab)|(cd)/ // 匹配ab或者cd
+
+        // var reg = /[^a]/ // 匹配不是a的字符，只要存在非a即可
+        // var reg = /^a/ // 以a开头
+        // var reg = /a$/ // 以a结尾
+        // var reg = /^a$/ // 完整匹配，是一个严格匹配，字符串只能是一个a
+        // var reg = /\d/ // 匹配数字
+        // var reg = /\D/ // 匹配非数字
+        // var reg = /[\u4e00-\u9fa5]/ // 匹配任意一个中文
+
+        // var reg = /\d{3}/ // 连续出现3个数字，但是test的结果3个以上也ok
+
+        // var reg = /a\d{3}b/ // a和b之间是三个数字，这里4个数字就不行了
+
+        // var reg = /a\d{3,5}b/ // a和b之间是3-5个数字
+
+        // var reg = /a\d{3,}b/ // a和b之间是3个以上的数字
+
+        // var reg = /a\d+b/ // a和b之间是1个或一个以上的数字
+
+        // var reg = /a\d?b/ // a和b之间是0个或一个的数字
+
+        var reg = /a\d*b/ // a和b之间是0个或一个或者多个的数字全部都行
+
+        // var reg = /[a-zA-Z]/
+        // var reg = /[a-z]/i // 不区分大小写
+        // var reg = new RegExp('[a-z]','i')
+
+        // var reg = /[a-z]/g // 全局匹配
+
+        var reg = /\// // 匹配 / 本身，要用到\来转义
+
+        // test是正则的API，验证str字符串是否满足正则
+        console.log(reg.test(str))
+    </script>
+</body>
+</html>

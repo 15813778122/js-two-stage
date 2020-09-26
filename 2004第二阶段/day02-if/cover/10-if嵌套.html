@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        // prompt弹出一个输入框,输入的结果就可以用一个变量来接收， 变量的类型也是string   
+       
+        // if的嵌套
+        // if (判断条件1) {
+        //     if (判断条件2) {
+        //         当条件1成立的时候，再来判断条件2，如果条件2也成立，这里的代码就会执行
+        //     } else {
+        //         当条件1成立的时候，再来判断条件2，如果条件2不成立，这里的代码就会执行
+        //     }
+        // }
+
+        var a = prompt()
+        
+        // 先判断是否是数字，再判断跟0的关系
+        // 先把a转换成数字，看看能不能转换成功
+        a = Number(a)
+        // 当isNaN(a)值为true的时候代表a是一个NaN，也就说原本输入的不是数字
+        //  if (!isNaN(a) === false)
+        if (!isNaN(a)) {
+            // 这里的代码就是当a是数字的时候执行
+            if (a < 0) {
+                console.log('是负数')
+            } else if (a > 0){
+                console.log('a是正数')
+            } else if (a == 0) {
+                console.log('a等于0')
+            } 
+        } else {
+            console.log('a不是数字')
+        }
+
+    </script>
+</body>
+</html>

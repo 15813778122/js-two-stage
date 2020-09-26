@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <button>开始运动</button>
+    <div></div>
+    <script>
+        var div = document.querySelector('div')
+        document.querySelector('button').onclick = function () {
+            var timer = setInterval(function () {
+                // offsetLeft先获取，获取之后+5，然后再赋值给样式的left，不要忘了单位
+                // offsetLeft是实时获取的，只要样式发生了变化，offsetLeft就随之更新了
+                div.style.left = div.offsetLeft + 10 + 'px'
+                if (div.offsetLeft >= 500) {
+                    clearInterval(timer)
+                }
+            },30)   
+        }
+    </script>
+</body>
+</html>

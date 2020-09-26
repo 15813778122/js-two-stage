@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         var str = 'hello string'
+
+        // 返回字符串中的指定位置的字符
+        console.log(str.charAt(1)) // e
+        console.log(str[1]) // e
+
+        console.log(str.indexOf('l')) // 2
+        // 从右往左找，返回的是索引
+        console.log(str.lastIndexOf('l')) // 3
+        console.log(str.indexOf('z')) // -1
+        console.log(str.lastIndexOf('z')) // -1
+
+        // var str1 = str.slice(2,5) // llo
+        // var str1 = str.slice(2,-1) // llo strin
+        var str1 = str.slice(-3) // ing
+
+        console.log(str1)
+
+        // split 和 数组的join是相反的
+        // var arr = str.split(' ')
+        var arr = str.split() // 不会切割，arr只有一个元素，还是str本身
+        var arr = str.split('') // 如果传空字符串，就会把每个字符全部切开
+        console.log(arr)
+
+        var str2 = 'a-b-c-d'
+        var arr2 = str2.split('-')
+        console.log(arr2)
+
+        // 把str转换为全大写
+        console.log(str.toUpperCase())
+        // 把str转换为小写
+        console.log(str.toLowerCase())
+
+        // trim去除前后空格，中间的不去
+        var str3 = ' hello '
+        console.log(str3.trim())
+
+        // trimLeft     去除左边(开头)空格
+        // trimRight    去除右边(结尾)空格
+    </script>
+</body>
+</html>

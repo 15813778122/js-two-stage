@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = 'hello world<br>'
+       
+
+
+        // while循环：当某个条件成立的时候就会反复执行一些代码
+
+        // while (条件) {
+        //     当条件成立的时候会反复执行的代码，直到条件不成立为止
+        // }
+
+       
+        // 一个循环具有三要素:循环初始值，循环的步进，终止条件
+        // var a = 0
+        // while (a < 10) {
+        //     document.write(str)
+        // 步进要放在循环体里面，因为每次循环都要变化
+        //     // a++ // 如果不写这句话，那么就没有步进，a永远小于10，像这种不会结束的循环我们称之为死循环
+        // }
+
+        // 这个循环一次都不会执行，因为初始条件一开始就不满足，根本就不会循环
+        var num = 10
+        while (num < 0) {
+            console.log(str)
+            num--
+        }
+        
+
+    </script>
+</body>
+</html>

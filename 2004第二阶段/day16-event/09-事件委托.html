@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../utils.js"></script>
+    <style>
+        li {
+            width: 200px;
+            height: 30px;
+            margin: 10px 0;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>许嵩</li>
+        <li>周杰伦</li>
+        <li>陈奕迅</li>
+        <!-- <li><a href="">林俊杰</a></li> -->
+        <li>林俊杰</li>
+
+    </ul>
+    <input type="text" id="name">
+    <button id="add">添加</button>
+    <script>
+        var oUl = document.querySelector('ul')
+        // 我们可以把li的事件统一委托给ul，因为点击li的时候都会冒泡到ul
+        // 事件委托跟事件的添加方式没有关系，无论是绑定还是监听都可以
+        on(oUl,'click',function (e) {
+            console.log(123)
+            // 在这里获取事件源(事件流处于目标阶段的元素)
+            e = e || window.event
+            // 兼容后面的是兼容IE，得到事件源
+            var target = e.target || e.srcElement
+            console.log(target.innerHTML)
+            // 判断事件源:可以通过id，class或者tagName等各种属性来判断
+            if (target.tagName === 'LI') {
+                console.log(target.innerHTML)
+            }
+        })
+
+        // 如果用for循环添加事件，那么后创建的元素是没有事件的
+        // var list = document.querySelectorAll('li')
+        // for (var i = 0; i < list.length; i++) {
+        //     on(list[i],'click',function () {
+        //         console.log(this.innerHTML)
+        //     })
+        // }
+
+        var inputName = document.querySelector('#name')
+        var addBtn = document.querySelector('#add')
+        on(addBtn,'click',function () {
+            var li = document.createElement('li')
+            li.innerHTML = inputName.value
+            oUl.appendChild(li)
+        })
+        
+        // 事件委托的原理是事件冒泡
+        // 事件委托的优点：
+        // 1、方便
+        // 2、可以给不确定的元素添加事件(后创建的)
+    </script>
+</body>
+</html>

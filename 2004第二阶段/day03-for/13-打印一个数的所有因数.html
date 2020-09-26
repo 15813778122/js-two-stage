@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 答应一个数的所有因数
+        // 因数：能被某个数整除的数就是他的因数
+
+        // 从1开始挨个去判断是否能整除
+        var n = Number(prompt())
+
+        var i = 1
+        while (i <= n) {
+            // 判断当前n能否被i整除，余数为0
+            if (n % i === 0) {
+                // 能整除，i就是n的因数
+                console.log(i)
+            }
+            // 不管if条件是否满足，这里都有++，所以他要写在if外面
+            i++
+        }
+    </script>
+</body>
+</html>

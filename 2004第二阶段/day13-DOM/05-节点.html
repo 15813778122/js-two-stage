@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <!-- 注释 -->
+        <p>一段文字</p>
+        <p>一段文字</p>
+    </div>
+    <script>
+        var div = document.querySelector('div')
+        // 元素都有一个children属性：获取当前元素的子元素
+        // console.log(div.children) // 2个p标签
+
+        // childNodes获取的是子节点:注释，文本，标签全部都叫节点
+        console.log(div.childNodes) // 7 [text, comment, text, p, text, p, text]
+
+        // 我们可以获取某个节点以后通过nodeName属性来判断节点类型
+        console.log(div.childNodes[0].nodeName) // #text 换行的文本节点
+        console.log(div.childNodes[1].nodeName) // #comment 注释节点
+        console.log(div.childNodes[3].nodeName) // P 大写的标签名
+
+        // 如果我们确切的知道这是一个标签节点，还可以使用tagName直接获取标签名
+        console.log(div.tagName) // DIV
+    </script>
+</body>
+</html>

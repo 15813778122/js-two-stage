@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 先按照自己的身高算出标准体重,再用自己的体重和标准体重判断
+
+        var height = prompt('请输入你的身高')
+        var weight = prompt('请输入你的体重')
+
+        var sWeight = (height - 108) * 2
+
+        if (weight < sWeight - 10) {
+            console.log('多吃点,太瘦了')
+        } else if (weight >= sWeight - 10 && weight <= sWeight + 10) {
+            // 同时满足两个条件中间用&&来连接,不能连着写
+            console.log('魔鬼身材')
+        } else {
+            console.log('少吃点,太胖了')
+        }
+    </script>
+</body>
+</html>

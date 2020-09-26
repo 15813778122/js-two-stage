@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding:0}
+        #calendar{width:210px;margin:100px auto; overflow:hidden;border:1px solid #000; padding:20px; position:relative}
+        #calendar h4{ text-align:center; margin-bottom:10px}
+        #calendar .a1{ position:absolute;top:20px;left:20px;}
+        #calendar .a2{ position:absolute;top:20px;right:20px;}
+        #calendar .week{height:30px; line-height:20px;border-bottom:1px solid #000; margin-bottom:10px}
+        #calendar .week li{ float:left;width:30px;height:30px; text-align:center; list-style:none;}
+        #calendar .dateList{ overflow:hidden; clear:both}
+        #calendar .dateList li{float:left;width:30px;height:30px; text-align:center; line-height:30px;list-style:none;}
+        #calendar .dateList .ccc{ color:#ccc;}
+        #calendar .dateList .red{ background:#F90; color:#fff;}
+        #calendar .dateList .sun{ color:#f00;}
+    </style>
+</head>
+<body>
+    <div id="calendar">
+        <h4 id="title">2020年4月</h4>
+        <a href="javascript:;" class="a1" id="prev">上月</a>
+        <a href="javascript:;" class="a2" id="next">下月</a>
+        <ul class="week">
+            <li>日</li>
+            <li>一</li>
+            <li>二</li>
+            <li>三</li>
+            <li>四</li>
+            <li>五</li>
+            <li>六</li>
+        </ul>
+        <ul class="dateList" id="dateList"></ul>
+    </div>  
+    <script>
+        var date = new Date()
+        var today = date.getDate()
+        var week1 = date.getDay()
+        console.log(today)
+
+        
+        // 获取星期几
+        // 调试到一号
+        date.setDate(1)
+        var week = date.getDay()
+        console.log(week)
+        // 获取这个月天数
+        date.setMonth(date.getMonth() + 1,0)
+        var allDay = date.getDate()
+        console.log(allDay)
+
+        
+        for (var i = 1; i <= allDay; i++) {
+            if (date.setDate(i) === date.getDay(0)) {
+                console.log('1')
+            }
+        }
+        
+        var str = ''
+        for (var i = 0; i < week; i++) {
+            str += '<li></li>'
+        }
+        for (var i = 1; i <= allDay; i++) {
+            if (i < today) {
+                str += '<li class="ccc">' + i + '</li>'
+            } else if (i === today) {
+                str += '<li class="red">' + i + '</li>'
+            } else {
+                str += '<li>' + i + '</li>'
+            }
+        }
+
+        var dateList = document.getElementById('dateList')
+        dateList.innerHTML = str
+    </script>
+</body>
+</html>

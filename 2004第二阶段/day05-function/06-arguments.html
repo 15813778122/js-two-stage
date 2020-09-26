@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // arguments    参数    实参副本
+        // 可以把所有的实参复制一份，放进arguments里
+        function sum () {
+            // arguments只能在函数内部使用，代表的是当前函数的实参副本
+
+            // arguments 是一个类数组对象，这句话先记住
+            // arguments 存了多个值，可以通过下标的方式去访问某一个
+            // console.log(arguments)
+            // console.log(arguments[0]) // 使用中括号加下标的方式来访问其中的值
+            // console.log(arguments.length) // 获取实参的个数
+            // arguments的下标的取值范围 0 ~ arguments.length-1
+
+            // 可以从0 ~ length-1 来循环
+            var num = 0
+            for (var i = 0; i < arguments.length; i++) {
+                // console.log(arguments[i])
+                num += arguments[i]
+            }
+            console.log(num)
+        }
+
+        // arguments一般用于一系列参数，但是不确定个数的时候
+        // 如果是确定的参数，以及对应不同的含义，那么就定义实参
+        sum(3,45,12)
+
+        sum(7,14)
+    </script>
+</body>
+</html>

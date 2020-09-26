@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [4,2,6,7,3,1,9,8,5]
+        console.log(arr)
+        // 用冒泡排序从小到大
+        // 总共有arr.length个数，每一趟都能确定一个最大值，最后一个不需要比较
+        // 所以总共要比较arr.length-1趟 0~length-2
+        // 5 4 0 ~ 3
+        for (var i = 0; i < arr.length-1; i++) {
+            // 当前第i趟要比较的次数
+            // arr.length   i   比较次数
+            // 5            0       4
+            // 5            1       3
+            // 5            2       2
+            // arr.length   i   arr.length - i - 1
+            for (var j = 0;j < arr.length - i - 1; j++) {
+                // 相邻的两个数来比较 arr[j]和arr[j+1]
+                if (arr[j] > arr[j+1]) {
+                    // 交换
+                    var temp = arr[j]
+                    arr[j] = arr[j+1]
+                    arr[j+1] = temp
+                }
+            } 
+        }
+        console.log(arr)
+
+    </script>
+</body>
+</html>

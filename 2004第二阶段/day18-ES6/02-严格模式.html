@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // strict:严格
+        // "use strict"
+
+        // 1、声明变量必须加var
+        // a = 10
+        // console.log(a)
+
+        // 2、全局变量的this不会指向window,而是undefined
+        // var b = 20
+        // function fn () {
+        //     console.log(this.b)
+        // }
+        // fn()
+
+        // 3、函数参数名不允许重复
+        // function fn (a,b,b) {
+        //     console.log(a,b,b)
+        // }
+        // fn(1,2,3)
+
+        // 4、修改形参的值不会影响arguments
+        function fn (a,b,c) {
+            c = 9
+            console.log(a,b,c)
+            console.log(arguments)
+        }
+        fn(4,5,6)
+
+        // 5、严格模式新增了一些保留字，但是很多保留字在ES6里面已经实现了
+    </script>
+</body>
+</html>

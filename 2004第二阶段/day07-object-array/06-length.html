@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // arr的length属性是动态获取的，不是固定值
+        var arr = [4,2,6,5]
+        console.log(arr.length)
+
+        // 数组的索引取值返回 0 ~ arr.length-1
+        // 如果我要取数组最后一个元素
+        console.log(arr[arr.length-1])
+
+        // 在arr的末尾追加一个元素
+        arr[arr.length] = 20
+        console.log(arr)
+        // 当代码执行到这里length就已经变化了
+        arr[arr.length] = 30 // 又在最后追加30
+    </script>
+</body>
+</html>

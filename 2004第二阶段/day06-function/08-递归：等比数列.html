@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 等比数列
+        // 有一个数列：每一项都是前一项的2倍
+        // 1、2、4、8、16、32
+        // 求第n项，先把第n项的前一项求出来
+
+        // 递归就是函数自身的调用，但是不能无限制的调用，得有出口
+        function fn (n) {
+            // 要求第n项，就要去找n-1项的值*2
+            if(n === 1) {
+                return 1
+            } else {
+                return fn(n-1) * 2
+            }
+        }
+        var num = fn(4)
+        // fn(3) * 2
+        // fn(2) * 2 * 2
+        // fn(1) * 2 * 2 * 2
+        // 1 * 2 * 2 * 2
+    </script>
+</body>
+</html>

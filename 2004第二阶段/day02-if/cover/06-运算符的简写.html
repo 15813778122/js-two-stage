@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = 10
+        // a = a + 3
+        a += 3
+        console.log(a)
+
+        var str = 'hello'
+        // str = str + 'world'
+        str += 'world'
+        console.log(str)
+
+        // -= *= /= %=
+
+
+        var num = 10
+        num++ // num += 1   num = num + 1
+        console.log(num)
+        num--
+        console.log(num)
+
+        // 加加后置：先用，后加
+        console.log(num++) // 10
+        console.log(num) // 11
+
+        //加加前置：先加，后用
+        console.log(++num) // 12
+        console.log(num) // 12
+
+
+        var b = 5
+        console.log(b++ + ++b)
+                    // 5   + ++6
+                    // 5   + 7
+        console.log(b) // 7
+
+
+        var c = 3
+        console.log(c++ + c++ + ++c + c++) // 19
+                    // 3   + 4   + 6   + 6
+        console.log(c) // 7
+    </script>
+</body>
+</html>

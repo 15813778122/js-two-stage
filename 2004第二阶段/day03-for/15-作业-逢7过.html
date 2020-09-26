@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 逢7过游戏，打印1-100，遇到能被7整除或者带7的数字打印"过"代替
+        // 7 14 17 21 70~79
+        // 三个条件：7的倍数、个位7、十位7 
+        var num = 1
+        while (num <= 100) {
+            var gw = num % 10
+            var sw = (num - gw) / 10
+            console.log('你输入的数字为' + num + '我要')
+            if (gw === 7 || sw === 7 || num % 7 === 0) {
+                console.log('你输入的数字为' + num + '要不起，过！！！')
+            }
+            num++
+        }
+
+        
+    </script>
+</body>
+</html>

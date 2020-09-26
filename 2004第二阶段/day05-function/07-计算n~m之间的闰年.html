@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function leapYear (n,m) {
+            // 把n~m之间的所有闰年打印出来
+            for (var i = n; i <= m; i++) {
+                if (i % 4 === 0 || i % 100 != 0 || i % 400 === 0) {
+                    console.log(i)
+                }
+            }
+        }
+        leapYear(2000,2020)
+    </script>
+</body>
+</html>

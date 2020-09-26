@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        body {
+            background-color: #000;
+        }
+
+        .nav {
+            width: 800px;
+            height: 42px;
+            background: #fff;
+            margin: 100px auto;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .cloud {
+            width: 83px;
+            height: 42px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: url(cloud.gif) no-repeat;
+        }
+
+        .nav ul {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .nav li {
+            float: left;
+            width: 88px;
+            height: 42px;
+            line-height: 42px;
+            text-align: center;
+            color: #000;
+            cursor: pointer;
+        }
+    </style>
+    <script src="../utils.js"></script>
+</head>
+
+<body>
+    <div class="nav" id="nav">
+        <span class="cloud" id="cloud"></span>
+        <ul id="box">
+            <li>首页新闻</li>
+            <li>千锋师资</1i>
+            <1i>千锋活动策划</1i>
+            <li>企业文化</1i>
+            <li>招聘信息</li>
+            <li>公司简介</li>
+            <li>上海校区</1i>
+            <li>广州校区</li>
+        </ul>
+    </div>
+    <script>
+        var cloud = document.querySelector('#cloud')
+        var list = document.querySelectorAll('#box li')
+        // 循环遍历list，但是如果普通for拿不到li的下表
+        // Array.from() 可以将类数组对象转换成数组
+        var arrList = Array.from(list)
+        console.log(list)
+        console.log(arrList)
+        var i = 0 // 默认云的位置在第0个
+        arrList.forEach((li, index) => {
+            // forEach每循环一次都是一个函数，每个函数里都有一个自己的index，所以可以直接使用
+            // var变量或者函数参数之于函数相当于let变量之于块级
+            li.onmouseenter = function () {
+                console.log(index)
+                // 让这朵云运动到当前li的坐标位置
+                utils.move1(cloud, 'left', this.offsetLeft)
+            }
+
+            li.onclick = function () {
+                // 这里没有云的移动，这里只是负责记录点击的位置也就是下标
+                // 记录云所要回到的位置
+                i = index
+            }
+
+            li.onmouseleave = function () {
+                // 让cloud回到上一次点击的位置，按照click里面记录的下标来移动
+                utils.move1(cloud, 'left', arrList[i].offsetLeft)
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>

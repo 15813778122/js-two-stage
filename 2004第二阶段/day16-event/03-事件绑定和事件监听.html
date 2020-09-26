@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">box</div>
+    <script>
+        var oBox = document.querySelector('#box')
+        // 绑定事件的触发阶段默认都是冒泡
+        // oBox.onclick = function () {
+        //     console.log('box')
+        // }
+
+        // 事件监听
+        // 第一个参数是不带on的事件类型的字符串
+        // 第二个参数传事件处理函数
+        // 第三个参数是否捕获，true代表在捕获阶段处理事件，false冒泡，默认值为false
+        oBox.addEventListener('click',function () {
+            console.log('box')
+        },true)
+        document.addEventListener('click',function () {
+            console.log('document')
+        },true)
+    </script>
+</body>
+</html>

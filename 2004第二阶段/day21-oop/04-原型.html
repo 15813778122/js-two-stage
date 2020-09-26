@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person (name,age) {
+            this.name = name
+            this.age = age
+            this.say = function () {
+                console.log(`My name is ${this.name}`)
+            }
+        }
+
+        // 给Person原型上新增属性或者方法在外面写，因为这句话只需要执行一次，而构造函数是每次new的时候都会调用
+        // 给Person的原型对象上新增一个say方法
+        // 这个say只存一份，存在公共的位置，这样每一个实例就都可以调用同一个say了
+        Person.prototype.say = function () {
+            console.log(`My name is ${this.name}`)
+        }
+
+        // console.dir可以看到一些对象的内部结构
+        console.dir(Person)
+        
+
+        var xm = new Person('xiaoming',18)
+        console.log(xm)
+        // 首先看自己有没有say，如果有，那就直接调用
+        // 没有就话就去公共位置Person.prototype上找
+        xm.say()
+
+        var xh = new Person('xiaohong',19)
+        console.log(xh)
+        xh.say()
+
+        // xm和xh本身自己都没有say，在公共位置存了一份，所以他们是同一个函数
+        console.log(xm.say === xh.say) // true
+
+        // 面向对象编程的时候一般把属性写在构造函数里，方法写在原型上
+    </script>
+</body>
+</html>

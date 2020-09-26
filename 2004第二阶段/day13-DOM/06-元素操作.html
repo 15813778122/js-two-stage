@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // 创建一个div元素，用box变量来接收
+        var box = document.createElement('div')
+        box.innerHTML = 'box4'
+        // 通过js style属性设置的样式统一都在行内
+        // box.style.width = '200px'
+        // box.style.height = '200px'
+        // box.style.background = 'red'
+
+        // 我们可以在css里先把样式预设好，这里只需要修改对应的class就行了
+        box.classList.add('box')
+
+        console.log(document.body) // body元素是唯一的，可以直接document.body来获取
+
+        // appendChild方法来往body的结束去追加box作为body的最后一个子元素
+        document.body.appendChild(box)
+
+        // 如果反复append同一个box，那么最终也会只有一个
+        // document.body.appendChild(box)
+
+        // 先克隆(复制),在append
+        // var box1 = box.cloneNode()
+        // 克隆分为深克隆和浅克隆，浅克隆只会克隆元素本身，不会克隆子元素和内容，默认是浅克隆
+        // cloneNode方法有一个参数，默认值是false，代表浅克隆，true代表深克隆，就会连着内容一起克隆
+        var box1 = box.cloneNode(true)
+        document.body.appendChild(box1)
+
+        // 注意点:如果元素有id属性，最好不要直接克隆，否则会出现两个id相同的元素
+    </script>
+</body>
+</html>

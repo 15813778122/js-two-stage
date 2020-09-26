@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 定义一个含有11个元素的数组 计算下标为奇数的元素的平均数(自定义函数实现)
+        function avg (arr) {
+            var sum = 0
+            var count = 0 // 记录下标为奇数的个数
+            for (var i = 0; i < arr.length; i++) {
+                if (i % 2) {
+                    sum += arr[i]
+                    count++
+                }
+            }
+            return sum / count
+        }
+        var num = avg([4,3,86,4,5,7])
+        console.log(num)
+
+        function fn (n) {
+            var num = ['星期一','星期二','星期三','星期四','星期五','星期六','星期天']
+            console.log(num[n-1])
+        }
+        var m = fn(2)
+
+        
+
+    </script>
+</body>
+</html>

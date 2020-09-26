@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function sum (a,b) {
+            var res = a + b
+            // 函数内部计算出来的这个结果以后可以在全局返回收到这个值
+            // return关键字可以在函数运行完成以后返回一个值，返回到函数调用位置
+            return res
+        }
+        var num = sum(3,6)
+        console.log(num)
+
+        var num1 = sum(5,6)
+        document.write(num1)
+    </script>
+</body>
+</html>

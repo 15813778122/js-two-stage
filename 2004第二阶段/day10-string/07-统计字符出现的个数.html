@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = 'sadadafwadadw'
+        var obj = {}
+        for (var i = 0; i < str.length; i++) {
+            // 把str[i]作为对象的属性名去判断
+            if (obj[str[i]]) {
+                // 值已经存在了，就在原数量基础上+1
+                obj[str[i]]++
+            } else {
+                // 不存在，第一次遍历到，赋值为1
+                obj[str[i]] = 1
+            }
+           
+        }
+        console.log(obj)
+    </script>
+</body>
+</html>

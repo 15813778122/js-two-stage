@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 这里是在封装函数，封装函数的时候我们可以定义形参(形式上的参数，这个参数是没有值的)
+        // 这里定义的两个形参会按顺序接收调用时传递过来的实参
+        // 形参可以随意命名，但是要遵循变量的命名规则
+        // 形参直接写名字就行，不需要var
+        // 由于js是弱类型，所有形参是不需要定义类型的
+        function test(x,y) {
+            console.log(x+y)
+        }
+        // 7，5是参数：调用函数的时候把参数传递进去
+        // 在这里我们是调用函数，调用函数的时候传递实参(实际由值的参数)
+        test(7,5)
+        test(4,6)
+    </script>
+</body>
+</html>

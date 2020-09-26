@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fn (a,b,c) {
+            console.log(a+b+c)
+        }
+        var arr = [3,2,5]
+        fn(arr[0],arr[1],arr[2])
+        // ...运算符可以把数组展开
+        fn(...arr)
+
+        var arr1 = arr // 这种写法赋值的是引用
+        var arr1 = [...arr,40] // 这种写法arr1和arr是两个值相同的数组
+
+        var obj = {
+            name: '张安',
+            age: 99
+        }
+        // obj1具有obj的所有属性，并且还新增了一个gender，他们是两个不同的对象
+        var obj1 = {...obj,gender:'male'}
+        console.log(obj1)
+        console.log(obj)
+
+        
+    </script>
+</body>
+</html>

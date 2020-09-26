@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var hours = 89
+        // 如果先算天数，会得到一个小数
+        // 先算出不满一天的小时数
+        //对24求余
+        var hour = 89 % 24
+        // 计算天数
+        var day = (hours - hour) / 24
+        console.log("战士连续作战了" + day + "天零" + hour + "小时")
+    
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            padding: 20px;
+            margin: 10px;
+            border: 5px solid #333;
+            background: red;
+        }
+        .container{
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <p>box</p>
+            <p>box</p>
+            <p>box</p>
+            <p>box</p>
+            <p>box</p>
+            <p>box</p>
+            <p>box</p>
+            <p>box</p>
+            <p>box</p>
+            <p>box</p>
+            <p>box</p>
+        </div>
+    </div>
+    <script>
+        var box = document.querySelector('.box')
+
+        // 获取的是元素加边框签后的一个偏移量，也就是左边框的宽度
+        // clientTop 就是上边框的宽度
+        console.log(box.clientLeft)
+
+        // offsetParent指的就算最近的有定位属性的祖先级，如果都没有定位，得到body
+        // offsetLeft获取的就是相对于offsetParent的坐标
+        // 如果box有绝对定位的话，那么offsetLeft就和定位的坐标left的值一样
+        console.log(box.offsetLeft)
+
+        // console.log(box.scrollTop) // 在这里直接获取永远都是0
+
+        // 当滚轮开始滚动的时候来获取
+        box.onscroll = function () {
+            console.log(box.scrollTop)
+        }
+
+        // 让滚轮默认在元素底部,可以给scrollTop赋值
+        // 滚动内容总高度 - 盒子本身高度可以让滚动条在最底部
+        box.scrollTop = box.scrollHeight - box.clientHeight // 让滚动条在最底部的公式
+
+    </script>
+</body>
+</html>

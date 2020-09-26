@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 定义一个30项的数组，按顺序分别赋子从2开始的偶数;在每间隔5个数之后，求出前五个数的平均值
+        
+        // 可以尝试把两个for合并成一个
+        var arr = new Array(30)
+
+        // 0 2;1 4;2 6;
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = (i + 1) * 2
+        }
+        console.log(arr)
+
+        var sum = 0
+        for (var j = 0; j < arr.length; j++) {
+            sum += arr[j]
+            if (j % 5 === 4) {
+                //if ((j + 1) % 5 === 0) {
+                    console.log(sum / 5)
+                    // 每计算一次平均数之后要把sum重置为0，为后面五个数做准备
+                    sum = 0
+            }
+        }
+    </script>
+</body>
+</html>

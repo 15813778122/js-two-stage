@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Dog (name) {
+            this.name = name
+        }
+
+        Dog.prototype.say = function () {
+            console.log(`My name is ${this.name}`)
+        }
+        var snoopy = new Dog('Snoopy')
+
+       console.log(snoopy.hasOwnProperty('name')) // true 属于对象本身的属性得到true
+       console.log(snoopy.hasOwnProperty('say')) // false 原型链上的false
+       console.log(snoopy.hasOwnProperty('abc')) // false 压根就没有的也得到false
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 求1+2!+3!...+20!的值
+        // 把1-20这些数字的阶乘算出来再全部相加
+        // 第一步应该算20个数字的阶乘，那么要写20个for循环嘛？
+        // 可以在外层再套一个for循环
+
+        // 外层for循环就是用来循环内层循环的
+        // 外层循环是用来循环1-20的20个数的
+        // 内存循环时用来计算每一个数的阶乘的
+        var sum = 0
+        for (var i = 1; i <= 20;i++) {
+            // 计算i的阶乘
+            // res是用来计算每个数的阶乘，每次都要从1开始算
+            var res = 1
+            for (var j = 1; j <= i; j++) {
+                res *= j
+            }
+            sum += res
+        }
+        console.log(sum)
+    </script>
+</body>
+</html>

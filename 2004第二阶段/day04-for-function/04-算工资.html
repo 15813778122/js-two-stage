@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 入职薪水10k，每年涨幅5%，50年后工资多少
+        var salary = 10000
+        for (var i = 1; i <= 50; i++) {
+            // salary *= (1 + 0.05)
+            salary += salary * 0.05
+        }
+        console.log(salary)
+    </script>
+</body>
+</html>

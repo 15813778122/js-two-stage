@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">box</div>
+    <script>
+        var oBox = document.querySelector('#box')
+        // div在浏览器最右边的时候left值应该是浏览器的宽减去盒子的宽
+        var maxLeft = window.innerWidth - oBox.offsetWidth
+        var maxTop = window.innerHeight - oBox.offsetHeight
+        document.onkeydown = function (e) {
+            e = e || window.event
+            var code = e.keyCode || e.which
+            console.log(code)
+            // 先计算，在判断，最后赋值
+            switch (code) {
+                // 向下
+                case 83:
+                    var top = oBox.offsetTop + 10
+                    if (top > maxTop) top = maxTop
+                    oBox.style.top = top + 'px'
+                break
+                // 向上
+                case 87:
+                    var top = oBox.offsetTop - 10
+                    if (top < 0) top = 0
+                    oBox.style.top = top + 'px'
+                break
+                // d 向右
+                case 68:
+                    var left = oBox.offsetLeft + 10
+                    if (left > maxLeft) left = maxLeft
+                    oBox.style.left = left + 'px'
+                break
+                // a 向左
+                case 65:
+                    var left = oBox.offsetLeft - 10
+                    // 计算出来值以后先判断是否超出范围，如果超出了，那就让他固定为0
+                    if (left < 0) left = 0
+                    oBox.style.left = left + 'px'
+                break
+            }
+            // if (code === 68) {
+            //     // d 向右
+            //     oBox.style.left = oBox.offsetLeft + 10 + 'px'
+            // }
+            // if (code === 87) {
+            //     // w 向上
+            //     oBox.style.top = oBox.offsetTop - 10 + 'px'
+            // }
+            // if (code === 83) {
+            //     // s 向下
+            //     oBox.style.top = oBox.offsetTop + 10 + 'px'
+            // }
+            // if (code === 65) {
+            //     // a 向左
+            //     oBox.style.left = oBox.offsetLeft - 10 + 'px'
+            // }
+        }
+            
+
+    </script>
+</body>
+</html>

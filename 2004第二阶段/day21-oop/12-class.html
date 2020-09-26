@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ES6的class写法原理还是构造函数+原型
+        // 只是一个语法糖，并不是说ES6就有类了
+        class Dog {
+            constructor (name) {
+                // 当new Dog()的时候constructor就会默认执行
+                this.name = name
+            }
+            // 这里的say默认就在原型上
+            say () {
+                console.log(`My name is ${this.name}`)
+            }
+        }
+
+        var snoopy = new Dog('Snoopy')
+        console.log(snoopy)
+        snoopy.say()
+    </script>
+</body>
+</html>

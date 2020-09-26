@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li index="1">首页</li>
+        <li index="2" class="ac">列表</li>
+        <li index="3">详情</li>
+        <li index="4">关于</li>
+    </ul>
+    <script>
+        var ac = document.querySelector('.ac')
+        // 这样是取不到的，因为index是自定义的而不是标准里得
+        // console.log(ac.index)
+        // getAttribute用来获取自定义属性
+        var index = ac.getAttribute('index')
+        console.log(index)
+
+        // 设置自定义属性
+        // 自定义属性的名称可以随便写，但是w3c推荐用 data- 
+        // 自定义属性设置无论什么类型的值，最后获取统一都是字符串
+        ac.setAttribute('data-id',34)
+        
+        // 删除自定义属性，属性名和属性值都没了
+        ac.removeAttribute('index')
+    </script>
+</body>
+</html>

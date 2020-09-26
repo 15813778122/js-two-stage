@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var year = prompt('输入年份')
+        var month = prompt('请输入月份')
+
+        // new一个日期，日期就是当前月的一号
+        // var date = new Date(year,month - 1,1)
+        // 想要得到这个月总共多少天，其实就是想要得到这个月的最后一天是几号
+        // 我们要得到这个月的最后一天的日期对象，其实也就是得到下个月的第0天
+        var date = new Date(year,month,0)
+        // 获取最后一天是几号
+
+        console.log(date.getDate())
+    </script>
+</body>
+</html>

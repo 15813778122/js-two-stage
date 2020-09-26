@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .zoom {
+      position: relative;
+    }
+    .box {
+      width: 400px;
+      height: 400px;
+      position: relative;
+    }
+    .box img {
+      width: 400px;
+      height: 400px;
+    }
+    .box span {
+      display: none;
+      width: 200px;
+      height: 200px;
+      position:absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(255, 255, 0, .3);
+    }
+    .bigBox {
+      display: none;
+      position: absolute;
+      left: 410px;
+      top: 0;
+      width: 400px;
+      height: 400px;
+      overflow: hidden;
+    }
+    .bigBox img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="zoom" id="zoom1">
+    <div class="box">
+      <img src="1.jpg" alt="">
+      <span></span>
+    </div>
+    <div class="bigBox">
+      <img src="1.jpg" alt="">
+    </div>
+  </div>
+  <div class="zoom" id="zoom2">
+    <div class="box">
+      <img src="1.jpg" alt="">
+      <span></span>
+    </div>
+    <div class="bigBox">
+      <img src="1.jpg" alt="">
+    </div>
+  </div>
+  <div class="zoom" id="zoom3">
+    <div class="box">
+      <img src="1.jpg" alt="">
+      <span></span>
+    </div>
+    <div class="bigBox">
+      <img src="1.jpg" alt="">
+    </div>
+  </div>
+  <script>
+    class Zoom {
+      constructor (selector) {
+        this.container = document.querySelector(selector)
+        this.box = document.querySelector(`${selector} .box`)
+        this.span = document.querySelector(`${selector} .box span`)
+        this.bigBox = document.querySelector(`${selector} .bigBox`)
+        this.img = document.querySelector(`${selector} .bigBox img`)
+        this.bindEvents()
+        console.log(this.box.offsetTop)
+      }
+      bindEvents () {
+        this.box.onmouseenter = () => {
+          this.toggle('block')
+        }
+        this.box.onmouseleave = () => {
+          this.toggle('none')
+        }
+        // 这里函数里并没有操作box，希望this仍然指向外层，所以用箭头函数
+        this.box.onmousemove = e => {
+          e = e || window.event
+          this.move(e)
+        }
+      }
+      toggle (display) {
+        // toggle 切换的意思
+        this.span.style.display = display
+        this.bigBox.style.display = display
+      }
+      move (e) {
+        // 鼠标距离浏览器边缘距离减去盒子到边缘的距离得到鼠标到盒子边缘的坐标
+        var left = e.pageX - this.box.offsetLeft - this.container.offsetLeft - this.span.offsetWidth / 2
+        var top = e.pageY - this.box.offsetTop - this.container.offsetTop - this.span.offsetHeight / 2
+        // 限定范围
+        if (left < 0) left = 0
+        if (top < 0) top = 0
+        if (left > this.box.clientWidth - this.span.offsetWidth) left = this.box.clientWidth - this.span.offsetWidth
+        if (top > this.box.clientHeight - this.span.offsetHeight) top = this.box.clientHeight - this.span.offsetHeight
+        this.span.style.left = left + 'px'
+        this.span.style.top = top + 'px'
+        // 大图片的坐标是span坐标的-2倍
+        this.img.style.left = -2 * left + 'px'
+        this.img.style.top = -2 * top + 'px'
+      }
+    }
+
+    new Zoom('#zoom1')
+    new Zoom('#zoom2')
+    new Zoom('#zoom3')
+
+  </script>
+</body>
+</html>

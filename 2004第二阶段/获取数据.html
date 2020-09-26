@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 1. 我要拿什么数据
+		var data = {
+			imgUrl: "http://img3m8.ddimg.cn/77/34/27914018-1_b_3.jpg",
+			newPrice: 80.70,
+			oldPrice: 99.80,
+			discount: 8.09,
+			title: " JavaScript从入门到精通（微课视频版）（第2版） web前端开发网页设计丛书 ",
+			start: '90%',
+			comments: "30765条评论"
+		};
+		// 2. 怎么拿
+			
+		// 2.1 找到对应数据所在元素 （用审查元素）
+		/*
+			imgUrl:  img元素的src属性里面
+			newPrice: span.price_n元素的内容
+			oldPrice: span.price_r元素的内容
+			discount: span.price_s元素的内容
+			title: p.name标签里面的a标签的内容里面
+			start: span.level 里面的span 并且是在style属性里面
+			comments: p.star 里面的 a标签的内容
+
+			注意：让你找的元素和这个值是一一对应，
+		*/
+		
+		// 2.2 试着找一条数据
+			var o1 = {}
+			// 设个是转这个一条数据的li标签
+			var li = document.querySelector("li");
+			// 把获取到的图片路径存储在对象 imgUrl属性里面
+			o1.imgUrl = li.querySelector("img").src;
+
+			// 把获取到的价格存储在对象 newPrice 属性里面
+			o1.newPrice = li.querySelector("span.price_n").innerText;
+			o1.oldPrice = li.querySelector("span.price_r").innerText;
+			o1.discount = li.querySelector("span.price_s").innerText;
+			o1.title = li.querySelector("p.name a").innerText;
+			o1.start = li.querySelector("span.level span").style.width;
+			o1.comments = li.querySelector("p.star a").innerText;
+		
+		// 2.3 拿多条数据
+		var arr = [];
+		// 所有的li标签集合
+		var lis = $0.querySelectorAll("li");
+		for(var i = 0; i<lis.length; i++){
+			// 可以拿到每一个li标签 lis[i]
+			var o1 = {}
+			// 设个是转这个一条数据的li标签
+			var li = lis[i];
+			// 把获取到的图片路径存储在对象 imgUrl属性里面
+			o1.imgUrl = li.querySelector("img").src;
+			// 把获取到的价格存储在对象 newPrice 属性里面
+			o1.newPrice = li.querySelector("span.price_n").innerText;
+			o1.oldPrice = li.querySelector("span.price_r").innerText;
+			// console.log(li.querySelector("span.price_s"))
+			// 在获取多个数据的时候可能会存在差异，我们需要判断一下特殊处理
+			if(li.querySelector("span.price_s")){
+				o1.discount = li.querySelector("span.price_s").innerText;
+			} else {
+				o1.discount = "";
+			}
+			o1.title = li.querySelector("p.name a").innerText;
+			o1.start = li.querySelector("span.level span").style.width;
+			o1.comments = li.querySelector("p.star a").innerText;
+			arr.push(o1);
+		}
+		// console.log(arr);
+		// 把这个数组转换为字符串复制出来
+		var jsonStr = JSON.stringify(arr);
+		console.log(jsonStr);
+	</script>
+</body>
+</html>

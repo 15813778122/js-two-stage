@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>上架情况</th>
+            <th>小结</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+     
+        </tbody>
+      </table>
+      <script>
+        // 创建元素来写表格
+        var list = [
+          {
+            "title": "笔",
+            "price": 2,
+            "num": 2,
+            'sj' : true
+          },
+          {
+            "title": "本",
+            "price": 1,
+            "num": 3,
+            'sj' : false
+          },
+          {
+            "title": "尺子",
+            "price": 3,
+            "num": 1,
+            'sj' : true
+          }
+        ]
+        var tbody = document.querySelector('#tbody')
+        var num = 0
+
+        var cache = document.createDocumentFragment()
+        list.forEach(function (shop,index) {
+          var tr = document.createElement('tr')
+          var td = document.createElement('td')
+          td.innerHTML = index + 1
+          cache.appendChild(td)
+          for (var key in shop) {
+            var td = document.createElement('td')
+                if (shop.sj === true) {
+                    shop.sj = '已上架'
+                    num += shop.num * shop.price
+                } else if (shop.sj === false){
+                    shop.sj = '未上架 '
+                }
+            td.innerHTML = shop[key]
+            // 把td放入tr
+            cache.appendChild(td)
+          }
+          var xj = document.createElement('td')
+          xj.innerHTML = shop.price * shop.num
+          cache.appendChild(xj)
+          // 一行创建结束了，放入tbody里
+          cache.appendChild(tr)
+        })
+        tbody.appendChild(cache)
+
+        var sum = list.reduce(function (res,curr) {
+            return res + curr.price * curr.num
+        },0)
+        var td = document.createElement('p')
+        td.innerHTML = `总数为:${sum}`
+        document.body.appendChild(td)
+       
+        var td1 = document.createElement('p')
+        td1.innerHTML = `已上架为:${num}`
+        document.body.appendChild(td1)
+
+        // 作业就在此基础上扩展：
+        // 1、是否上架
+        // 2、每一行小计加上
+        // 3、计算商品总价
+        // 4、计算上架商品的总价
+     
+        // 基础比较好的同学还可以做：
+        // 创建改成文档碎片
+    </script>
+</body>
+</html>

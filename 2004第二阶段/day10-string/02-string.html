@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 创建字符串的时候要使用引号，单引号双引号都可以
+        // 但是如果有多层引号必须切换使用
+        // 如果有多层，可以使用转义
+        var str = 'hello "xi\'ao\'ming"'
+
+        var str1 = new String('hello string')
+
+        var str2 = str + str1 // 字符串拼接
+
+        console.log(str2)
+
+        console.log('a' > 'b') // false
+        console.log('a' < 'b') // true
+
+        // 字符串比较大小是按位数比较，第一位比完再比第二位
+        console.log('aab' < 'abb')
+
+        console.log('abbb' < 'ac')
+        
+        // 单个字符都有自己的ASCII编码值，但是ASCII能表示的范围0~255总共只有256个编码
+        // unicode是另外一种编码方式，它可以表示更多的字符，中文 \u4e00 ~ \u9fa5
+        // 中文在unicode里的编码顺序和汉语字典的顺序一致，汉字越靠后就越大
+    </script>
+</body>
+</html>

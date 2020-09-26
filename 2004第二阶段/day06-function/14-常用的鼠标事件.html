@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin-bottom: 20px;
+        }
+        p{
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" onclick="fn()"></div>
+    <div class="box" id="box">
+        <p>这是一个p标签</p>
+    </div>
+    <script>
+        function fn () {
+            alert(123)
+        }
+
+
+        var box = document.getElementById('box')
+        box.onclick = function () {
+            alert(789)
+        }
+
+        box.onmousedown = function () {
+            console.log('down')
+        }
+
+        box.onmouseup = function () {
+            console.log('up')
+        }
+
+        box.ondblclick = function () {
+            console.log('双击666')
+        }
+
+        // over 和 out这一对在盒子的子元素之间穿过的时候也会反复触发
+        box.onmouseover = function () {
+            console.log('over')
+        }
+
+        box.onmouseout = function () {
+            console.log('out')
+        }
+
+        // 只在离开和进入整个盒子的时候触发
+        box.onmouseenter = function () {
+            console.log('enter')
+        }
+
+        box.onmouseleave = function () {
+            console.log('leave')
+        }
+
+        box.onmousemove = function () {
+            console.log('move')
+        }
+    </script>
+</body>
+</html>

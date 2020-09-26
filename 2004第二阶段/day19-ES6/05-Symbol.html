@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var oBox = document.querySelector('#box')
+        // 定义四种状态，分别是四个Symbol，每个Symbol的值都不一样
+        const color = {
+            red: Symbol(),
+            green: Symbol(),
+            pink: Symbol(),
+            blue: Symbol()
+        }
+        var flag = color.red
+        oBox.onclick = function () {
+            switch (flag) {
+                case color.red:
+                oBox.style.background = 'green'
+                flag = color.green
+                break
+                case color.green:
+                oBox.style.background = 'pink'
+                flag = color.pink
+                break
+                case color.pink:
+                oBox.style.background = 'blue'
+                flag = color.blue
+                break
+                case color.blue:
+                oBox.style.background = 'red'
+                flag = color.red
+                break
+            }
+        }
+    </script>
+</body>
+</html>

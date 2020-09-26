@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 区分变量的作用域以函数区分，函数内部声明的就是局部变量，外部声明的就是全局变量
+        // a变量是页面一加载立马就声明了，这个变量称之为全局变量
+        var a = 20
+        function fn () {
+            // b变量在fn函数内部声明的，这种变量我们称之为fn的局部变量
+            // b的作用范围是当前函数fn
+            var b = 30
+            // 局部作用域可以访问全局变量
+            console.log(a,b)
+        }
+        fn()
+        // 全局的作用域访问不到局部变量的
+        console.log(b)
+    </script>
+</body>
+</html>

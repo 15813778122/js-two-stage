@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var cNum = Math.ceil(Math.random() * 100)
+        var count = 0
+        var num = prompt('请输入一个1~100的数字')
+        do{
+            var num = prompt('请输入一个1~100的数字')
+            count++
+            if (num > cNum) {
+            alert('猜大了')
+            } else if (num < cNum) {
+                alert('猜小了')
+            } else {
+                alert('猜对了' + count + '次')
+            }
+        } while (num != cNum) 
+       
+        
+    </script>
+</body>
+</html>

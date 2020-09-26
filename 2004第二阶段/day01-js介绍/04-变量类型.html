@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a;
+        console.log(a) // 定义了没赋值，就是underfined
+        console.log(typeof a);
+
+        var b = true; // 代表bool真
+        var c = false;// 代表bool假
+
+        console.log(typeof b);//查看b的数据类型  boolean
+        var num = 20;
+        console.log(typeof num);// number
+        var str = 'hello';
+        console.log(typeof str);// string
+
+        console.log('------------');
+
+        // js执行这句话的时候是从右往左执行
+        // typeof 'boolean'
+        // 'string'
+        console.log(typeof typeof b);
+
+        var al // ok
+        var $1 // ok
+        // var 1z // no 不能以数字开头
+        var _1 // ok
+        // var a% // no 不能包含除了$_数字字母以外的字符
+
+        //命名习惯可以习惯驼峰命名
+        var userName
+        var yongHuMing
+        // var yonghuName // 这种命名尽量不要有
+        var UserName // 大驼峰,一般用户类的命名，目前阶段用小驼峰
+    
+        // var var = 20 // no var是js的关键字
+
+        var xVar // 可以加前缀，避免跟关键字冲突
+    </script>
+</body>
+</html>

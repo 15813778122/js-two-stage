@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function feb (n) {
+            // 第n项应该是n-1项加上n-2项的和
+            // 递归的出口应该在第一项和第二项值为1
+            if (n === 1 || n === 2) {
+                return 1
+            }
+            // 这里可以不用写else
+            return feb(n-1) + feb(n-2)
+        }
+        var num = feb(4)
+        console.log(num)
+
+        feb(5)
+        // feb(4) + feb(3)
+        // feb(3) + feb(2) + feb(2) + feb(1)
+        // feb(2) + feb(1) + feb(2) + feb(2) + feb(1) 
+        // 1 + 1 + 1 + 1 + 1
+
+
+        // 1 1 2 3 5 
+    </script>
+</body>
+</html>

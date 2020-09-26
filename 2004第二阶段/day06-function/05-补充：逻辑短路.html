@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 逻辑短路:如果第一个条件已经能够决定整个表达式的结果了，那么第二部分就不执行
+        // && 第一个条件为false的时候短路
+        // || 第一个条件为true的时候短路
+        var a = 10
+        var b = 0
+
+        // a>10 false，所以整个表达式的结果已经是false了，所以后面的b===0这个条件就不会再去判断了
+        // a > 10 && b === 0
+
+        // 当第一个条件为true的时候，整个表达式已经是true了，所以第二个条件 b===0 就不用判断了
+        // a > 0 || b === 0
+    </script>
+</body>
+</html>

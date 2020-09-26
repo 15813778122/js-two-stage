@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var date = new Date() // 得到的是当前时间对象
+        console.log(date)
+        console.log(typeof date) // object
+
+        console.log(Date.now()) // 获取的是当前的时间戳
+
+        // 获取任意时间的对象
+        // Date对象里的月份是 0 ~ 11，但是日期又是正常1开始
+        var date1 = new Date(2008,2,1,8,2,3)
+        console.log(date1)
+    </script>
+</body>
+</html>

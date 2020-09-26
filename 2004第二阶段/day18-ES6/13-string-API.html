@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = 'hello string'
+        var str1 = str.repeat(3)
+        console.log(str1)
+
+        // 存在就返回true
+        console.log(str.includes('s'))
+
+        console.log(str.startsWith('he'))
+        console.log(str.startsWith('l',2)) // 判断str[2]是否以he开头
+
+        console.log(str.endsWith('o'),5) // 判断str[5]前面的字符串是否以o结尾
+    </script>
+</body>
+</html>

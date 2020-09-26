@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .zoom {
+            position: relative;
+        }
+        .box {
+            width: 400px;
+            height: 400px;
+            position: relative;
+        }
+        .box img {
+            width: 400px;
+            height: 400px;
+        }
+        .box span {
+            display: none;
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(255,255,255,.3);
+        }
+        .bigBox {
+            display: none;
+            position: absolute;
+            left: 410px;
+            top: 0;
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+        }
+        .bigBox img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="zoom">
+        <div class="box">
+            <img src="3.jpg" alt="">
+            <span></span>
+        </div>
+        <div class="bigBox">
+            <img src="3.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        var box = document.querySelector('.box'),
+        span = document.querySelector('.box span'),
+        bigBox = document.querySelector('.bigBox'),
+        img = document.querySelector('.bigBox img')
+ 
+    // 鼠标进入显示span的大盒子
+    box.onmouseenter = function () {
+      span.style.display = 'block'
+      bigBox.style.display = 'block'
+    }
+    // 鼠标离开隐藏span的大盒子
+    box.onmouseleave = function () {
+      span.style.display = 'none'
+      bigBox.style.display = 'none'
+    } 
+    // 鼠标移动放大
+    box.onmousemove = function (e) {
+      e = e || window.event
+      // 鼠标距离浏览器边缘距离减去盒子到边缘的距离得到鼠标到盒子边缘的坐标
+      var left = e.clientX - box.offsetLeft - span.offsetWidth / 2
+      var top = e.clientY - box.offsetTop - span.offsetHeight / 2
+      // 限定范围
+      if (left < 0) left = 0
+      if (top < 0) top = 0
+      if (left > box.clientWidth - span.offsetWidth) left = box.clientWidth - span.offsetWidth
+      if (top > box.clientHeight - span.offsetHeight) top = box.clientHeight - span.offsetHeight
+      span.style.left = left + 'px'
+      span.style.top = top + 'px'
+      // 大图片的坐标是span坐标的-2倍
+      img.style.left = -2 * left + 'px'
+      img.style.top = -2 * top + 'px'
+    }
+    </script>
+</body>
+</html>

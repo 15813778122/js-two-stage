@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function pass (n) {
+            for (var i = 1; i < 100; i++) {
+                var gw = i % 10
+                var sw = parseInt(i / 10) % 10
+                // if(sw === n || gw === n || i % n === 0) {
+                //     console.log('过')
+                // } else {
+                //     console.log(i)
+                // }
+
+                if(sw === n || gw === n || i % n === 0) {
+                    console.log('过')
+                    continue
+                } 
+                console.log(i)
+                
+            }
+        }
+
+        pass(5)
+    </script>
+</body>
+</html>

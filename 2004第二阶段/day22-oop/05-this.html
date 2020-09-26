@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">box</div>
+    <script>
+        // this是一个关键字，指向一个对象，在不同的调用环境this指向是不一样的
+
+        // 1、全局this指window
+        console.log(this)
+
+        // 2、全局函数里的this指window
+        function fn () {
+            console.log(this)
+        }
+        fn()
+
+        // 3、事件处理函数里的this指绑定事件的DOM对象（不一定是事件源，谁绑定就是谁）
+        document.querySelector('#box').onclick = function () {
+            console.log(this)
+        }
+
+        // 4、没有特别指向的匿名函数的this指window
+        ;(function () {
+            console.log(this)
+        })()
+
+        setTimeout(function () {
+            console.log(this)
+        }, 1000);
+
+        // 包括数组的map，reduce等方法里面的匿名函数this都是指向window
+        // 匿名回调函数里的this也是window
+
+        // 5、对象方法里的this指对象本身，不管是字面量声明还是原型方法或者class，this都是当前实例对象
+        var obj = {
+            name: 'lisi',
+            say: function () {
+                console.log(this) // obj
+            }
+        }
+
+        // 6、构造函数里的this指将来new的实例
+        function Dog (name) {
+            this.name = name
+        }
+
+        var a = 2
+        function fun () {
+            console.log(this.a)
+        }
+        var o = {a: 3,fun: fun}
+        o.fun() // 3 this指向o
+
+        var p = {a: 4}
+        // 赋值语句的结构就是赋的值
+        // 把赋值的结果也就是fun这个函数放进一个自调用函数里面来执行，this指window
+        (p.fun=o.fun)() // 2
+
+        // 7、箭头函数没有自己的this
+        var obj2 = {
+            name: 'lisi',
+            say: function () {
+                // 点击box打印name
+                document.querySelector('#box').onclick = () => {
+                    console.log(this)
+                }
+            }
+        }
+
+        // 1、如果希望this指向当前函数调用对象就用普通函数
+        // 2、如果希望this指向外层就用箭头函数
+        // 3、如果内外都要，用普通函数，在外层 const _this = this，这样this指内层  _this指外层
+    </script>
+</body>
+</html>

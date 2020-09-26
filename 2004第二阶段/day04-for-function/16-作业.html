@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 找出100-999之间的所有水仙花数
+        // 把这两天的案例选一个你觉得收货最大的写一遍
+        for (var i = 100; i < 1000; i++) {
+            var gw = i % 10
+            var sw = ((i - gw) / 10) % 10
+            var bw = parseInt(i / 100)
+            if (i === gw*gw*gw + sw*sw*sw + bw*bw*bw) {
+                console.log(i + ' 是水仙花数')
+            }
+        }
+    </script>
+</body>
+</html>

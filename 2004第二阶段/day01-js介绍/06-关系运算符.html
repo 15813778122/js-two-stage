@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = 3
+        var b = 5
+        var c = '5'
+
+        console.log(a > b) // false
+        console.log(a <= b) // true
+
+        // js里的==只判断值相等，不考虑类型
+        console.log(b == c) // true
+        // 全等：既要值相等，类型也要相同
+        console.log(b === c) // 全等：既要值相等，类型也要相同false
+        
+        // 数字和字符串相加，数字会被转换成字符串，然后进行拼接
+        console.log(a + c) // 35
+        console.log(a+b+c) // 85
+        console.log(a+c+b) // 355
+    </script>
+</body>
+</html>

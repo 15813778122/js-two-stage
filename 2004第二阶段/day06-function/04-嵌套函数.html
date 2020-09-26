@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function sum (a,b) {
+            // return a + b
+            var n = a + b
+            return n
+        }
+
+        function fn (x,y) {
+            // 在fn里面声明sum1这个函数，这个函数称为fn的局部函数
+            // 也就意味着sum1只能在fn内部调用
+            function sum1 (a,b) {
+                return a + b
+            }
+            // x,y对于fn来讲是形参，但是对于sum来讲是实参
+            // 这里的代码执行的时候，意味着fn已经被调用了，fn的实参已经传进来了，也就是说x，y已经有值了
+            sum(x,y)
+        }
+
+        fn(1,2)
+        // sum1是fn的局部函数，全局是不能调用的
+        // console.log(sum1(3,4)) // 报错
+    </script>
+</body>
+</html>

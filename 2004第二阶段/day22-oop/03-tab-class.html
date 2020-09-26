@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            width: 498px;
+            border: 1px solid #333;
+            height: 50px;
+            line-height: 50px;
+        }
+        li{
+            list-style: none;
+        }
+        #tab {
+            width: 500px;
+            margin: 50px auto;
+        }
+        #tab li.ac{
+            background: #ccc;
+        }
+        #tab li {
+            width: 80px;
+            padding: 0 20px;
+            float: left;
+        }
+        #tab img {
+            width: 500px;
+            height: 300px;
+            display: none;
+        }
+        #tab img.ac{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="tab">
+        <ul>
+            <li class="ac">btn1</li>
+            <li>btn2</li>
+            <li>btn3</li>
+        </ul>
+    <div>
+        <img src="" alt="" class="ac">
+        <img src="" alt="">
+        <img src="" alt="">
+    </div>
+    </div>
+    <script>
+        class Tab {
+            constructor (selector) {
+                this.btns = document.querySelectorAll(`${selector} li`)
+                this.imgs = document.querySelectorAll(`${selector} img`)
+                this.bindEvents()
+            }
+            bindEvents () {
+                Array.from(this.btns).forEach((btn,index) => {
+                    const _this = this
+                    btn.onclick = function () {
+                        // 两种思路：移除所有或者记录下标
+                        // 这里我们用全部移除
+                        Array.from(_this.btns).forEach((btn1,i) => {
+                            btn1.classList.remove('ac')
+                            _this.imgs[i].classList.remove('ac')
+                        })
+                        this.classList.add('ac')
+                        _this.imgs[index].classList.add('ac')
+                    }
+                })
+            }
+        }
+
+        new Tab('#tab')
+        new Tab('#tab1')
+        
+
+        for (var i = 0; i < btns.length; i++) {
+            // 这里的for循环只是负责绑定事件，但是函数里的代码并不会执行
+            // 将来用户用鼠标点击的时候才会运行，但是这个时候for循环早就结束了，i已经加到btns.length了
+            // 所以现在不敢点那个按钮，i全都是btns.length
+
+            // 给按钮加上index属性为当前索引，这种的自定义属性不会出现在页面元素上，但是在按钮对象里面
+            btns[i].index = i
+
+            btns[i].onclick = function () {
+                // 先把所以的ac全部清除
+                for (var j = 0; j < btns.length; j++) {
+                    btns[j].classList.remove('ac')
+                    imgs[j].classList.remove('ac')
+                }
+                // 在给自己加上ac
+                this.classList.add('ac')
+                // 要给跟btn对应的那张图片加上ac
+                // imgs[i].classList.add('ac')
+                console.log(this.index)
+                imgs[this.index].classList.add('ac')
+            }
+        }
+
+        // 错误的类型：不能从undefined身上读取到'classList'
+        // Uncaught TypeError: Cannot read property 'classList' of undefined
+    </script>
+</body>
+</html>

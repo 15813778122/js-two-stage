@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 块级：if、for、switch、while、function都叫块(含有大括号)
+        if (true) {
+            var a = 10
+            // b是一个块级的变量，只有在当前的块里才能使用
+            let b = 20
+        }
+        console.log(a) // 10
+        // console.log(b) // 报错
+
+        // if不写大括号只有一句在if里，仍然是一个块，console.log(c)就在块外面了，所有这里也会报错
+        // if (true)
+        // let c = 20
+        // console.log(c) // 报错
+
+    </script>
+</body>
+</html>

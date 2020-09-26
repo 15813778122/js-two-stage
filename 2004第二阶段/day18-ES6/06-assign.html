@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj1 = {
+            name: 'zhangsan'
+        }
+        var obj2 = {
+            age: 18
+        }
+        var obj3 = {
+            age: 20
+        }
+        // 合并对象，在合并的时候如果遇到重复的属性是后面的覆盖前面的
+        // Object.assign(obj1,obj2,obj3)
+        // console.log(obj1) // 将obj2和obj3一起合并到obj1里
+        // console.log(obj2) // 还是原本的
+
+        // 一般这种写法，把三个对象都合并到一个空对象里，最终得到obj4
+        var obj4 = Object.assign({},obj1,obj2,obj3)
+        console.log(obj4)
+        // 三个对象都不会被修改
+        console.log(obj1)
+        console.log(obj2)
+        console.log(obj3)
+    </script>
+</body>
+</html>

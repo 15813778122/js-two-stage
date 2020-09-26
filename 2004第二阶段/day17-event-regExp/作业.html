@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../utils.js"></script>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">box</div>
+    <script>
+        var oBox = document.querySelector('#box'),disX,disY;
+
+        function foo (e) {
+            e = e || window.event
+            var left = e.clientX - disX
+            var top = e.clientY - disY
+            var maxTop = window.innerHeight - oBox.offsetHeight
+            var maxLeft = window.innerWidth - oBox.offsetWidth
+
+            oBox.style.top = top + 'px'
+            oBox.style.left = left + 'px'
+
+            if (oBox.offsetLeft > maxLeft)  oBox.style.left = maxLeft + 'px'
+            if (oBox.offsetTop > maxTop) oBox.style.top = maxTop + 'px'
+            if (oBox.offsetLeft <= 0) oBox.style.left = 0 + 'px'
+            if (oBox.offsetTop <= 0) oBox.style.top = 0 + 'px'
+        }
+
+        on(oBox,'mousedown',function (e) {
+            e = e || window.event
+            disX = e.offsetX
+            disY = e.offsetY
+            on(document,'mousemove',foo)
+            on(document,'mouseup',function () {
+                off(document,'mousemove',foo)
+            })
+            if (e.preventDefault) {
+                e.preventDefault()
+            } else {
+                return false
+            }
+        })
+            
+    </script>
+</body>
+</html>

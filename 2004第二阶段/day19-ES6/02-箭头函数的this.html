@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // const obj = {
+        //     name: '张三',
+        //     say: function () {
+        //         // 一秒钟之后打印张三
+        //         // 这里的this指向obj，所以我可以在这里把this存下来,这样我的常量_this永远都指向obj了
+        //         const _this = this
+        //         setTimeout(function () {
+        //             // 像这种没有明确指向的匿名函数this统一指向window
+        //             console.log(this) // window
+        //             console.log(_this) // obj
+        //             console.log(this.name) // 空字符串
+        //             console.log(_this.name) // 张三
+        //         },1000);
+        //     }
+        // }
+        // obj.say()
+
+        const obj = {
+            name: '张三',
+            say: function () {
+                setTimeout(() => {
+                    // 箭头函数没有自己的this
+                    console.log(this) // obj
+                    console.log(this.name) // 张三
+                },1000);
+            }
+        }
+        obj.say()
+
+        // 1、如果你希望this指当前对象，那么就用普通函数
+        // 2、如果你希望this指向外层对象，用箭头函数
+        // 3、如果内层外层都要，用普通函数，this指向外层
+        //      在外层声明一个变量把外层this存下来，比如 const _this = this   _this指外层
+    </script>
+</body>
+</html>

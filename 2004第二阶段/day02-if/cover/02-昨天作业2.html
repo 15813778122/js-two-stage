@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="" id="input1">
+    +
+    <input type="text" name="" id="input2">
+    <button id="btn">=</button>
+    <input type="text" id="input3">
+    <script>
+        // 作业1：转换华氏度和摄氏度，题目在笔记里
+        // 作业2
+
+        // 简单理解：通过id获取input标签
+        var input1 = document.getElementById('input1')
+        var input2 = document.getElementById('input2')
+        var input3 = document.getElementById('input3')
+
+        var btn = document.getElementById('btn')
+
+        btn.onclick = function () {
+            // 这里的代码就是在点击按钮的时候执行
+            // 获取input1里输入的值
+            var num1 = Number(input1.value)
+            console.log(num1)
+            // TODO: 获取input2的值得到num2
+            var num2 = Number(input2.value)
+            console.log(num2)
+            // 两个值相加
+            var numAdd = num1 + num2
+            // 把相加的结果保留两位小数放进input3
+            numAdd = numAdd.toFixed(2)
+            input3.value = numAdd
+            // input3.value = 20
+
+            // 从input里取出来的value同一都是字符串
+        }
+    </script>
+</body>
+
+</html>

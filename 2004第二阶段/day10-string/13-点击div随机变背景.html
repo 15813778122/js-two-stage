@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById('box')
+        box.onclick = function () {
+            // 生成一个随机的颜色
+            var str = '0123456789abcdef'
+            var color = '#'
+            for (var i = 0; i < 6; i++) {
+                var index = Math.floor(Math.random() * str.length)
+                color += str[index]
+            }
+            // 下面这句是修改元素样式的
+            box.style.background = color
+        }
+    </script>
+</body>
+</html>

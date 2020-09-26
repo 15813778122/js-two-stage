@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [3,5,,7,,8,,4] // 稀疏数组
+        // for循环遍历数组遇到空元素会输出undefined
+        for (var i = 1; i <= arr.length-1; i++) {
+            console.log(arr[i])
+        }
+
+        console.log('----------------')
+
+        // for ... in在遍历数组的时候会自动跳过空元素
+        for (var key in arr) {
+            // key是数组的索引，它是字符串类型，但是并不影响取数组
+            console.log(key,arr[key])
+        }
+
+        console.log('------------')
+
+        // 遍历数组的第三种方式：for...of
+        // 直接取值，不取下标，稀疏数组中的undefined也会被遍历出来
+        for (var value of arr) {
+            console.log(value)
+        }
+    </script>
+</body>
+</html>

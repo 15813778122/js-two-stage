@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [34,63,1,86,7,3,8,9]
+        // var arr = [6,4,8,1,2,7,3,5,9]
+        // 默认的sort是按照编码来排序，只要第一位分出顺序了，就不会看第二位
+        // arr.sort() // 从小到大(升序)
+
+        // 指定排序规则
+        arr.sort(function (a,b) {
+            // 指定规则
+            // a和b是sort方法会依次取数组里的元素
+            // 如果这里的返回值大于0，那么a和b就会交换顺序，不大于0就不交换
+            // return a - b // 升序
+            return b - a // 降序
+        })
+        console.log(arr)
+
+        
+    </script>
+</body>
+</html>

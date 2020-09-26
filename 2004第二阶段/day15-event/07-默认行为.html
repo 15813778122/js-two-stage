@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        document.oncontextmenu = function (e) {
+            e = e || window.event
+            console.log('右键')
+            // 下面这几行代码是阻止默认行为的兼容写法，记住就可以
+            // 只有有默认行为的事件才需要写这个
+            // 不同的事件里阻止的是不同的行为
+            if (e.preventDefault) {
+                e.preventDefault()
+            } else {
+                return false
+            }
+        }
+    </script>
+</body>
+</html>

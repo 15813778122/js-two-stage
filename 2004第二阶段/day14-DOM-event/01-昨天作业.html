@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>上架情况</th>
+            <th>小结</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+     
+        </tbody>
+      </table>
+      <script>
+        // 创建元素来写表格
+        var list = [
+          {
+            "title": "笔",
+            "price": 2,
+            "num": 2,
+            'sale' : true
+          },
+          {
+            "title": "本",
+            "price": 1,
+            "num": 3,
+            'sale' : false
+          },
+          {
+            "title": "尺子",
+            "price": 3,
+            "num": 1,
+            'sale' : true
+          }
+        ]
+        var tbody = document.querySelector('#tbody')
+        var num = 0
+
+        var cache = document.createDocumentFragment()
+        list.forEach(function (shop,index) {
+          var tr = document.createElement('tr')
+          var td = document.createElement('td')
+          td.innerHTML = index + 1
+          cache.appendChild(td)
+          for (var key in shop) {
+            var td = document.createElement('td')
+                // 判断当前遍历到的key是不是sale
+                if (key === 'sale') {
+                    td.innerHTML = shop[key] ? '已上架' : '未上架'
+                    num += shop.num * shop.price
+                } else {
+                    td.innerHTML = shop[key]
+                }
+            // 把td放入tr
+            cache.appendChild(td)
+          }
+          // 一行创建结束了，还得额外加上一个小计，再创建一个td
+          var xj = document.createElement('td')
+          xj.innerHTML = shop.price * shop.num
+          cache.appendChild(xj)
+          // 放入tbody里
+          cache.appendChild(tr)
+        })
+        tbody.appendChild(cache)
+
+        var sum = list.reduce(function (res,curr) {
+            return res + curr.price * curr.num
+        },0)
+        
+       
+        // var saleMoney = list.reduce(function (money,shop) {
+        //     return money + (shop.sale ? shop.price * shop.num : 0)
+        // },0)
+
+        // 还可以先把已上架的商品过滤出来再计算
+        // filter是返回一个条件，条件为true的保留，false删除
+        var saleList = list.filter(function (shop) {
+            return shop.sale
+        })
+        var saleMoney = saleList.reduce(function (money,shop) {
+            return res + curr.price * curr.num
+        },0)
+
+        // var td = document.createElement('p')
+        // td.innerHTML = `总数为:${sum}`
+        // document.body.appendChild(td)
+        // var td1 = td.cloneNode() // 浅克隆复制p标签
+        // td1.innerHTML = `已上架为:${num}`
+        // document.body.appendChild(td1)
+
+        // 演示一下文档碎片
+        var cache1 = document.createDocumentFragment()
+        var td = document.createElement('p')
+        td.innerHTML = `总数为:${sum}`
+        // 先把p标签放到文档碎片里
+        cache1.appendChild(td)
+        var td1 = td.cloneNode() // 浅克隆复制p标签
+        td1.innerHTML = `已上架为:${num}`
+        cache1.appendChild(td1)
+        // 最后一次append放进body
+        document.body.appendChild(cache1)
+
+        // 作业就在此基础上扩展：
+        // 1、是否上架
+        // 2、每一行小计加上
+        // 3、计算商品总价
+        // 4、计算上架商品的总价
+     
+        // 基础比较好的同学还可以做：
+        // 创建改成文档碎片
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .item{
+            width: 20px;
+            height: 20px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var items = new Array(20)
+        for (var i = 0; i < items.length; i++) {
+            var item = document.createElement('div')
+            item.className = 'item'
+            item.innerHTML = i + 1
+            document.body.appendChild(item)
+            // 把div放进items数组s
+            // items已经是一个长度为20的数组了，给数组元素重新赋值
+            items[i] = item
+        }
+        // items里面存的就是创建的所有20个对象
+        console.log(items)
+
+        // 鼠标移动的时候要去修改每一个item的坐标
+        document.onmousemove = function (e) {
+            e = e || window.event
+            var left = e.clientX
+            var top = e.clientY
+
+            // 把所有的item倒着来赋值坐标
+            // 先把索引18的坐标给19，再把17的给18....
+            for (var i = items.length - 1; i > 0; i--) {
+                // 循环是反向从大往小循环，但是赋值是把前面的坐标给后面一个坐标
+                // 把i-1的坐标赋给i
+                items[i].style.left = items[i - 1].style.left
+                items[i].style.top = items[i - 1].style.top
+            }
+            // 循环结束以后给第0个item坐标赋值为最新的鼠标坐标
+            items[0].style.left = left + 'px'
+            items[0].style.top = top + 'px'
+        }
+    </script>
+</body>
+</html>

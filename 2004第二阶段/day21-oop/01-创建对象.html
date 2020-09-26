@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 想要得到一系列类型相同结构相似的对象
+        // 不管是用字面量还是new Object都会得到一些无关联的对象，属性方法都能反复定义
+        var obj1 = {
+            name: 'zhangsan',
+            age:20,
+            say: function () {
+                console.log(this.name)
+            }
+        }
+        var obj2 = {
+            name: 'lisi',
+            age:30,
+            say: function () {
+                console.log(this.name)
+            }
+        }
+
+        var obj3 = new Object()
+        var obj4 = new Object()
+    </script>
+</body>
+</html>

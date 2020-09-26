@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 计算已经过了元旦多少天
+        var date = new Date() // 获取当前日期
+        console.log(date)
+        // 先获取当前时间戳
+        var nowTime = date.getTime()
+
+        // 把日期拨到元旦那一天
+        date.setMonth(0,1)
+        // 获取元旦的时间戳
+        var ydTime = date.getTime()
+
+        console.log(date)
+
+        // 这里不需要取整，得到的结果本身就一定是整数
+        // 因为我们使用的同一个date对象，只设置了月和日，时分秒是不变的
+        var days = (nowTime - ydTime) / 1000 / 60 / 60 / 24
+        console.log(days)
+    </script>
+</body>
+</html>

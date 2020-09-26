@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+* {margin:0; padding:0; list-style:none;}
+ 
+#div1 {width:850px; height:500px; margin:50px auto; overflow:hidden; position:relative;}
+#div1 ul {position:absolute;left: 0;top: 0;}
+#div1 ul li{height:500px;float: left;}
+#div1 ol {position:absolute;right: 10%;bottom: 10px;z-index:6}
+#div1 ol li{width: 20px;height: 20px;background: #fff;margin-left: 5px;float: left;line-height: 20px;text-align: center;cursor: pointer;}
+#div1 ol li.ac{background: red;color: #fff;}
+#div1>a{text-decoration: none;position: absolute;top: 50%;margin-top: -10px;height: 40px;line-height: 32px;text-align: center;width: 40px;font-size: 40px;vertical-align: middle;color: #fff;background: rgba(0,0,0,0.5);z-index:6;}
+#goPrev{left: 0;}
+#goNext{right: 0;}
+img{width:850px; height:500px;}
+</style>
+<script src="../../utils.js"></script>
+</head>
+<body>
+<div id="div1">
+    <ul>
+    <li><img src="images/1.jpg" /></li>
+    <li><img src="images/2.jpg" /></li>
+    <li><img src="images/3.jpg" /></li>
+    <li><img src="images/4.jpg" /></li>
+    <li><img src="images/5.jpg" /></li>
+  </ul>
+  <ol></ol>
+  <a href="javascript:;" id="goPrev">«</a>
+  <a href="javascript:;" id="goNext">»</a>
+</div>
+<script>
+window.onload = function () {
+  const div1 = document.querySelector('#div1'),
+        ul = div1.querySelector('ul'),
+        imgs = ul.querySelectorAll('li'),
+        ol = div1.querySelector('ol'),
+        goPrev = document.querySelector('#goPrev'),
+        goNext = document.querySelector('#goNext'),
+        btns = [],
+        len = imgs.length,
+        width = imgs[0].offsetWidth
+   
+  var index = 0, lastIndex = 0
+  // 标志位：记录轮播的运动状态，false代表静止，true代表正在运动，默认为false
+  var isMove = false
+ 
+  // 创建ol里面的按钮
+  for (var i = 0; i < len; i++) {
+    var li = document.createElement('li')
+    if (i === 0) li.className = 'ac'
+    li.innerHTML = i + 1
+    ol.appendChild(li)
+    // btns放所有按钮的，所以每创建一个就push一个
+    btns.push(li)
+  }
+ 
+  // ul里追加第0张图，克隆第0张然后追加
+  ul.appendChild(imgs[0].cloneNode(true)) // 深克隆
+ 
+  // 计算ul的宽度
+  ul.style.width = (len + 1) * width + 'px'
+ 
+  // 给按钮绑事件，遍历btns给每一个btn都绑事件
+  btns.forEach((btn, i) => {
+    btn.onclick = function () {
+      if (!isMove) {
+        isMove = true
+        // 下标index往前走一步
+        lastIndex = index
+        index = i
+        // 根据修改之后的index和lastIndex来修改按钮样式
+        btns[lastIndex].classList.remove('ac')
+        btns[index].classList.add('ac')
+        // 图片移动修改ul的left值，公式是-index*width
+        utils.move1(ul, 'left', -index * width, function () {
+          isMove = false
+        })
+      }
+    }
+  })
+  
+ 
+  // 向右
+  goNext.onclick = function () {
+    console.log('点击')
+    // 判断轮播处于静止状态
+    if (!isMove) {
+      console.log('-----开始运动------')
+      // 一旦进入这个if了，意味着要开始运动了
+      isMove = true
+      lastIndex = index
+      index++
+      // index的范围 0 ~ len-1
+      // index不应该等与追加那张图，追加那张图的下标等于len
+      if (index === len) {
+        // 超出范围，需要让index回到0
+        index = 0
+        // 图片在从len-1这张往追加那张移动
+        // 先让ul平滑移动过去，移动完成以后瞬间回到第0张
+        // 追加那张图的下标是len
+        utils.move1(ul, 'left', -len * width, () => {
+          // 运动结束
+          // 要让ul直接回到0的位置
+          ul.style.left = '0px'
+          // 运动结束，isMove恢复false
+          isMove = false
+        })
+      } else {
+        // 正常情况
+        utils.move1(ul, 'left', -index * width, () => {
+          // 运动结束，isMove恢复false
+          isMove = false
+        })
+      }
+      btns[lastIndex].classList.remove('ac')
+      btns[index].classList.add('ac')
+    } 
+  }
+ 
+  // 向前
+  goPrev.onclick = function () {
+    if (!isMove) {
+      isMove = true
+      lastIndex = index
+      index--
+      if (index < 0) {
+        // 超出边界
+        // 让ul瞬间去到追加的下标len那张图，然后在往len-1来移动
+        // index修改为len-1
+        index = len - 1
+        ul.style.left = -len * width + 'px'
+      }
+      // 不管是正常切换还是需要处理的切换都要执行这三句
+      utils.move1(ul, 'left', -index * width, () => {
+        isMove = false
+      })
+      btns[lastIndex].classList.remove('ac')
+      btns[index].classList.add('ac')
+    }
+  }
+ 
+  // 自动轮播
+  // 这里是把onclick函数交给定时器，让定时器每隔3s调用一次，不是我们来调用，所以这里不写小括号的
+  // var timer = setInterval(goNext.onclick, 3000)
+ 
+  // div1.onmouseenter = function () {
+  //   // 进入停止轮播
+  //   clearInterval(timer)
+  // }
+  // div1.onmouseleave = function () {
+  //   // 离开继续轮播
+  //   timer = setInterval(goNext.onclick, 3000)
+  // }
+ 
+  // 自动轮播还有一种写法，这个写法只学思想，了解一下
+  var timer = null
+  div1.onmouseenter = function () {
+    // 进入停止轮播
+    clearInterval(timer)
+  }
+  // 这里要学的是过程，是这个思想，代码本身不一定要这么写
+  // 1、autoPlay会自己先调用一次，也就是开始自动轮播
+  // 2、当autoPlay调用结束以后return了autoPlay本身，return到了立即执行函数的调用位置，也就是onmouseleave等号的右边
+  // 3、立即执行函数调用的返回值autoPlay赋值给onmouseleave，事件就绑定上了
+  div1.onmouseleave = (function autoPlay () {
+    timer = setInterval(goNext.onclick, 3000)
+    return autoPlay
+  })()
+}
+ 
+// function fn () {
+//   console.log(123)
+// }
+ 
+// div.onclick = function () {
+//   fn()
+// }
+ 
+// div.onclick = fn
+ 
+</script>
+</body>
+</html>

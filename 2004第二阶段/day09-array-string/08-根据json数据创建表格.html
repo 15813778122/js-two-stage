@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [
+            {
+                name: '小明',
+                age:80
+            },
+            {
+                name: '小红',
+                age:17
+            },
+            {
+                name: '大熊',
+                age:19
+            }
+        ]
+
+        var str = '<table><tr><th>编号</th><th>姓名</th><th>年龄</th></tr>'
+        
+        arr.forEach(function (item,index) {
+            str += '<tr>'
+            str += '<td>' + (index + 1) + '</td>'
+            for (var key in item) {
+                str += '<td>' + item[key] + '</td>'
+            }
+            str += '</tr>'
+        })
+        str += '</table>'
+        document.write(str)
+    </script>
+</body>
+</html>

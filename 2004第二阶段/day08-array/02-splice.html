@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // splice修改的是原数组
+        var arr = [45,6,8,3,9,3]
+        // 把从2开始的数据删掉
+        // arr.splice(2)
+        // console.log(arr)
+
+        // 从2开始，删除两个数，删除元素里包含开始索引的
+        // arr.splice(2,2)
+        // console.log(arr)
+
+        // 从2开始，删除两个数，然后在删除位置用10,20,30去替换
+        // arr.splice(2,2,10)
+        // console.log(arr)
+        
+        // 第3个参数开始后面可以传任意多个参数，都是替换的值
+        // arr.splice(2,2,10,20,30) 
+        // console.log(arr)
+
+        // 可以把第二个参数写出0，就算添加，可以在任意位置添加元素
+        arr.splice(5,0,20)
+        console.log(arr)
+    </script>
+</body>
+</html>

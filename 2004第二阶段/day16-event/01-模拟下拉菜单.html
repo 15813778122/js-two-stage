@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .menu{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="text">
+    <!-- ul在真实项目中应该设置定位 -->
+    <ul class="menu">
+        <li>巴哥</li>
+        <li>哈士奇</li>
+        <li>柯基</li>
+        <li>阿拉斯加</li>
+        <li>柴犬</li>
+    </ul>
+    <script>
+        var oInput = document.querySelector('input')
+        var oMenu = document.querySelector('.menu')
+        var list = oMenu.children // 获取oMenu的所有一级子元素
+
+        oInput.onfocus = function () {
+            oMenu.style.display = 'block'
+        }
+        oInput.onblur = function () {
+            oMenu.style.display = 'none'
+        }
+
+        // 给li点击的时候把内容放入input
+        for (var i = 0; i < list.length; i++) {
+            list[i].onmousedown = function () {
+                // 这里的事件要写onmousedown，否则blur就先触发了
+                // 如果是使用for循环绑事件，那么事件函数离不能使用循环变量
+                // 原因是：当事件触发的时候循环早已结束，i已经加完了
+                oInput.value = this.innerHTML
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 20160211
+        // 从日期当中把年月日分别提取出来
+        // 参考06.html 来完成，需要把润平年加上
+        // 在06里面算的是1号，默认值是1，拿这里的默认值应该是多少
+
+        // 这里可以不用加Number来转换，因为后面的求余和除法都会隐式转换成数字
+        // 但是如果要用到date来算加法，那么就必须先Number转换
+        var yearDay = Number(prompt('输入年月日'))
+        var day = yearDay % 100
+        var month = ((yearDay - day) / 100) % 100
+        var year = parseInt(yearDay / 10000)
+        // 当代码写到这里的时候，先看看年月日有没有问题，没问题才继续往下写
+        console.log(year,month,day)
+        //默认值为当前这个月的号数所对应的天数
+        // var days = day
+        switch (month) {
+            case 12:
+                day += 30
+            case 11:
+                day += 31
+            case 10:
+                day += 30
+            case 09:
+                day += 31
+            case 08:
+                day += 31
+            case 07:
+                day += 30
+            case 06:
+                day += 31
+            case 05:
+                day += 30
+            case 04:
+                day += 31
+            case 03:
+            if (year % 4 === 0 && year % 100 != 0 || year % 400 ===0) {
+                day += 29
+            } else {
+                day += 28
+            }
+            case 02:
+                day += 31
+            case 01:
+            break
+        }
+        console.log('你输入的年月日是' + yearDay + '这一日为这一年的第' + day +'天')
+    </script>
+</body>
+</html>

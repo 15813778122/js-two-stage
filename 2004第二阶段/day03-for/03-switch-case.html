@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 多分支语句
+        // switch (表达式) {
+        //     case 值1:
+        //         如果表达式的值跟case的值1是一样的,那么这里的代码就会执行
+        //     break;
+        //     case 值2:
+        //         如果表达式的值跟case的值2是一样的,那么这里的代码就会执行
+        //     break;
+        //     case 值3:
+        //         如果表达式的值跟case的值3是一样的,那么这里的代码就会执行
+        //     break;
+        //     default:
+        //         可选的,不一定每一个switch都要写default
+        //         如果前面的值一个都不相等,就执行这里的代码
+        // }
+
+        // if更多时候用于范围得判断，switch一般用于确定得几个值得判断(零散得几个点得分布)
+        // default:默认    
+        // var num = Number(prompt('输入一个1~3的整数'))
+
+        // 重点:case匹配用的是全等，所有值相等并且类型必须相等才能成功匹配
+        var num = prompt('输入一个1~3的整数')
+
+        
+        switch (num) {
+            case '1':
+                console.log('你输入的是1')
+                // 这里可以写很多行代码
+            break
+            case '2':
+                console.log('你输入的是2')
+                // 这里可以写很多行代码
+            break
+            case '3':
+                console.log('你输入的是3')
+                // 这里可以写很多行代码
+            break
+            default:
+                // default语句一定是放在所有case之后的，但是也可以不写
+                // 如果前面的case一个都不满足，默认要执行的代码就可以放在这里
+                console.log('你输入的是别的数字')
+                // default后面就不用写break了
+        }
+
+
+    </script>
+</body>
+</html>

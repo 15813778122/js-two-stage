@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var i = 0
+        // setInterval('console.log(i++)',1000) // 一般不这么写
+        
+        // 把函数交给定时器，定时器每个一段时间去调用一次
+        // 定时器的返回值是当前定时器的id(计算机随机分配)
+        var timer = setInterval(function () {
+            console.log(i++)
+            // 判断终点要在定时器里面写，因为定时器每执行一次都要判断
+            if (i === 5) {
+                // 停止定时器，根据id来停止
+                clearInterval(timer)
+            }
+        },1000)
+
+        
+    </script>
+</body>
+</html>

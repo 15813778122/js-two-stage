@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../utils.js"></script>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            padding: 20px;
+            border: 5px solid #333;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p>box</p>
+        <p>box</p>
+        <p>box</p>
+        <p>box</p>
+        <p>box</p>
+        <p>box</p>
+        <p>box</p>
+        <p>box</p>
+        <p>box</p>
+        <p>box</p>
+        <p>box</p>
+    </div>
+    <script>
+
+        // 以一个方向为例，每一种都有宽和高一对
+
+        var box = document.querySelector('.box')
+        var width = getStyle(box,'width')
+        console.log(width)
+
+        // offsetWidth 得到的是数字，px帮我们去掉了
+        // 包含padding、border
+        // 不包含margin
+        var width1 = box.offsetWidth // DOM提供的一个属性，用来获取元素的占位尺寸，再文档流中所占的大小
+        var width1 = box.offsetHeight // DOM提供的一个属性，用来获取元素的占位尺寸，再文档流中所占的大小
+        console.log(width1)
+
+        // clientWidth就是在offsetWidth的基础上减去border
+        var width2 = box.clientWidth
+        console.log(width2)
+
+        // 一般都是纵向滚动条，所以以高度为例
+        // 获取的是可滚动内容的总高度，如果box没有滚动条，跟clientHeight是一样的
+        // 内容超出的时候获取的是总内容高度
+        // 不包含边框的
+        var height = box.scrollHeight
+        console.log(height)
+
+        // 这三对属性都只是用来获取，不能设置
+        // box.offsetWidth = 400 // 这一句不会报错，但是也不会生效
+        
+        // 如果要修改元素尺寸，还要要用样式来修改，带单位的字符串
+        box.style.width = '300px'
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Dog (name) {
+            this.name = name
+        }
+
+        Dog.prototype.say = function () {
+            console.log(`My name is ${this.name}`)
+        }
+
+        console.dir(Dog)
+        // 构造函数的原型对象上有一个constructor属性，这个属性指回构造函数本身
+        // constructor在项目中一般不会刻意去使用，但是你得知道有这个东西
+        console.log(Dog.prototype.constructor === Dog) // true
+
+    </script>
+</body>
+</html>

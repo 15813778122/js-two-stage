@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        // 距离5月1号00: 00: 00 还有多少天多少小时多少分多少秒
+        // 把日历写明白
+        var box = document.getElementById('box')
+        setInterval(function () {
+            var nowTime = Date.now()
+            // 这里是初次new的时候传进来年月日，时分秒就是默认的0
+            // 但是如果是先new Date()    再set的话没有被设置的就是当前时间一样
+            var date = new Date(2020, 4, 1)
+            var endTime = date.getTime()
+            // 算出两个时间相差的秒数
+            var time = parseInt((endTime - nowTime) / 1000)
+
+            console.log(time)
+            var days = parseInt(time / 24 / 3600)
+            // time减去整天的秒数，剩下不足一天的秒数
+            time -= days * 24 * 3600
+            var hours = parseInt(time / 3600)
+            time -= hours * 3600
+            var minutes = parseInt(time / 60)
+            var seconds = time % 60
+
+            box.innerHTML = '距离五一节还有' + days + '天' + hours + '小时' + minutes + '分钟' + seconds + '秒'
+        }, 1000)
+
+
+
+    </script>
+</body>
+
+</html>

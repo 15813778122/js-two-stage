@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #zoom {
+            position: relative;
+        }
+        .box {
+            position: relative;
+            width: 500px;
+            height: 700px;
+        }
+        .bigBox {
+            display: none;
+            position: absolute;
+            width: 500px;
+            height: 700px;
+            top: 0;
+            left: 510px;
+            overflow: hidden;
+        }
+        .box img {
+            width: 500px;
+            height: 700px;
+        }
+        .box span {
+            display: none;
+            position: absolute;
+            width: 250px;
+            height: 350px;
+            top: 0;
+            left: 0;
+            background-color: rgba(255,255,2,.3);
+        }
+        .bigBox img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1000px;
+            height: 1400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="zoom">
+        <div class="box">
+            <img src="2.jpg" alt="">
+            <span></span>
+        </div>
+        <div class="bigBox">
+            <img src="2.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        var box = document.querySelector('.box'),
+            span = document.querySelector('.box span'),
+            bigBox = document.querySelector('.bigBox'),
+            img = document.querySelector('.bigBox img')
+
+        box.onmouseenter = function () {
+            span.style.display = 'block'
+            bigBox.style.display = 'block'
+        }
+        box.onmouseleave = function () {
+            span.style.display = 'none'
+            bigBox.style.display = 'none'
+        }
+        box.onmousemove = function (e) {
+            e = e || window.event
+            var left = e.clientX - box.offsetLeft - span.offsetWidth / 2
+            var top = e.clientY - box.offsetTop - span.offsetHeight / 2
+            if (left < 0) left = 0
+            if (top < 0) top = 0
+            if (left >= box.clientWidth - span.offsetWidth) left = box.clientWidth - span.offsetWidth
+            if (top >= box.clientHeight - span.offsetHeight) top = box.clientHeight - span.offsetHeight
+            span.style.left = left + 'px'
+            span.style.top = top + 'px'
+
+            // 图片移动
+            img.style.left = -2 * left + 'px'
+            img.style.top = -2 * top + 'px'
+        }
+    </script>
+</body>
+</html>

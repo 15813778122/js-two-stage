@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 一般在前后端交互的时候用的比较多
+        var list = [
+            {id:1,title:'笔',price:20,num:2},
+            {id:2,title:'本',price:20,num:7},
+            {id:3,title:'书',price:30,num:3},
+            {id:4,title:'尺子',price:40,num:4},
+            {id:5,title:'涂改液',price:60,num:5}
+        ]
+
+        var str = JSON.stringify(list)
+        console.log(str) // 满足json格式的字符串
+
+        var list2 = JSON.parse(str)
+        console.log(list2)
+    </script>
+</body>
+</html>

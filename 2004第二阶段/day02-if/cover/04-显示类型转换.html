@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 从左往右，遇到小数点或者其他字符就停止转换，只保留左边的整数部分
+        console.log(parseInt('34')) // 34
+        console.log(parseInt('34.444444')) // 34
+        console.log(parseInt('34.99999')) // 34 直接把小数部分丢掉
+        console.log(parseInt('3c4')) // 3 从左往右
+        console.log(parseInt('c34')) // NaN
+
+        // 从左往右，遇到第二个小数点或者其他字符就停止转换，只保留左侧部分
+        console.log(parseFloat('36')) // 36
+        console.log(parseFloat('36.333')) // 36.333
+        console.log(parseFloat('36.333.444')) // 36.333
+        console.log(parseFloat('36.33d3.444')) // 36.33
+        console.log(parseFloat('a36.333.444')) // nan
+        
+        // Number更严格，只要字符串里不满足数字格式的，结果都是NaN
+        console.log(Number('36')) // 36
+        console.log(Number('36.999')) // 36
+        console.log(Number('36.9d99')) // NaN
+        console.log(Number('36.999.444')) // NaN
+
+        var num = 36.264611
+        console.log(num)
+        console.log(num.toFixed(3)) // toFixed以后的类型是string
+    </script>
+</body>
+</html>

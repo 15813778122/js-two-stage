@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var num =Number(prompt('请输入一个三位数'))
+        // 取个位:被10除不尽的就是个位
+        var gw = num % 10
+        // 取十位:先除以10，取整，再对10求余
+        var sw = parseInt(num / 10) % 10
+        // 取百位:除以100取整
+        var bw = parseInt(num / 100)
+
+        if (num === gw*gw*gw + sw*sw*sw + bw*bw*bw) {
+            console.log(num + '是水仙花数')
+        } else {
+            console.log(num + '不是水仙花数')
+        }
+    </script>
+</body>
+</html>

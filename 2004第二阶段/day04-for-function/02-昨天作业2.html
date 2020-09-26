@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var num = 1
+        while (num <= 100) {
+            num++
+            var gw = num % 10
+            var sw = (num - gw) / 10
+            if (gw === 7 || sw === 7 || num % 7 === 0) {
+                console.log('你输入的数字为' + num + '要不起，过！！！')
+                continue
+            }
+            console.log('你输入的数字为' + num + '我要')
+        }
+
+        // var num = 1
+                // while (num <= 100) {
+                //     var gw = num % 10
+                //     var sw = (num - gw) / 10
+                    
+                //     if (gw === 7 || sw === 7 || num % 7 === 0) {
+                //         console.log('你输入的数字为' + num + '要不起，过！！！')
+                //     }
+                //     else{
+                //         console.log('你输入的数字为' + num + '我要')
+                //     }
+                //     num++
+                // }
+    </script>
+</body>
+</html>

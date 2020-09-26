@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 当代码执行到这里的时候，div还没有被渲染出来，所以这里找不到
+        var box = document.getElementById('box')
+        console.log(box)
+
+        window.onload = function () {
+            // window的load事件，页面加载完成以后才会执行的代码
+            var box = document.getElementById('box')
+            console.log(box)
+        }
+    </script>
+</head>
+<body style="height: 10000px;width: 10000px;">
+    <div id="box">box</div>
+    <script>
+        // 滚动条滚轮事件
+        window.onscroll = function () {
+            // window.scrollTop有兼容性，直接取取不到
+            // 下面这句话就是获取滚动条高度的一个兼容写法
+            var top = document.documentElement.scrollTop || document.body.scrollTop
+            console.log(top)
+
+            var left = document.documentElement.scrollLeft || document.body.scrollLeft
+            console.log(left)
+        }
+
+        // 窗口缩放事件
+        window.onresize = function () {
+            // 当窗口大小发生改变的时候触发的事件
+            console.log(window.innerHeight,window.innerWidth)
+        }
+    </script>
+</body>
+</html>

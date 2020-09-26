@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul></ul>
+    <script>
+        var ul = document.querySelector('ul')
+        // 往ul里加入10个li
+        // 1、这种写法创建10个li，append 10次，进行了10次DOM操作
+        // for (var i = 0; i < 10 ; i++) {
+        //     var li = document.createElement('li')
+        //     li.innerHTML = i + 1
+        //     ul.appendChild(li)
+        // }
+
+        // 2、可以用一个文档碎片先把10个li放入碎片里
+        // 然后只需要一次把碎片插入ul就行了,这样就只有一次DOM操作了
+        // 这种写法虽然看起来更麻烦，但是减少了DOM操作的次数，性能更优
+
+        // 创建一个文档碎片
+        var cache = document.createDocumentFragment()
+        for (var i = 0; i < 10; i++) {
+            var li = document.createElement('li')
+            li.innerHTML = i + 1
+            // li放到文档碎片(cache)里
+            // 这里的append是在计算机里操作的，不是在页面上操作的
+            cache.appendChild(li)
+        }
+        // 当for结束以后把cache插入到ul里
+        ul.appendChild(cache)
+    </script>
+</body>
+</html>

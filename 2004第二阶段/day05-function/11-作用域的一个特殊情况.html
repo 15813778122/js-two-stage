@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // js里可以不用var声明，但是不规范，不要用
+        // a = 30
+        // console.log(a)
+        function test () {
+            // 在函数里面声明变量如果不写var，那么这个变量是一个全局变量
+            // 但是不要这么用
+            num = 30
+            console.log(num)
+        }
+        test()
+        console.log(num)
+    </script>
+</body>
+</html>

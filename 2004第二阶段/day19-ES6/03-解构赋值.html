@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [4,3,9,7]
+        // var a = arr[0]
+        // var b = arr[1]
+
+        // 把数组里的元素按顺序赋值给四个变量
+        // 如果解构的变量是少于数组元素，那么就只解构前几个元素
+        // 如果解构的变量是多于数组元素，那么多余的变量就算undefined
+        var [a,b,c,d,e] = arr
+        console.log(a)
+        console.log(b)
+        console.log(c)
+        console.log(d)
+        console.log(e)
+
+        // 对象是无序的，没有length属性
+        var obj = {
+            username: 'lisi',
+            age: 20,
+            gender: 'male',
+            say: function () {
+                console.log(this.age)
+            }
+        }
+
+        // 对象的解构是按照属性名来解构的，也就是说声明的变量要对应对象的属性名才能拿到属性值
+        // 如果去解构一个对象里不存在的属性，就得到undefined
+        var {age,gender,aaa,say} = obj // var age = obj.age
+        console.log(age) // 20
+        console.log(gender) // male
+        console.log(aaa) // undefined
+        // say是解构出来的全局函数了，可以直接调用了,相当于var say = obj.say
+        say()
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../utils.js"></script>
+    <style>
+        *{ margin:0; padding:0; font-size:14px}
+        #box{ width:500px; margin:100px auto}
+        table,th,td{ border:1px solid #000; border-collapse:collapse}
+        td,th{ width:100px; height:30px; padding:10px}
+        input[type="text"]{ display:none; height:24px; width:60px; border:1px solid #ccc;}
+        tbody tr td:first-child{text-align: center;}
+        tfoot td{text-align: right;}
+        .editBtn{ color:#666}
+        .delBtn{ color:red}
+        .okBtn,.cancelBtn{ display:none}
+         
+        .edit span{ display:none}
+        .edit input[type="text"]{ display:inline-block}
+        .edit .editBtn,.edit .delBtn{ display:none}
+        .edit .okBtn,.edit .cancelBtn{ display:inline}
+        </style>
+</head>
+<body>
+    <div id="box">
+        <table>
+            <thead>
+                <tr>
+                    <th><label>全选：<input type="checkbox" id="allCheck"/></label></th>
+                    <th>名称</th>
+                    <th>单价</th>
+                    <th>数量</th>
+                    <th>编辑</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" class="check"/></td>
+                    <td><span>张三</span><input type="text"></td>
+                    <td><span class="index">18</span><input type="text"></td>
+                    <td><span class="data">1</span><input type="text"></td>
+                    <td>
+                        <a href="javascript:;" class="editBtn">编辑</a>
+                        <a href="javascript:;" class="okBtn">确定</a>
+                        <a href="javascript:;" class="cancelBtn">取消</a>
+                        <a href="javascript:;" class="delBtn">删除</a>
+                    </td>
+         
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="check"/></td>
+                    <td><span>李四</span><input type="text"></td>
+                    <td><span class="index">25</span><input type="text"></td>
+                    <td><span class="data">2</span><input type="text"></td>
+                    <td><a href="javascript:;" class="editBtn">编辑</a><a href="javascript:;" class="okBtn">确定</a> <a href="javascript:;" class="cancelBtn">取消</a><a href="javascript:;" class="delBtn">删除</a></td>
+         
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="check"/></td>
+                    <td><span>小强</span><input type="text"></td>
+                    <td><span class="index">22</span><input type="text"></td>
+                    <td><span class="data">3</span><input type="text"></td>
+                    <td><a href="javascript:;" class="editBtn">编辑</a><a href="javascript:;" class="okBtn">确定</a> <a href="javascript:;" class="cancelBtn">取消</a><a href="javascript:;" class="delBtn">删除</a></td>
+         
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="check"/></td>
+                    <td><span>小明</span><input type="text"></td>
+                    <td><span class="index">16</span><input type="text"></td>
+                    <td><span class="data">4</span><input type="text"></td>
+                    <td><a href="javascript:;" class="editBtn">编辑</a><a href="javascript:;" class="okBtn">确定</a> <a href="javascript:;" class="cancelBtn">取消</a><a href="javascript:;" class="delBtn">删除</a></td>
+         
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">总价：￥<b id="money"></b></td>
+                </tr>
+            </tfoot>
+       </table>
+    </div>
+    <script>
+        // 使用事件委托给tbody写事件
+        var oTbody = document.querySelector('tbody')
+        on(oTbody,'click',function (e) {
+            e = e || window.event
+            // 获取事件源
+            var target = e.target || e.srcElement
+            var className = target.className
+            var tr = target.parentNode.parentNode
+            switch (className) {
+                case 'editBtn':
+                    // 编辑
+                    var tr = target.parentNode.parentNode
+                    tr.className = 'edit'
+                    // tr.classList.add('edit') // 如果tr本身就有class，那么这种更好
+                    // 还要把每一个span的innerHTML给对应的input的value
+                    // 这里要查找的是这一行的所有span，所有从tr开始找
+                    var spans = tr.querySelectorAll('span')
+                    for (var i = 0; i < spans.length; i++) {
+                        spans[i].nextElmentSibling.value = spans[i].innerHTML
+                    }
+                break
+                case 'okBtn':
+                    // 确定
+                    var tr = target.parentNode.parentNode
+                    tr.className = ''
+                    // tr.classList.remove('edit')
+                    var spans = tr.querySelectorAll('span')
+                    for (var i = 0; i < spans.length; i++) {
+                        spans[i].innerHTML = spans[i].nextElmentSibling.value
+                    }
+                break
+                case 'cancelBtn':
+                    // 取消
+                    // 只需要把tr的class清空即可
+                    tr.className = ''
+                break
+                case 'delBtn':
+                    // 删除
+                    if (confirm('你确定要删除吗？')) {
+                        // tr.remove()
+                        // tr.parentNode.removeChild(tr)
+                        // oTbody.removeChild(tr)
+                        this.removeChild(tr)
+                    }
+                break
+            }
+        })
+    </script>
+</body>
+</html>

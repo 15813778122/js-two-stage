@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    <style>
+*{margin:0;padding:0}
+#calendar{width:210px;margin:100px auto; overflow:hidden;border:1px solid #000; padding:20px; position:relative}
+#calendar h4{ text-align:center; margin-bottom:10px}
+#calendar .a1{ position:absolute;top:20px;left:20px;}
+#calendar .a2{ position:absolute;top:20px;right:20px;}
+#calendar .week{height:30px; line-height:20px;border-bottom:1px solid #000; margin-bottom:10px}
+#calendar .week li{ float:left;width:30px;height:30px; text-align:center; list-style:none;}
+#calendar .dateList{ overflow:hidden; clear:both}
+#calendar .dateList li{float:left;width:30px;height:30px; text-align:center; line-height:30px;list-style:none;}
+#calendar .dateList .ccc{ color:#ccc;}
+#calendar .dateList .red{ background:#F90; color:#fff;}
+#calendar .dateList .sun{ color:#f00;}
+</style>
+</head>
+ 
+<body>
+<div id="calendar">
+    <h4 id="title"></h4>
+    <a href="javascript:;" class="a1" id="prev">上月</a>
+    <a href="javascript:;" class="a2" id="next">下月</a>
+    <ul class="week">
+        <li>日</li>
+        <li>一</li>
+        <li>二</li>
+        <li>三</li>
+        <li>四</li>
+        <li>五</li>
+        <li>六</li>
+    </ul>
+    <ul class="dateList" id="dateList"></ul>
+</div>    
+<script>
+  var n = 0;
+    var ul = document.getElementById('dateList');
+  calendar()
+   
+  document.getElementById('next').onclick = function () {
+    n++;
+    calendar();
+  }
+  document.getElementById('prev').onclick = function () {
+    n--
+    calendar();
+  }
+  function calendar () {
+    // 获取当前日期
+    var date = new Date();
+    // 根据n的值获取当前月份的日期对象
+    date.setMonth(date.getMonth() + n);
+    // 获取年和月设置title
+    var title = date.getFullYear() + '年' + (date.getMonth() + 1) + '月';
+    document.getElementById('title').innerHTML = title;
+    // 获取今天是几号
+    var today = date.getDate();
+    // 把日期拨到这个月1号
+    date.setDate(1);
+    // 获取1号是星期几
+    var week = date.getDay();
+    // 把日期拨到下个月0号，也就是这个月的最后一天
+    date.setMonth(date.getMonth() + 1, 0);
+    // 获取最后一天是几号，那么这个月就总共有这么多天
+    var totalDay = date.getDate();
+ 
+    var str = '';
+    // 根据星期几插入空的li
+    for (var i = 0; i < week; i++) {
+      str += '<li></li>';
+    }
+    // 根据总天数插入有值的li
+    for (var j = 1; j <= totalDay; j++) {
+      if (n < 0) {
+        // 以前的日期全部置灰
+        str += '<li class="ccc">' + j + '</li>';
+      } else if (n === 0) {
+        // 当前月份都要判断
+        if (j < today) {
+          str += '<li class="ccc">' + j + '</li>';
+        } else if (j === today) {
+          str += '<li class="red">' + j + '</li>';
+        } else if ((week + j) % 7 === 0 || (week + j) % 7 === 1) {
+          // 每个月1号星期几不确定，但是让空白li数量在加上号数，这个值就固定了
+          str += '<li class="sun">' + j + '</li>';
+        } else {
+          str += '<li>' + j + '</li>';
+        }
+      } else {
+        // 以后的日期只需要判断周末
+        if ((week + j) % 7 === 0 || (week + j) % 7 === 1) {
+          // 每个月1号星期几不确定，但是让空白li数量在加上号数，这个值就固定了
+          str += '<li class="sun">' + j + '</li>';
+        } else {
+          str += '<li>' + j + '</li>';
+        }
+      }
+       
+       
+    }
+    // 把str作为html字符串放进ul里
+    ul.innerHTML = str;
+  }
+ 
+     
+</script>
+</body>
+</html>

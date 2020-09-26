@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [4,834,6,4,68,84]
+        console.log(typeof arr) // object
+
+        // 对象和函数是引用类型，内存里存的是引用(地址)
+        // 数组是引用类型
+
+        // 是把arr的地址给了arr1，因此arr和arr1本质是同一个数组
+        // 把arr的钥匙配了一把给了arr1，arr1用这把钥匙打开了门，把屋子里的东西换了一些新的
+        // 当arr用原来的钥匙再来开门，看到的已经是arr1修改过后的屋子了
+        var arr1 = arr
+        console.log(arr1,arr)
+
+        arr1[0] = 10
+        console.log(arr1,arr)
+        arr1[1] = 20
+        console.log(arr1,arr)
+
+    </script>
+</body>
+</html>

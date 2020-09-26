@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../utils.js"></script>
+</head>
+<body>
+    <button>移除监听</button>
+    <div id="box">box</div>
+    <script>
+        var btn = document.querySelector('button')
+        var oBox = document.querySelector('#box')
+        function foo () {
+            console.log('box1')
+        }
+        on(oBox,'click',foo)
+
+        on(btn,'click',function () {
+            off(oBox,'click',foo)
+        })
+    </script>
+</body>
+</html>

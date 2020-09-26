@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Array
+
+        // 1、字面量的方式声明数组
+        var arr = [3,4,5,6,7]
+        console.log(arr)
+
+        // 如果要访问数组的元素，可以通过索引(下标)，都是从0开始
+        console.log(arr[1])
+
+        // 获取数组长度用length属性
+        console.log(arr.length)
+
+        // 2、new运算符声明数组，传多个参数，这些参数就都是数组的值
+        var arr1 = new Array(4,5,6,7,8)
+        console.log(arr1)
+
+        // 3、new运算符声明数组，实参只传递一个，这一个实参就是不数组元素，是数组长度
+        var arr2 = new Array(3)
+        console.log(arr2)
+        // arr2长度为3，但是3个值都是空的
+        // 给arr2赋值可以通过下标
+        arr2[0] = 6 // 给arr2的第0个元素赋值为6
+        arr2[1] = 7 // 给arr2的第1个元素赋值为6
+        console.log(arr2)
+
+        // js是松散性语言，如果数组元素超过本来的长度了，那么自动把length加上去
+        arr2[2] = 8
+        arr2[3] = 9
+        console.log(arr2)
+
+        // 直接给arr2[6]也是可以的，中间没有给值的就算空值，长度会变成7
+        arr2[6] = 10
+        console.log(arr2)
+
+        // 一般如果数组固定了长度就不要像这种写法去改变，因为不严谨
+       
+    </script>
+</body>
+</html>

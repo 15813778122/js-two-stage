@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Cfb(n) {
+            this.n = n
+            this.str = ''
+            this.init()
+            this.print()
+        }
+
+        // 对象合并，把新增的方法合并到prototype上
+        Object.assign(Cfb.prototype,{
+            // ES6对象增强写法，跟写键值对是一样的
+            // init () {} 和 init: function () {} 是一样的
+            init () {
+                for (var i = 1; i <= this.n; i++) {
+                    for (var j = 1; j <= i; j++) {
+                        this.str += `${j} x ${i} = ${i*j}&nbsp;`
+                    }
+                this.str += '<br>'
+            }
+            },
+            print () {
+                document.write(this.str)
+            }
+        })
+
+        new Cfb(9)
+        new Cfb(19)
+    </script>
+</body>
+</html>

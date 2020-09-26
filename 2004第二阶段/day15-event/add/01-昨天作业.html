@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 200px;
+				height: 200px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<button>上</button>
+    	<button>下</button>
+    	<button>左</button>
+    	<button>右</button>
+    	<div></div>
+	</body>
+	<script type="text/javascript">
+		var btns = document.querySelectorAll('button')
+		var oDiv = document.querySelector(('div'))
+		var maxLeft = window.innerWidth - oDiv.offsetWidth
+		var maxTop = window.innerHeight - oDiv.offsetTop
+		var timer = null
+
+		// 向右
+		btns[1].onclick = function () {
+			//开启一个定时器之前，先把timer清除一次
+			clearInterval(timer)
+			timer = setInterval(function () {
+				var left = oDiv.offsetLeft + 10
+				oDiv.style.left =  left + 'px'
+				if (left >= maxLeft) {
+					clearInterval(timer)
+					// 这里有可能会超出几像素，强制拉回来
+					oDiv.style.left = maxLeft + 'px'
+				}
+			},30)
+		}
+		// 向左
+		btns[0].onclick = function () {
+			//开启一个定时器之前，先把timer清除一次
+			clearInterval(timer)
+			timer = setInterval(function () {
+				var left = oDiv.offsetLeft + 10
+				oDiv.style.left =  left + 'px'
+				if (left <= 0) {
+					clearInterval(timer)
+					// 这里有可能会超出几像素，强制拉回来
+					oDiv.style.left = 0 + 'px'
+				}
+			},30)
+		}
+		// 向下
+		btns[3].onclick = function () {
+			//开启一个定时器之前，先把timer清除一次
+			clearInterval(timer)
+			timer = setInterval(function () {
+				var top = oDiv.offsetTop + 10
+				oDiv.style.top =  top + 'px'
+				if (top >= maxTop) {
+					clearInterval(timer)
+					// 这里有可能会超出几像素，强制拉回来
+					oDiv.style.top = maxTop + 'px'
+				}
+			},30)
+		}
+		// 向上
+		btns[2].onclick = function () {
+			//开启一个定时器之前，先把timer清除一次
+			clearInterval(timer)
+			timer = setInterval(function () {
+				var top= oDiv.offsetTop + 10
+				oDiv.style.top =  top + 'px'
+				if (top <= 0) {
+					clearInterval(timer)
+					// 这里有可能会超出几像素，强制拉回来
+					oDiv.style.top = 0 + 'px'
+				}
+			},30)
+		}
+	</script>
+</html>

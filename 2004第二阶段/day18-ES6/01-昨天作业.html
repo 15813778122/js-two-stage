@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../utils.js"></script>
+  <style>
+    #box {
+      width: 200px;
+      height: 200px;
+      background: red;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">box</div>
+  <script>
+    // 思考扩展：
+    // 1、把事件绑定换成监听
+    // 2、限定拖拽范围
+    var oBox = document.querySelector('#box')
+    
+
+    on(oBox,'mousedown',function (e) {
+      // 每次mousedown的时候都要重新计算一下最大值，防止浏览器缩放导致值不准确
+      var maxLeft = window.innerWidth - oBox.offsetWidth
+      var maxTop = window.innerHeight - oBox.offsetHeight
+      e = e || window.event
+      // 获取鼠标到box的相对坐标
+      var disX = e.offsetX
+      var disY = e.offsetY
+      function move (e) {
+        e = e || window.event
+        var top = e.clientY - disY
+        var left = e.clientX - disX
+        // 判断
+        if (top < 0) top = 0
+        if (top > maxTop) top = maxTop
+        if (left < 0) left = 0
+        if (left > maxLeft) left = maxLeft
+
+        oBox.style.left = left + 'px'
+        oBox.style.top = top + 'px'
+      }
+      on(document,'mousemove',move)
+      on(document,'mouseup',function () {
+        off(document,'mousemove',move)
+      })
+      // 防止全选文字，阻止默认行为
+      if (e.preventDefault) {
+        e.preventDefault
+      } else {
+        return false
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        for (var i = 1; i <= 9; i++) {
+            for (var j = 1; j <= i; j++) {
+                // 在一个内层循环里i的值是固定的
+                // document.write(j)
+                // document.write('x')
+                // document.write(i)
+                // document.write('=')
+                // document.write(i*j)
+                document.write(j + 'x' + i + '=' + i*j + '&nbsp;')
+                // document.write('&nbsp;')
+            }
+            // 一行结束了
+            document.write('<br>')
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [4,2,5,7,2,6,6,2,6,5]
+
+        // ES6的写法，把数组写出Set，Set是ES6新增的数据类型，默认是不允许重复的
+        // 但是把数组变成Set了，再使用Array.from重新转换成数组，就可以了
+        var arr1 = Array.from(new Set(arr))
+        
+        console.log(arr1)
+    </script>
+</body>
+</html>

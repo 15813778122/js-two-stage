@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">box</div>
+    <script>
+        var oBox = document.querySelector('#box')
+        function fn () {
+            console.log('box')
+        }
+        if (oBox.attachEvent) {
+            // IE
+            // 这里的fn不要加小括号，因为fn并不是要直接调用，而是交给点击事件
+            // fn是将来事件触发了才会被事件调用
+            oBox.attachEvent('onclick',fn)
+        } else {
+            // 普通浏览器
+            oBox.addEventListener('click',fn)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>首页</li>
+        <li>列表</li>
+
+        <li id="about">关于</li>
+    </ul>
+    <script>
+        var ul = document.querySelector('ul')
+        var li = document.createElement('li')
+        var about = document.querySelector('#about')
+        li.innerHTML = '联系'
+        // ul.appendChild(li) // 放在ul的最后一个子元素
+        ul.insertBefore(li,about) // 把li放在ul里面，about前面
+    </script>
+</body>
+</html>

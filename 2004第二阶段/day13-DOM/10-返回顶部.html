@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .top{
+            width: 50px;
+            height: 80px;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            text-align: center;
+            line-height: 80px;
+        }
+    </style>
+</head>
+<body style="height: 10000px;">
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <p>天王盖地虎，小鸡炖蘑菇</p>
+    <div id="top" class="top">👆</div>
+    <script>
+        // 点击返回顶部的时候，滚动条慢慢返回顶部
+        var top = document.querySelector('#top')
+        top.onclick = function () {
+            // 起点值是当前高度，终点值是0
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+            var timer = setInterval(function () {
+                scrollTop -= 100
+                // 给滚动条高度重新赋值未见了之后的值
+                document.documentElement.scrollTop = scrollTop
+                // 考虑兼容两个都写上
+                document.body.scrollTop = scrollTop
+                if (scrollTop <= 0) {
+                    clearInterval(timer)
+                }
+            },50)
+        }
+    </script>
+</body>
+</html>

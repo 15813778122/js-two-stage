@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 变量提升:把var声明的变量提升到当前作用域的顶部，只提升声明，不提升赋值
+        // console.log(a)
+        // var a = 10
+        // 上面两行代码完成变量提升以后相当于是下面这三行
+        // var a
+        // alert(a)
+        // a = 10
+
+        // console.log(b) // 报错，因为b不会提升
+        // b = 20
+
+        // 变量提升是提升到当前作用域的顶部
+        // var x = 20
+        // function fn () {
+        //     console.log(x)
+        //     var x = 10
+        // }
+        // fn()
+
+        // 上面代码完成变量提升以后相当于是下面的代码
+        // 所以函数内部访问x，那么优先访问自己的局部变量x，所以输出undefined
+        //     var x = 20
+        //     function fn () {
+        //         var x
+        //         console.log(x)
+        //         x = 10
+        //     }
+        //     fn()
+
+        fn()
+        // function关键字声明的函数会提升整个函数体到当前作用域的顶部
+        function fn () {
+            console.log(123)
+        }
+        fn()
+
+        // test() // 报错
+        // 这种方式声明的函数只提升声明，不会提升函数体
+        var test = function () {
+            console.log(456)
+        }
+        test()
+    </script>
+</body>
+</html>

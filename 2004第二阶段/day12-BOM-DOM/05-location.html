@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="fn()">刷新</button>
+    <button onclick="fn2()">页面跳转</button>
+    <script>
+        console.log(window.location)
+        // location的各种属性只需要打印出来然后找到想要的取就行了
+        function fn() {
+            // 刷新
+            location.reload()
+            // 传参数true指的是强制刷新，清除缓存再刷新
+            // location.reload(true)
+        }
+        
+        
+        function fn2 () {
+            location.replace('http://www.baidu.com')
+        }
+
+    </script>
+</body>
+</html>

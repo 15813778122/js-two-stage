@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 单分支
+        // if (判断条件) {
+        //     当条件成立的时候执行的代码
+        // }
+
+        // 双分支
+        // if (判断条件) {
+        //     当条件成立的时候执行的代码
+        // } else {
+        //     当条件不成立的时候执行的代码
+        // }
+
+        // 多分枝
+        // if (判断条件1) {
+        //     当条件1成立的时候执行的代码
+        // } else if (判断条件2) {
+        //     当条件1不成立但是条件2成立的时候执行的代码
+        // } else if (判断条件3) {
+        //     当条件1和条件2都不成立但是条件3成立的时候执行的代码
+        // } ... {
+
+        // } else {
+        //     当前面的所有条件都不成立的时候执行的代码
+        // }
+
+        // prompt弹出一个输入框,输入的结果就可以用一个变量来接收， 变量的类型也是string   
+        var a = prompt()
+        // if (a >= 10) {
+        //     console.log('你至少是个两位数')
+        // } else{
+        //     console.log('你太小了')
+        // }
+
+        if (a < 0) {
+            console.log('是负数')
+        } else if (a > 0){
+            console.log('a是正数')
+        } else {
+            console.log('a等于0')
+        }
+
+        // 上面这种写法只是考虑了数字，没有考虑特殊情况
+        if (a < 0) {
+            console.log('是负数')
+        } else if (a > 0){
+            console.log('a是正数')
+        } else if (a == 0) {
+            console.log('a等于0')
+        } else {
+            console.log('a不是数字')
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>div1</div>
+    <ul>
+        <li>红烧鲤鱼</li>
+        <li>麻辣香锅</li>
+        <li>回锅肉</li>
+    </ul>
+    <script>
+
+        // 在DOM树里，可以从一个元素触发找到其他任意一个元素，虽然一般也不用这么麻烦，但是这个道理要明白
+
+        var ul = document.querySelector('ul')
+        // 从ul出发找div，应该是上一个兄弟元素
+        console.log(ul.previousElementSibling)
+
+        // 红烧鲤鱼
+        console.log(ul.firstElementChild)
+        // 回锅肉
+        console.log(ul.lastElementChild)
+        // 如果要获取中间的，那么找到所有子元素再通过下标来取
+    </script>
+</body>
+</html>

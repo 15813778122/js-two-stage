@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var num = 10
+        console.log('我要打' + num + '个')
+        // 字符串模板可以把表达式放在${}里面，他就可以解析
+        console.log(`我要打${num}个`)
+        // 字符串模板可以直接换行
+        var str = `<p>我要打
+        <b>${num}</b>
+        个</p>`
+        console.log(str)
+        // ${}里面可以写表达式
+        var str1 = `我要打${num > 10 ? '很多' : '0'}个`
+        console.log(str1)
+
+        function fn () {
+            return 20
+        }
+        // ${}里面可以写函数调用，会被解析成函数的返回值
+        var str2 = `我要打${fn()}个`
+        console.log(str2)
+
+        // 如果字符串本身就有一个`，那么要写成\`
+        var str3 = `hello \` world`
+        console.log(str3)
+    </script>
+</body>
+</html>

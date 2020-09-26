@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = 'da32d65461wdam[fmad541amadmafa16511da3wda'
+        ['32','65461','541','16511','3']
+        var reg = /\d+/
+        // 支持正则的indexOf
+        var index = str.search(reg) // 查找第一个数字的索引
+        console.log(index) // 2
+
+        var arr = str.split(reg) // 按照数字切割
+        console.log(arr)
+
+        // match 一般用的不多，返回满足正则的所有的字符串的一个数组
+    </script>
+</body>
+</html>

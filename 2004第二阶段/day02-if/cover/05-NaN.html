@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // NaN:not a number
+        // 一个表达式，我本来期望得到一个数字，但是转换过程失败了，就会得到NaN
+        console.log(parseInt('c34'))
+
+        console.log(typeof NaN) // NaN的类型是number
+
+        console.log(NaN == NaN)  // false 两个NaN是不能直接用等号判断的
+
+        console.log(parseInt('c34') == NaN)
+
+        // isNaN用来判断一个值是否是NaN，是NaN就返回true，不是就返回false
+        console.log( isNaN(parseInt('c34'))) // true
+
+        console.log( isNaN(parseInt('false')))
+
+        
+
+
+    </script>
+</body>
+</html>

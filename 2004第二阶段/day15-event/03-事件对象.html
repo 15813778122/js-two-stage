@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background: red;
+            padding: 30px;
+        }
+        #son{
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body style="height:10000px">
+    <div id="box">
+        <div id="son">son</div>
+    </div>
+    <script>
+        var oBox = document.querySelector('#box')
+        // event 事件
+        // 事件处理函数的第一个参数默认就是事件对象
+        // oBox.onmousedown = function (e) {
+        //     // e如果有效那么就是e本身，如果e无效就等于window.event
+        //     // 事件本身的兼容
+        //     e = e || window.event
+        //     console.log(e)
+        // }
+
+        var oSon = document.querySelector('#son')
+        oBox.onclick = function (e) {
+            e = e || window.event
+            // 距离点击最小的元素边缘的坐标
+            // console.log(e.offsetX,e.offsetY)
+
+            // 无论点box的哪个位置，都是固定算到浏览器边缘
+            // console.log(e.clientX,e.clientY)
+
+            // 无论浏览器是多大，都是获取到整个屏幕边缘的坐标
+            // console.log(e.screenX,e.screenY)
+
+            // 如果没有滚动条或者滚动条在最顶部，那么这组值和client是一样的
+            // 有滚动条他是计算包含滚动部分的总值
+            console.log(e.pageX,e.pageY)
+
+            //client和page是用的最多的
+            
+        }
+    </script>
+</body>
+</html>

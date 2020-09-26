@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #addToCart {
+            position: fixed;
+            left: 600px;
+            cursor: pointer;
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid deeppink;
+            text-align: center;
+            color: deeppink;
+            top: 500px;
+        }
+
+        #addToCart:hover {
+            color: #fff;
+            background-color: deeppink;
+        }
+
+        #shopCart {
+            position: fixed;
+            right: 0;
+            top: 200px;
+            color: red;
+        }
+
+        #shopNum {
+            width: 60px;
+            height: 25px;
+            background: deeppink;
+            color: black;
+            text-align: center;
+            line-height: 25px;
+        }
+
+        .active {
+            width: 25px;
+            height: 25px;
+            background: skyblue;
+            position: absolute;
+        }
+    </style>
+
+<body>
+    <div id="addToCart">
+        添加到购物车
+    </div>
+    <div id="shopCart">
+        购物车
+        <p id="shopNum">0</p>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+    var btn = document.querySelector('#addToCart')
+    var shopCart = document.querySelector('#shopCart')
+    var shopNum = document.querySelector('#shopNum')
+
+    btn.onclick = function (e) {
+        // 计算抛物线上的三个坐标
+        // 1、鼠标坐标；2、购物车终点坐标；3、最高点坐标（自己定）
+        e = e || window.event
+        var x1 = e.clientX,
+            y1 = e.clientY,
+            x2 = shopCart.offsetLeft,
+            y2 = shopCart.offsetTop,
+            x3 = x2 - 200,
+            y3 = y2 - 100
+
+        // 根据数学公式计算抛物线三个系数（这里不用管，拿来用就行）
+        var a = -((y2 - y3) * x1 - (x2 - x3) * y1 + x2 * y3 - x3 * y2) / ((x2 - x3) * (x1 - x2) * (x1 - x3));
+        var b = ((y2 - y3) * x1 * x1 + x2 * x2 * y3 - x3 * x3 * y2 - (x2 * x2 - x3 * x3) * y1) / ((x2 - x3) * (x1 - x2) * (x1 - x3));
+        var c = ((x2 * y3 - x3 * y2) * x1 * x1 - (x2 * x2 * y3 - x3 * x3 * y2) * x1 + (x2 * x2 * x3 - x2 * x3 * x3) * y1) / ((x2 - x3) * (x1 - x2) * (x1 - x3));
+
+        // 创建一个div，添加到页面上
+        var div = document.createElement('div')
+        div.className = 'active'
+        document.body.appendChild(div)
+        // 让div沿着抛物线运动
+        // 先给div一个初始坐标
+        div.style.left = x1 + 'px'
+        div.style.top = y1 + 'px'
+        var timer = setInterval(() => {
+            // 横坐标匀速运动
+            x1 += 10
+            // 纵坐标按照抛物线公式代入x1计算就行
+            y1 = a * x1 * x1 + b * x1 + c
+            div.style.left = x1 + 'px'
+            div.style.top = y1 + 'px'
+            if (x1 >= x2) {
+                // 清除定时器
+                clearInterval(timer)
+                // div移除
+                div.remove()
+                // 购物车数量++
+                shopNum.innerHTML = Number(shopNum.innerHTML) + 1
+            }
+        }, 30)
+    }
+</script>
+</body>
+
+</html>

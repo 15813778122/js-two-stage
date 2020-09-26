@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 3、编写函数实现:两个数平方的阶乘相加的和
+        //     先做出来再说，做完之后分析三个步骤，尝试着把每个步骤拆开
+        //     要求:三个函数实现，一个求阶乘，一个求平方，第三个函数利用这两个函数求出最终结果
+        // 2 3
+        // 4 9
+        // 1*2*3*4
+        // 1*2*3*。。。*9
+
+        // 这个函数是专门负责算平方的
+        function pf (n) {
+            return n*n
+        }
+
+        function jc (i) {
+            var res = 1
+            for (var j = 1; j <= i; j++) {
+                res *= j
+            }
+            return res
+        }
+
+        function fn (a,b) {
+            var a2 = pf(a)
+            var b2 = pf(b)
+
+            var a3 = jc(a2)
+            var b3 = jc(b2)
+
+            return a3 + b3
+        }
+        var num = fn(2,3)
+        console.log(num)
+    </script>
+</body>
+</html>

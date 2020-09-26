@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.onload = function () {
+            // 页面加载完成才执行
+            // 点击按钮的时候把link标签里的href属性修改了
+            // 1、找对象
+            var btns = document.querySelectorAll('.btn1')
+            var link = document.querySelector('#link')
+            // 2、给按钮写点击事件
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].onclick = function () {
+                    // this 就是当前事件触发对象，也就是正在点的那个btn
+                    // 可以根据自定义属性去修改link了
+                    var file = this.getAttribute('data-cn')
+                    console.log(file)
+                    link.href = file + '.css'
+                }
+            }
+        }
+    </script>
+</body>
+</html>

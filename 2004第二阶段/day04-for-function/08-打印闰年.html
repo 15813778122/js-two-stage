@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 打印出1000-2000中所有的闰年，并以每行四个数的形式输出
+        var count = 0 // 记录闰年的个数
+        for (var i = 1000; i <= 2000; i++) {
+            if (i % 4 === 0 && i % 100 != 0 || i % 400 === 0) {
+                document.write(i + ' ')
+                // 这里代表找出一个闰年了
+                count++
+                // 注意这里的逻辑先后顺序
+                // 只有闰年才考虑换行，平年压根就不需要考虑
+                if (count % 4 === 0) {
+                    document.write('<br>')
+                }
+            }
+        }
+    </script>
+</body>
+</html>

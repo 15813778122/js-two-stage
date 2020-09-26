@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">box</div>
+    <script>
+        // 思考扩展：
+    // 1、把事件绑定换成监听
+    // 2、限定拖拽范围
+    var oBox = document.querySelector('#box')
+    oBox.onmousedown = function (e) {
+      e = e || window.event
+      // 一旦鼠标按下了，鼠标到div的距离就应该固定下来了，所以要在这里获取
+      // 获取鼠标到div的顶部和左边的距离
+      var disX = e.offsetX
+      var disY = e.offsetY
+      // move事件写给document，因为只要在box上按下了，在文档中移动都应该触发
+      document.onmousemove = function (e) {
+        e = e || window.event
+        var left = e.clientX - disX
+        var top = e.clientY - disY
+         
+        oBox.style.left = left + 'px'
+        oBox.style.top = top + 'px'
+      }
+      // up事件也写给document，这样鼠标在拖到外面up就也会触发
+      document.onmouseup = function () {
+        // 鼠标抬起停止拖拽
+        document.onmousemove = null
+      }
+      // 避免全选文字造成的bug，在这里阻止默认行为
+      if (e.preventDefault) {
+        e.preventDefault()
+      } else {
+        return false
+      }
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [5,3,8,9,6,3,2,1]
+        // some的最终结果是一个布尔值
+        // 每一次遍历的时候返回一个条件
+        // 只要在遍历过程中有一条数据满足条件(在所有的返回值当中只要有一个true)
+        // 整个some的结果就是true
+        // 在遍历的过程中只要发现了一个true就停止遍历
+        // var is = arr.some(function (item,index) {
+        //     console.log(item,index)
+        //     return item > 10
+        // })
+        //  console.log(is)
+
+        // every 必须每一次遍历返回的条件都是true，结果才为true，否则就是false
+        // 只要任意一个不满足条件，遍历就结束，最终得到false
+        var is = arr.every(function (item,index) {
+            console.log(item,index)
+            // return item % 2 === 0
+        })
+        console.log(is)
+    </script>
+</body>
+</html>

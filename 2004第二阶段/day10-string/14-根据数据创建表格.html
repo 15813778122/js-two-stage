@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <script>
+        // sale 属性的意思是是否上架，已上架就是true，未上架就是false
+        // 表格里有一列的内容根据sale字段来显示"已上架"或者"未上架"
+        // 每一件商品的小计也在这一行的最后一列显示出来
+        // 表格打印完成以后在后面显示已上架的总价和所有商品的总价
+        var list = [
+            {
+                id : 1,
+                title : '纸',
+                price : 5,
+                num : 1,
+                sale : true
+            },
+            {
+                id : 2,
+                title : '笔',
+                price : 2,
+                num : 3,
+                sale : false
+            },
+            {
+                id : 3,
+                title : '墨水',
+                price : 8,
+                num : 3,
+                sale : true
+            }
+        ]
+
+        var str = '<table><tr><td>编号</td><td>名称</td><td>价格</td><td>数量</td><td>状态</td><td>小计</td></tr>'
+        var sum = 0
+        list.forEach(function (item,index) {
+            str += '<tr>'
+           for (var key in item) {
+            if (item.sale === true) {
+                    item.sale = '已上架'
+                    sum += item.price * item.num
+                } else if (item.sale === false) {
+                    item.sale = '未上架'
+                }
+                str += item.price * item.num
+            str += '<td>' + item[key] + '</td>'
+           }
+           str += '<td>' + item.price * item.num + '</td></tr>'
+        })
+        str += '</table>'
+        document.write(str)
+
+
+        var sum1 = list.reduce(function (res,curr) {
+            return res + curr.price * curr.num
+        },0)
+        document.write('<p>已上架' + sum +'</p>')
+        document.write('<p>总价' + sum1 +'</p>')
+    </script>
+</body>
+</html>

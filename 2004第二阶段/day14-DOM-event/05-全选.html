@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    全选<input type="checkbox" id="all">
+    <p>
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+    </p>
+    <script>
+        var all = document.querySelector('#all')
+        var checks = document.querySelectorAll('p input') // 单选都在p标签里
+        // 用一个变量来记录被选中单选的数量
+        var n = 0
+
+        // 全选来联动单选
+        // 全选按钮绑定属性改变的事件:change
+        all.onchange = function () {
+            console.log(this.checked)
+            // 所以单选checked属性跟全选的checked属性值一致
+            for (var i = 0; i < checks.length; i++) {
+                checks[i].checked = this.checked
+                // 这里也要修改n
+                n = (this.checked ? checks.length : 0)
+            }
+        }
+
+        // 给每一个单选都绑上事件
+        for (var i = 0; i < checks.length; i++) {
+            checks[i].onchange = function () {
+                // 如果当前是选中，n++，取消n--
+                this.checked ? n++ : n--
+                console.log(n)
+                // 判断n跟length是否相等
+                if (n === checks.length) {
+                    all.checked = true
+                } else {
+                    all.checked = false
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

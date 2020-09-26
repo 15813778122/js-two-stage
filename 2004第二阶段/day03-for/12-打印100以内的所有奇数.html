@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 打印100以内的所有奇数
+        // 初始值：n = 1
+        // 步进：n++
+        // 终止条件: n <= 100
+        var n = 1
+        while (n <= 100) {
+            // 判断n是否为奇数
+            if (n % 2){
+                console.log(n)
+            }
+            // n得向前步进
+            n++
+        }
+
+        // 这种写法是错误的，因为n一旦加到2，那么条件就不满足了。这个时候整个循环都停止了
+        // 最后只会打印1这一个数字
+        // while (n <= 100 && n % 2 === 1) {
+        //     console.log(n)
+        //     n++
+        // }
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = 10
+        function fn () {
+            var b = 20
+            function fn1 () {
+                var c = 30
+                // 在这里访问a，首先找自己有没有a，没有a，往外找，找fn里的作用域，fn里面有a嘛？也没有，继续往外找
+                //作用域链：会沿着作用域往外层访问变量和函数
+                console.log(a)
+            }
+        }
+    </script>
+</body>
+</html>

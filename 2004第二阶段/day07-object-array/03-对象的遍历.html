@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = {
+            name:'zhangsan',
+            arxhz: function () {
+                console.log('黯然销魂掌')
+            },
+            age:30
+        }
+
+        console.log(obj.name)
+        console.log(obj['name']) // name 是属性名，这里加引号是固定写法
+        var a = 'name'
+        console.log(obj.a) // undefined 因为obj里面没有a属性
+        console.log(obj[a]) // 这里的a不加引号，会解析a变量，把a替换成'name'
+
+        // 如果我们确切的知道属性名是什么，那么就直接 对象名.属性名
+        // 如果属性名是存在一个变量里的  这时候就需要 对象名[变量名]
+
+        // obj.arxhz()
+
+        // var a = 'name'
+        // obj.a // undefined
+
+        // 遍历:一个一个的查看
+        // 遍历对象使用for in
+        // for in的语法: for (var 变量 in 要遍历的对象) {}
+        // 根据对象的键值对来循环，对象里有多少个键值对for就会循环多少次
+        // 每一次循环得到的key就是当前的键(属性名或者方法名)
+        for (var key in obj) {
+            console.log(key)
+            // 如果这么写的话是去guoer这个对象里直接找key这个属性，并不是把key作为变量去取值
+            // console.log(guoer.key) // undefined
+            // 需要根据key变量先取到值,再用变量的值去对象里取
+            // 对象名[变量名] 这里的变量里存的是对象的属性名
+            console.log(obj[key])
+        }
+    </script>
+</body>
+</html>

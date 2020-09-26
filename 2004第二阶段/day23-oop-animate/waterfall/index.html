@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>瀑布流图片展示</title>
+<style type="text/css">
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+#box{margin: 0 auto;position: relative;}
+.item {box-shadow: 2px 2px 2px #999;position: absolute;}
+</style>
+</head>
+<body>
+<div id="box">
+    <div class="item"><img src="images/01.jpg"></div>
+    <div class="item"><img src="images/02.jpg"></div>
+    <div class="item"><img src="images/03.jpg"></div>
+    <div class="item"><img src="images/04.jpg"></div>
+    <div class="item"><img src="images/05.jpg"></div>
+    <div class="item"><img src="images/06.jpg"></div>
+    <div class="item"><img src="images/07.jpg"></div>
+    <div class="item"><img src="images/08.jpg"></div>
+    <div class="item"><img src="images/09.jpg"></div>
+    <div class="item"><img src="images/10.jpg"></div>
+    <div class="item"><img src="images/11.jpg"></div>
+    <div class="item"><img src="images/12.jpg"></div>
+    <div class="item"><img src="images/13.jpg"></div>
+    <div class="item"><img src="images/14.jpg"></div>
+    <div class="item"><img src="images/15.jpg"></div>
+    <div class="item"><img src="images/16.jpg"></div>
+    <div class="item"><img src="images/17.jpg"></div>
+</div>
+
+<script>
+  // 代码执行到这里的时候上面的img标签是被渲染了，但是图片不一定加载完成了
+window.onload = function () {
+  // window.onload代表页面加载完成，这个时候就可以取图片高度了
+  var container = document.querySelector('#box')
+  // 找到已有的item以后转成数组，方便以后新加载的图片push进来
+  var items = Array.from(container.children)
+  const gap = 10 // 定义图片之间的间隙10px
+  var winWidth = window.innerWidth
+  var width = items[0].offsetWidth
+  var len = 0
+
+  // 计算浏览器能放得下多少列
+  // 先用浏览器的宽度补上一个间隙再来除，刚好抵消掉后面多余的一个间隙（比如：5张图其实只需要4个间隙）
+  var cols = parseInt((winWidth + gap) / (width + gap))
+  // container的宽度是cols张图加上cols-1个间隙
+  container.style.width = cols * width + (cols - 1) * gap + 'px'
+
+  // 用一个数组来记录每一列的高度
+  var arr = new Array(cols)
+  waterfall()
+  // waterfall 瀑布
+  function waterfall () {
+    for (var i = len; i < items.length; i++) {
+      // 第一行就按顺序平铺就行了
+      if (i < cols) {
+        // 第一行
+        // items[i].style.top = '0px'
+        items[i].style.left = (width + gap) * i + 'px'
+        // 当前列的高度赋值给arr对应的元素，就是当前图片的高度加上一个间隙
+        arr[i] = items[i].offsetHeight + gap
+      } else {
+        // 除了第一行以外的我们要去寻找最短列，也就是找arr里的最小值
+        var minHeight = Math.min(...arr)
+        var minIndex = arr.indexOf(minHeight)
+        // 还有一种方案就是循环找
+        // var minIndex = 0
+        // arr.forEach((height, index) => {
+        //   if (height < arr[minIndex]) minIndex = index
+        // })
+        
+        // top就是当前最小列的高度
+        items[i].style.top = minHeight + 'px'
+        // left就是minIndex所在的列
+        items[i].style.left = (width + gap) * minIndex + 'px'
+        // 在当前最短minIndex列的高度加上当前图片和间隙
+        arr[minIndex] += items[i].offsetHeight + gap
+      }
+    }
+  }
+
+  // 下拉到底要再次加载一波新的图片继续瀑布流
+  var timer = null
+  window.onscroll = function () {
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    // 找到最高列
+    
+    var maxHeight = Math.max(...arr)
+    console.log(scrollTop)
+    // console.log(maxHeight)
+    // console.log(window.innerHeight)
+    // maxHeight预留了一个gap，但是现在下面没有图片，所以这个gap是多余的，要减掉
+    if (scrollTop >= maxHeight - gap - window.innerHeight) {
+      console.log('到底了')
+      clearInterval(timer)
+      // 在items更新之前记录旧的总长度，下次waterfall的下标就从length开始
+      // 因为前面的0~length-1已经铺好了
+      len = items.length
+      // 应该向后台取请求一些新的图片，但是目前咱们没有后台，用定时器来模拟
+      clearInterval(timer)
+      timer = setTimeout(() => {
+        console.log('----滚轮事件结束--')
+        // 在这里才开始运行我自己的代码，如果滚轮事件没有结束，那么这里的代码一次都不会运行
+          setTimeout(() => {
+          // 模拟一秒以后从后端拿到了17个图片路径
+          var json = [
+            "images/01.jpg",
+            "images/02.jpg",
+            "images/03.jpg",
+            "images/04.jpg",
+            "images/05.jpg",
+            "images/06.jpg",
+            "images/07.jpg",
+            "images/08.jpg",
+            "images/09.jpg",
+            "images/10.jpg",
+            "images/11.jpg",
+            "images/12.jpg",
+            "images/13.jpg",
+            "images/14.jpg",
+            "images/15.jpg",
+            "images/16.jpg",
+            "images/17.jpg"
+          ]
+          // 把这17张图渲染到页面上
+          json.forEach(url => {
+            var div = document.createElement('div')
+            div.className = 'item'
+            div.innerHTML = `<img src="${url}">`
+            container.appendChild(div)
+            // 把创建的div也放进items里
+            items.push(div)
+          })
+          // 在所有div添加完成以后调用一次瀑布流方法
+          waterfall()
+        }, 1000)
+      }, 100);
+      
+    }
+  }
+}     
+</script>
+</body>
+</html>

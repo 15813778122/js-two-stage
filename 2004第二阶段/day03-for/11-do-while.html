@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // do {
+        //     不管条件是否成立，都会先执行一次，然后再根据条件取决定循环
+        // } while (条件)
+
+        // do while循环不管条件是否成立，至少都会执行一次
+        var n = 0
+        do {
+            console.log(n)
+            n++
+        } while (n < 10)
+
+        // 最后一次循环输出的是9，但是循环结束以后n是多少？
+        // 跳出循环是从while条件这里跳出的
+        console.log('循环结束以后n的值为:' + n)
+    </script>
+</body>
+</html>

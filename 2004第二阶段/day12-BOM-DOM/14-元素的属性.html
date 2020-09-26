@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="http://www.baidu.com">百度一下，你tm就知道</a>
+    <script>
+        // a 取到的是a标签这个对象，因此我们可以访问这个a标签的各种属性
+        var a = document.querySelector('a')
+        var link = a.href
+        console.log(link)
+        a.href = 'http://www.4399.com'
+    </script>
+</body>
+</html>

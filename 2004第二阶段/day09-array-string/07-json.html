@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // json格式就是数组和对象互相嵌套构成的一种复杂数据结构
+        // json本身可以是数组，也可以是对象
+        // 补充：对象的属性名引号可加可不加，但是json格式数据很多时候会用于前后端交换
+        // 如果json数据运用于前后端交互的时候，对象的属性名必须要加双引号
+        var arr = [
+            {
+                name: '小明',
+                age:80
+            },
+            {
+                name: '小红',
+                age:17
+            },
+            {
+                name: '大熊',
+                age:19,
+                likes:['抽烟','喝酒','烫头']
+            }
+        ]
+
+        var person = {
+            "name": 'cxk',
+            "likes":['唱','跳','rap','篮球']
+        }
+    </script>
+</body>
+</html>

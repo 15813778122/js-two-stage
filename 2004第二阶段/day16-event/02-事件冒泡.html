@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #yeye {
+            width: 400px;
+            height: 400px;
+            background: pink;
+        }
+        #father {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        #son {
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="yeye">
+        <div id="father">
+            <div id="son"></div>
+        </div>
+    </div>
+    <script>
+        // 事件冒泡是从自己开始一层一层往外传播事件的过程
+        // 一个完整的事件流一定是包含了捕获 -> 目标 -> 冒泡 这样一个完整的过程，但是浏览器在处理事件的时候默认实在冒泡阶段处理
+        // IE浏览器不认识捕获，只能在冒泡阶段处理
+        document.onclick = function () {
+            console.log('document')
+        }
+        document.querySelector('#yeye').onclick = function () {
+            console.log('yeye')
+        }
+        document.querySelector('#father').onclick = function (e) {
+            console.log('father')
+            e = e || window.event
+            // 如果某些情况不希望冒泡，那么可以阻止
+            // 阻止冒泡的兼容写法：阻止事件从当前元素往外传播
+            if (e.stopPropagation) {
+                e.stopPropagation
+            } else {
+                e.cancelBubble = true
+            }
+        }
+        document.querySelector('#son').onclick = function () {
+            console.log('son')
+        }
+    </script>
+</body>
+</html>

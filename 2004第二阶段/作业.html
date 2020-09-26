@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 236px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        button:nth-child(1){
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            z-index: 2;
+        }
+        button:nth-child(2){
+            position: absolute;
+            top: 5px;
+            z-index: 2;
+            left: 40px;
+        }
+        button:nth-child(3){
+            position: absolute;
+            top: 5px;
+            z-index: 2;
+            left: 70px;
+        }
+        button:nth-child(4){
+            position: absolute;
+            top: 5px;
+            z-index: 2;
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <button>上</button>
+    <button>下</button>
+    <button>左</button>
+    <button>右</button>
+    <div></div>
+    <script>
+        var buts = document.querySelectorAll('button')
+        var div = document.querySelector('div')
+        var width = window.innerWidth - 240
+        var height= window.innerHeight - 250
+        buts[0].onclick = function () {
+            var timer = setInterval(function () {
+                div.style.top = div.offsetTop - 80 + 'px'
+                if (div.offsetTop === 0) {
+                    div.style.top = 0
+                    clearInterval(timer)
+                }
+            },50)
+        }
+        
+        buts[1].onclick = function () {
+            var timer = setInterval(function () {
+                div.style.top = div.offsetTop + 80 + 'px'
+                if (div.offsetTop >= height) {
+                    clearInterval(timer)
+                }
+            },50)
+        }
+        buts[2].onclick = function () {
+            var timer = setInterval(function () {
+                div.style.left = div.offsetLeft + 100 + 'px'
+                if (div.offsetLeft >= width) {
+                    clearInterval(timer)
+                }
+            },50)
+        }
+        buts[3].onclick = function () {
+            var timer = setInterval(function () {
+                div.style.left = div.offsetLeft - 100 + 'px'
+                if (div.offsetLeft === 0) {
+                    clearInterval(timer)
+                }
+            },50)
+        }
+        
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var date = new Date()
+        console.log(date.getFullYear())
+        console.log(date.getYear()) // 现在已经不用了，获取的是1900到当前年份的差值
+
+        console.log(date.getMonth()) // 月份是 0 ~ 11
+
+        console.log(date.getDate()) // 得到日期的号数
+
+        console.log(date.getHours())
+        console.log(date.getMinutes())
+        console.log(date.getSeconds())
+
+        console.log(date.getDay()) // 获取星期几 0~6,星期天就是0
+
+        console.log(date.getMilliseconds) // 获取当前日期的毫秒
+
+        console.log('------------')
+
+        // 还有一系列设置API，可以把日期拨到某个时间点
+        date.setFullYear(2021) // 把date日期对象设置为2021年
+
+        date.setMonth(5) // 把日期拨到6月
+
+        date.setDate(20) // 把日期设置成20号 
+
+        // date.setDay() // 这个方法是不存在的，星期几是根据日期自动计算的，不能手动设置
+
+        date.setHours(7)
+        date.setMinutes(7)
+        date.setSeconds(7)
+
+        // date.setTime(0) // 设置时间戳，date就会根据时间戳来计算，设置为0那么date就变成了1970-1-1，这个方法一般用的不多
+
+        console.log(date)
+    </script>
+</body>
+</html>

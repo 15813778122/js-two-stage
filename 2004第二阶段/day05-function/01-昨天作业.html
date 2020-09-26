@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 求100-999之间的水仙花数
+        for (var i = 100; i < 1000; i++) {
+            // 判断i是否是水仙花数
+            var gw = i % 10
+            var sw = parseInt(i / 10) % 10
+            var bw = parseInt(i / 100)
+            if (i === gw*gw*gw +sw*sw*sw +bw*bw*bw) {
+                console.log(i)
+            }
+        }
+    </script>
+</body>
+</html>

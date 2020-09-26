@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fn (n) {
+            var sw = ((n % 10) + 5 ) % 10
+            var gw = ((parseInt(n / 10) % 10) + 5) % 10
+            var bw = ((parseInt(n / 100) % 10) + 5) % 10
+            var qw = ((parseInt(n / 1000)) + 5) % 10
+            var m = qw.toString() + gw.toString() + bw.toString() + qw.toString()
+            return m
+        }
+        var num = fn(3333)
+        console.log(num)
+    </script>
+</body>
+</html>

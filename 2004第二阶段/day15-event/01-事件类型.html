@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        p{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div>box</div>
+    <p>pppp</p>
+    <input type="text">
+    <script>
+        var div = document.querySelector('div')
+        // 1、单击事件
+        div.onclick = function () {
+            console.log('click')
+        }
+
+        // 2、双击事件
+        div.ondblclick = function () {
+            console.log('double kill')
+        }
+
+        // 3、鼠标右键事件(上下文菜单)
+        // 右键按下抬起也会触发 mousedown mouseup
+        div.oncontextmenu = function () {
+            // context 上下文
+            // menu 菜单
+            console.log('右键')
+        }
+
+        // 4、鼠标按下事件
+        div.onmousedown = function () {
+            console.log('按下')
+        }
+
+        // 5、鼠标抬起事件
+        div.onmouseup = function () {
+            console.log('抬起')
+        }
+
+        // 6.1、鼠标移入
+        div.onmouseover = function () {
+            console.log('鼠标移入over')
+        }
+
+        // 6.2、鼠标移入，但是他不会穿过子元素的时候触发
+        div.onmouseenter = function () {
+            console.log('鼠标移入enter')
+        }
+
+        // 7.1、鼠标移出
+        div.onmouseout = function () {
+            console.log('鼠标移出out')
+        }
+
+        // 7.2、鼠标移出，但是他不会穿过子元素的时候触发
+        div.onmouseleave = function () {
+            console.log('鼠标移出leaver')
+        }
+
+        // 8、鼠标移动事件
+        div.onmousemove = function () {
+            console.log('移动')
+        }
+
+        var input = document.querySelector('input')
+
+        input.onkeydown = function () {
+            console.log('键盘按下')
+        }
+
+        input.onkeyup = function () {
+            console.log('键盘抬起')
+        }
+
+        // 就算键盘一直按下不抬起这个press事件也会触发
+        input.onkeypress = function () {
+            console.log('键盘敲击')
+        }
+    </script>
+</body>
+</html>

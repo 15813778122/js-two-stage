@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="fn()">按钮</button>
+    <div id="box" class="box section">box</div>
+    <script>
+        var div = document.querySelector('#box')
+        function fn () {
+            // div.innerHTML = 'box2'
+            // 会解析标签
+            // div.innerHTML = '<b>box3</b>' 
+            // 就不会解析标签
+            div.innerText = '<b>box3</b>' 
+        }
+    </script>
+</body>
+</html>

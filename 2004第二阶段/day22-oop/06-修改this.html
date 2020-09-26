@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = 10
+        var obj1 = {
+            a: 20,
+            say: function (x, y) {
+                console.log(this.a)
+                console.log(this.a + x + y)
+            }
+        }
+        var obj2 = {
+            a: 30,
+            say: function () {
+                console.log(this.a)
+                // bind是在函数封装的时候来修改this指向，这种的话以后的调用this都指向obj1
+            }.bind(obj1)
+        }
+        obj2.say()
+
+        // 在调用的时候临时修改this
+        obj1.say()
+        // 在调用obj1.say的时候把this临时改为window
+        obj1.say.call(window,1,2)
+        // call和apply这两个方法作用是一样的，如果有参数传参不一样
+        // call的参数直接挨个传递即可，apply后面的参数要放到一个数组里来传递
+        obj1.say.apply(window,[1,2])
+
+        var obj3 = {
+            a: 40,
+            say: function () {
+                console.log(this.a)
+                setTimeout(function () {
+                    console.log(this.a)
+                    // bind就是把this绑定成外层this
+                }.bind(this),1000)
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [4,2,3,5,9,6,2]
+
+        // 从arr当中去找2的索引，如果数组里有多个2，那么得到的就是第一次出现的索引
+        console.log(arr.indexOf(2)) // 1
+
+        console.log(arr.indexOf(10)) // -1 如果值不存在，那么得到-1
+
+        // 判断数组里是否存在某个值，就用indexOf判断结果是否等于-1
+
+        // 从arr当中去找2的索引，如果数组里有多个2，得到的是最后一次出现的索引
+        console.log(arr.lastIndexOf(2)) // 2
+        console.log(arr.lastIndexOf(10)) // -1 如果值不存在，那么得到-1
+
+        // ES5新增的一种遍历数组的方式
+        arr.forEach(function (item,index) {
+            // item是值，index是索引
+            console.log(item,index)
+        })
+
+        // map也是用来遍历数组，遍历的同时需要给一个返回值
+        // 所有的返回值会返进一个新的数组
+        var arr1 = arr.map(function (item,index) {
+            // item是值，index是索引
+            console.log(item,index)
+            return item * 2
+        })
+        console.log(arr1)
+    </script>
+</body>
+</html>

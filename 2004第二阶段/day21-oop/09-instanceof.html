@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Dog (name) {
+            this.name = name
+        }
+
+        Dog.prototype.say = function () {
+            console.log(`My name is ${this.name}`)
+        }
+        var snoopy = new Dog('Snoopy')
+
+        console.log(snoopy instanceof Dog) // true
+        console.log(snoopy instanceof Object) // true
+
+        // js里的任何数据都是Object的实例，任意数据使用instanceof去验证Object都会得到true
+        // js中的任意数据都可以沿着原型链找到Object.prototype,因此我们说js里一切皆为对象
+
+        // 但是js的面向对象跟传统的严格面向对面也是有区别的，所以可以说js的数据都不是对象
+        // 因为js本身是没有类的，js的面向对象都是基于原型来实现的
+
+        // instanceof可以用来验证数组
+        var arr = [3,6,2,5]
+        var obj = {name: 'lisi'}
+        console.log(typeof arr) // Object
+        console.log(typeof obj) // Object
+
+        console.log(arr instanceof Array) // true
+        console.log(obj instanceof Array) // false
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 原型链:一个对象在调用方法或者访问属性的时候沿着原型一层一层往上查找的链式结构
+
+        function Dog (name) {
+            this.name = name
+        }
+
+        Dog.prototype.say = function () {
+            console.log(`My name is ${this.name}`)
+        }
+
+        var snoopy = new Dog('Snoopy')
+        snoopy.say()
+        console.log(snoopy)
+
+        // 实例对象身上有一个__proto__属性，这个属性是一个指针，指向构造函数的原型对象
+        // __proto__也叫隐式原型
+        console.log(snoopy.__proto__ === Dog.prototype) // true
+
+        //Dog.prototype 是一个普通对象，所以他的构造函数是Object
+        console.log(Dog.prototype)
+        // Dog.prototype作为普通对象来看待，那么他的__proto__ 指向Object.protype
+        console.log(Dog.prototype.__proto__ === Object.prototype)
+
+        console.log(Object.prototype.__proto__) // null
+
+        console.log(Object.prototype)
+
+        // 当snoopy调用tostring()方法的时候先找自己，自己没有沿着原型链一层一层往上找，在Object.prototype
+        // 找到了这个方法然后就调用，如果Object.prototype也没有，那就报错
+        console.log(snoopy.tostring())
+
+        // 实例对象的__proto__指向构造函数的prototype
+        // snoopy是实例，Dog是他的构造函数
+        // Dog.prototype是实例，他的构造函数是Object
+
+    </script>
+</body>
+</html>

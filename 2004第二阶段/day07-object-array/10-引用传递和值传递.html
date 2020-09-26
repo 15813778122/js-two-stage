@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fn (n) {
+            n++
+        }
+        var num = 10
+        fn(num) // 值传递，只是传递了10进去，但是num本身不会被改变
+        console.log(num) // 10
+
+        function fn1 (arr) {
+            arr[0] = 20
+        }
+        var arr1 = [2,6,9,8]
+        fn1(arr1) // 把数组作为参数在传递，传递的是引用(地址)
+        console.log(arr1) // [20,6,9,8]
+    </script>
+</body>
+</html>

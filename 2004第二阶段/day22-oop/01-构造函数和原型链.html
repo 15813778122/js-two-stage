@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 构造函数是一个抽象，要用来new才能得到实例
+        function Duck (name) {
+            this.name = name
+            this.say = function () {
+
+            }
+        }
+
+        // 构造函数里的代码相当于下面这一段，伪代码，不能拿来运行
+        // function Duck (name) {
+        //     var obj = new Object()
+        //     obj.name = name
+        //     this = obj
+        //     return this
+        // }
+
+        // 方法一般放在原型上(公共位置，每一个实例都可以来调用)
+        Duck.prototype.walk = function () {
+            // this也是值将来new的对象(谁来调用就值谁)
+            console.log(`${this.name} is walking`)
+        }
+
+        // 如果原型上要写多个方法，可以使用Object.assign
+        // Object.assign(Duck.prototype,
+        //     walk = function () {
+
+        //     }
+        // )
+
+        var tang = new Duck('Tang')
+        console.log(tang)
+        tang.walk()
+
+        // 原型链：实例对沿着原型一层一层往上查找的链式结构
+        // 实例对象的__proto__指向构造函数的prototype
+        console.log(tang.__proto__ === Duck.prototype)
+
+        // 把Duck.prototype看作一个整体，他就是一个普通对象，所以他的构造函数是Object
+        console.log(Duck.prototype.__proto__ === Object.prototype)
+
+        console.log(Object.prototype.__proto__) // null
+    </script>
+</body>
+</html>

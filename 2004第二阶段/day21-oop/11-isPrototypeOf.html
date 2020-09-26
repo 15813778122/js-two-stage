@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Dog (name) {
+            this.name = name
+        }
+
+        Dog.prototype.say = function () {
+            console.log(`My name is ${this.name}`)
+        }
+        var snoopy = new Dog('Snoopy')
+
+        // 验证Dog.prototype是否在snoopy的原型链上
+        console.log(Dog.prototype.isPrototypeOf(snoopy)) // true
+        console.log(Object.prototype.isPrototypeOf(snoopy)) // true
+
+
+    </script>
+</body>
+</html>

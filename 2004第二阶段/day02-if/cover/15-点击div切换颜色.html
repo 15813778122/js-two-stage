@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById('box')
+
+        // 相当于一个开关,默认红色为true
+        var isRed = true // 这里的代码只是页面加载的时候执行一次
+       
+        box.onclick = function () {
+            //这里的代码是每一次点击的时候都会执行
+            // var isRed = true  isred不能写在这里,因为这里每次点击都会赋值为ture
+            // box的样式的背景赋值为green
+           // box.style.background = 'green'
+           if (isRed){
+            box.style.background = 'green'
+            // isRed = false
+           } else {
+               box.style.background = 'red'
+            //    isRed = true
+           }
+           // 不管走if还是else都取反
+           isRed = !isRed
+        } 
+    </script>
+</body>
+</html>

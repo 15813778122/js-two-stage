@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>首页</li>
+        <li>列表</li>
+        <li id="about">关于</li>
+    </ul>
+    <script>
+        var ul = document.querySelector('ul')
+        var about = document.querySelector('#about')
+
+        // 父元素.removeChild删除子元素
+        // ul.removeChild(about)
+
+        // 补充:parentNode找到自己的父级
+        // about.parentNode.removeChild(about)
+
+        // 可以自己删除，但是IE8以下不能使用
+        about.remove()
+
+    </script>
+</body>
+</html>

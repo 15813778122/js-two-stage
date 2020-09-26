@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 面向过程的程序：按照步骤一步一步写完就行
+        // 面向对象：可以把要完成的事情封装成一个对象，利用对象的属性和方法来完成功能
+
+        function Cfb(n) {
+            this.n = n
+            // str在init和print里面都要用，所以写给this
+            this.str = ''
+            // 这里的init和print是每一个实例默认都会调用的方法，可以直接放在这个构造函数里
+            this.init()
+            this.print()
+        }
+
+        Cfb.prototype.init = function () {
+            // init里的this指将来调用init的对象，也就是将来new的那个对象
+            for (var i = 1; i <= this.n; i++) {
+                for (var j = 1; j <= i; j++) {
+                    this.str += `${j} x ${i} = ${i*j}&nbsp;`
+                }
+                this.str += '<br>'
+            }
+        }
+        Cfb.prototype.print = function () {
+            document.write(this.str)
+        }
+
+        // 这种默认调用的方法如果不放在构造函数里会有代码重复
+        // var c1 = new Cfb(9)
+        // c1.init()
+        // c1.print()
+        // var c2 = new Cfb(19)
+        // c2.init()
+        // c2.print()
+
+
+        new Cfb(9)
+        new Cfb(19)
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [4,2,5,7,2,6,6,2,6,5]
+        // 利用对象的属性名不冲突完成去重
+        // 可以把数字作为对象的属性名
+        // var obj = {
+        //     4: 'lisi'
+        // }
+        // console.log(obj[4])
+
+        // 遍历数组，判断当前数组元素属性名是否能取到值
+        // 如果取不到，说明这是第一次遍历到当前值，就把当前元素作为对象的属性名赋个值
+        // 如果取到了，说明之前已经赋过值了，也就是说当前值不是第一次出现
+
+        var obj = {}
+        var arr1 = []
+        // arr.forEach(function (item) {
+        //     // 把item作为属性名到对象里去取值看能不能取到
+        //     if (obj[item]) {
+        //         // 取到值了，说明item不是第一次出现，item是一个无效值，就不用push到arr1里，这里就什么都不用做
+        //     } else {
+        //         // 取不到值，说明item是第一次出现
+        //         // 就给他赋个值
+        //         // item是第一次出现，他是我们要保留的值
+        //         obj[item] = 'a'
+        //         arr1.push(item)
+        //     }
+        // })
+
+        arr.forEach(function (item) {
+            // 把item作为属性名到对象里去取值看能不能取到
+            if (!obj[item]) {
+                // 取不到值，说明item是第一次出现
+                // 就给他赋个值
+                obj[item] = 'a'
+                arr1.push(item)
+            } 
+            // else 就不用写了
+            // else {
+            //     // 取到值了，说明item不是第一次出现
+            // }
+        })
+
+        console.log(arr1)
+    </script>
+</body>
+</html>

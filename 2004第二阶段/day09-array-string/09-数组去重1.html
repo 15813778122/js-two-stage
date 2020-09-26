@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 重复的元素只保留一个
+        var arr = [4,2,5,7,2,6,6,2,6,5]
+        console.log(arr)
+        // 使用循环依次比较，遇到重复的就删除
+        // 比较length-1趟
+        for (var i = 0; i < arr.length - 1; i++) {
+            // 当前这一趟比较从i+1开始
+            // 比较的终点leng-1
+            for (var j = i + 1; j < arr.length; j++) {
+                if (arr[i] === arr[j]) {
+                    arr.splice(j,1)
+                    // 删完以后j-1抵消for里的++确保不跳过重复的值
+                    j--
+                }
+            }
+        }
+        console.log(arr)
+    </script>
+</body>
+</html>

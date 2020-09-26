@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 入职薪水10K，每年涨幅5%，n年后工资多少
+        function fn (n) {
+            var salary = 10000
+            for (var i = 0 ; i < n; i++) {
+                salary *= (1 + 0.05)
+            }
+            return salary
+        }
+        var money = fn(20)
+        // 得到money也就是返回出来的n年之后的薪资，可以用它来输出，也可以做别的
+        console.log(money)
+
+    </script>
+</body>
+</html>

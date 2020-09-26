@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #menu {
+            position: absolute;
+            border: 1px solid #333;
+            list-style: none;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <ul id="menu"></ul>
+    <script>
+        var oMenu = document.querySelector('#menu')
+        document.oncontextmenu = function (e) {
+            e = e || window.event
+            oMenu.innerHTML = '<li>复制</li><li>粘贴</li><li>删除</li>'
+            // menu赋值鼠标坐标 
+            oMenu.style.display = 'block'
+            oMenu.style.left = e.clientX + 'px'
+            oMenu.style.top = e.clientY + 'px'
+
+            // 这种写法要放在函数末尾来阻止默认行为
+            if (e.preventDefault) {
+                e.preventDefault()
+            } else {
+                return false
+            }
+        }
+    </script>
+</body>
+</html>
